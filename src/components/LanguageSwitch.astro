@@ -1,0 +1,71 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class:list={['language-switch', className]} data-language-switch>
+  <button type="button" class="switch-item" data-lang="ru" data-interactive aria-pressed="true">
+    <span class="text-button">RU</span>
+  </button>
+  <button type="button" class="switch-item" data-lang="en" data-interactive aria-pressed="false">
+    <span class="text-button">EN</span>
+  </button>
+</div>
+
+<style>
+  .language-switch {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    background: var(--color-black-9);
+    width: 72px;
+  }
+
+  .switch-item {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    color: var(--color-zinc-dust);
+  }
+
+  .switch-item[aria-pressed='true'] {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'lang';
+
+  function setLang(lang: 'ru' | 'en', announce: boolean) {
+    document.documentElement.dataset.lang = lang;
+    localStorage.setItem(STORAGE_KEY, lang);
+    document.querySelectorAll<HTMLElement>('[data-language-switch]').forEach((el) => {
+      el.querySelectorAll<HTMLButtonElement>('.switch-item').forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
+      });
+    });
+    if (announce) {
+      document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
+    }
+  }
+
+  const initialLang = (localStorage.getItem(STORAGE_KEY) as 'ru' | 'en' | null) ?? 'ru';
+  setLang(initialLang, false);
+
+  document.querySelectorAll<HTMLElement>('[data-language-switch]').forEach((el) => {
+    el.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.switch-item');
+      if (!button) return;
+      const lang = button.dataset.lang as 'ru' | 'en';
+      if (document.documentElement.dataset.lang === lang) return;
+      setLang(lang, true);
+    });
+  });
+</script>

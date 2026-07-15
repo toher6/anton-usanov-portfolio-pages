@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import StatusTag from './StatusTag.astro';
+import profilePhoto from '../assets/images/profile/profile-photo.jpg';
+import { CONTACTS } from '../data/contacts';
+---
+
+<section class="hero">
+  <div class="dots" aria-hidden="true"></div>
+  <Image src={profilePhoto} alt="Антон Усанов" width={224} height={224} class="photo" />
+  <div class="description">
+    <StatusTag data-i18n="hero.status">Открыт к предложениям</StatusTag>
+    <div class="bio">
+      <p class="text-h1" data-i18n="hero.name">Антон Усанов</p>
+      <p class="text-body subtitle" data-i18n="hero.subtitle">
+        Продуктовый дизайнер с опытом работы над продуктами в сферах AI, девелопмента, логистики, web3
+      </p>
+    </div>
+    <div class="buttons">
+      <Button variant="primary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
+        Telegram
+      </Button>
+      <Button variant="primary" icon="email" iconPosition="left" copy={CONTACTS.email}>
+        Email
+      </Button>
+      <Button variant="primary" icon="cv" iconPosition="left" href={CONTACTS.cv} target="_blank" rel="noreferrer">
+        CV
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+    padding: 92px 200px 0;
+  }
+
+  .dots {
+    position: absolute;
+    inset: 0 -88px;
+    background-image: radial-gradient(var(--color-black-9) 1px, transparent 1px);
+    background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 90%);
+    mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 90%);
+    pointer-events: none;
+  }
+
+  .photo {
+    position: relative;
+    width: 224px;
+    height: 224px;
+    border-radius: 22px;
+    object-fit: cover;
+  }
+
+  .description {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .subtitle {
+    color: var(--color-zinc-dust);
+    max-width: 620px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+</style>

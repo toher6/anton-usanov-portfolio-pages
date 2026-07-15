@@ -1,0 +1,88 @@
+/*
+  Design tokens — 1:1 с переменными и стилями из Figma (файл Portfolio).
+  Каждый токен снабжён именем из Figma в комментарии для трассируемости.
+*/
+:root {
+  /* Цвета — Figma variables */
+  --color-black: #000000; /* Black 100 */
+  --color-white: #ffffff; /* White 100 */
+  --color-zinc-dust: #5b5b5b; /* Zinc dust */
+  --color-blue-dusk: #8c929c; /* Blue dusk */
+  --color-green-teal: #10b173; /* Green teal */
+  --color-errigal-white: #f2f2f4; /* Errigal white */
+  --color-dr-white: #fafafa; /* Dr.White */
+
+  /* Прозрачный чёрный — оверлеи, бордеры, подложки (Figma: Black 3/6/9/64) */
+  --color-black-3: rgba(0, 0, 0, 0.03);
+  --color-black-6: rgba(0, 0, 0, 0.06);
+  --color-black-9: rgba(0, 0, 0, 0.09);
+  --color-black-64: rgba(0, 0, 0, 0.64);
+
+  /* Точечные фирменные подложки, встречающиеся в макетах */
+  --color-header-bg: #f9f9fa;
+  --color-header-overlay: rgba(250, 250, 250, 0.8);
+  --color-status-bg: #e7f7f1;
+
+  /* Типографика */
+  --font-heading: 'Onest', sans-serif;
+  /* SF Pro не распространяется как веб-шрифт — системный стек резолвится
+     в San Francisco на устройствах Apple и в нативный UI-шрифт на остальных */
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --text-h1-size: 36px;
+  --text-h1-line: 48px;
+  --text-h1-weight: 300; /* H1/Desktop — Onest Light */
+
+  --text-h2-size: 24px;
+  --text-h2-line: 32px;
+  --text-h2-weight: 400; /* H2/Desktop — Onest Regular */
+
+  --text-pretitle-size: 18px;
+  --text-pretitle-line: 24px;
+  --text-pretitle-weight: 300; /* Pre-title/Desktop — Onest Light */
+
+  --text-body-size: 18px;
+  --text-body-line: 24px;
+  --text-body-weight: 400; /* Body/Desktop — SF Pro Regular */
+
+  --text-label-size: 18px;
+  --text-label-line: 24px;
+  --text-label-weight: 510; /* Label/Desktop — SF Pro Medium */
+
+  --text-button-size: 14px;
+  --text-button-line: 20px;
+  --text-button-weight: 510; /* Button text/Desktop — SF Pro Medium */
+
+  --text-tag-size: 12px;
+  --text-tag-line: 16px;
+  --text-tag-weight: 590; /* Tag text/Desktop — SF Pro Semibold */
+
+  --text-small-size: 12px;
+  --text-small-line: 16px;
+  --text-small-weight: 400; /* мелкий текст подписей (футер, подписи к картинкам) */
+
+  /* Радиусы */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 40px;
+  --radius-pill: 100px;
+
+  /* Тени (elevation) */
+  --shadow-tag: 0px 2px 1.5px -0.5px var(--color-black-3);
+  --shadow-elevation:
+    0px 1px 1px -0.5px var(--color-black-3),
+    0px 3px 3px -1.5px var(--color-black-3),
+    0px 20px 20px -12px var(--color-black-3);
+
+  /* Раскладка */
+  --content-width: 1200px;
+  --page-padding-inline: 120px;
+
+  /* Breakpoints — используются в @media внутри компонентов.
+     Значения зафиксированы заранее, чтобы мобильную вёрстку можно было
+     добавлять точечно, без пересмотра структуры. */
+  --bp-tablet: 1024px;
+  --bp-mobile: 640px;
+}

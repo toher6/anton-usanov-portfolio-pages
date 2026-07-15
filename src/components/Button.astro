@@ -1,0 +1,70 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  href?: string;
+  copy?: string;
+  icon?: 'telegram' | 'email' | 'cv' | 'arrow-up-right' | 'arrow-left-circle';
+  iconPosition?: 'left' | 'right';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  copy,
+  icon,
+  iconPosition = 'right',
+  class: className,
+  target,
+  rel,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class:list={['button', `button--${variant}`, className]}
+  href={href}
+  target={target}
+  rel={rel}
+  type={Tag === 'button' ? 'button' : undefined}
+  data-copy={copy}
+  data-interactive
+>
+  {icon && iconPosition === 'left' && <Icon name={icon} />}
+  <span class="text-button" data-i18n-scope><slot /></span>
+  {icon && iconPosition === 'right' && <Icon name={icon} />}
+</Tag>
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+  }
+
+  .button--primary {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .button--secondary {
+    background: var(--color-black-3);
+    border: 1px solid var(--color-black-6);
+    color: var(--color-black);
+    justify-content: center;
+  }
+
+  .button--tertiary {
+    background: transparent;
+    color: var(--color-zinc-dust);
+  }
+</style>

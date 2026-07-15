@@ -1,0 +1,172 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+import CaseHero from '../../components/CaseHero.astro';
+import CaseSection from '../../components/CaseSection.astro';
+import ImageBlock from '../../components/ImageBlock.astro';
+import sberLogo from '../../assets/images/logos/sber-logo.png';
+import interviewGuideTable from '../../assets/images/cases/aigw-interview/interview-guide-table.png';
+import insightsDiagram from '../../assets/images/cases/aigw-interview/insights-diagram.png';
+import resultSummary from '../../assets/images/cases/aigw-interview/result-summary.png';
+
+const title = 'Провел серию интервью';
+const description =
+  'Провёл исследование для сервиса для внутренних разработчиков ИИ-агентов. Подготовил гайд и провёл 8 глубинных интервью с командами, которые проходят процесс вывода ИИ-агента в продакшн. Подтвердил 3 из 4 гипотез и сформировал рекомендации на основе инсайтов';
+
+const guideRows = [
+  {
+    label: 'Бизнес-цели и ключевые результаты',
+    items: ['Сократить время выкатки ИИ-агента до 1,5 месяцев', 'Снизить количество обращений к команде поддержки'],
+  },
+  {
+    label: 'Цель исследования',
+    text: 'Определить ключевые потребности пользователей и их текущие боли при выкатке ИИ-агентов в продакшн',
+  },
+  {
+    label: 'Предполагаемый результат',
+    text: 'Фидбек поможет команде погрузиться в процессы пользователей, лучше понять их предметную область, а также принять взвешенное решение о доработке документации или разработке MVP интерфейса взамен текущей инструкции.',
+  },
+  {
+    label: 'Проверяемые гипотезы',
+    items: [
+      'Разработчики не понимают структуру и требования, описанные в текущей документации',
+      'Разработчики чаще прибегают к помощи коллег, чем к документации, при возникновении трудностей',
+      'Разработчики не понимают, на каком этапе находится их агент (отправлен, проверен, принят и т.д.)',
+      'Отсутствие единого интерфейса усложняет контроль прогресса агента и делает процесс выкатки фрагментированным',
+    ],
+  },
+  { label: 'Тип исследования', text: 'Глубинные интервью' },
+  { label: 'Формат', text: 'Онлайн-встречи на 60 минут' },
+  {
+    label: 'Респонденты',
+    items: [
+      'Те, кто проходил процесс выкатки решения',
+      'Те, кто будет проходить процесс выкатки решения и знаком с документацией',
+    ],
+  },
+  { label: 'Количество', text: '8 человек' },
+];
+---
+
+<CaseLayout title={`${title} — AI Gateway`} description={description}>
+  <div class="page">
+    <CaseHero
+      title={title}
+      companyLogo={sberLogo}
+      companyName="AI Gateway"
+      description={description}
+      meta={[
+        { label: 'Роль', value: 'Продуктовый дизайнер' },
+        { label: 'Год', value: '2025' },
+      ]}
+      results={[
+        { value: '8', label: 'Интервью проведено' },
+        { value: '3 из 4', label: 'Подтвержденных гипотезы' },
+      ]}
+    />
+
+    <CaseSection preTitle="Контекст" title="AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента">
+      Нужно было понять, с какими проблемами команды сталкиваются при выкатке решений в продакшн, насколько понятна существующая документация, и стоит ли перерабатывать её в формат интерфейса личного кабинета
+    </CaseSection>
+
+    <CaseSection preTitle="Задача" title="Определить ключевые потребности пользователей и их текущие боли при прохождении процесса выкатки ИИ-агента">
+      Результат должен был помочь команде принять решение — дорабатывать документацию или проектировать MVP интерфейса взамен существующей инструкции
+    </CaseSection>
+
+    <div class="grouped-section">
+      <CaseSection preTitle="Процесс" title="Целиком подготовил гайд исследования">
+        Описал предполагаемый результат, решения, которые команда сможет принять на основе выводов, вопросы исследования, гипотезы для проверки, требования к респондентам и список вопросов для интервью. Согласовал гайд с командой и получил контакты подходящих респондентов
+      </CaseSection>
+
+      <div class="interview-guide">
+        {guideRows.map((row) => (
+          <div class="guide-row">
+            <p class="text-body guide-label" data-i18n-scope>{row.label}</p>
+            {row.items ? (
+              <ul class="text-label guide-list">
+                {row.items.map((item) => <li data-i18n-scope>{item}</li>)}
+              </ul>
+            ) : (
+              <p class="text-label guide-detail" data-i18n-scope>{row.text}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <ImageBlock image={interviewGuideTable} />
+    </div>
+
+    <div class="grouped-section">
+      <CaseSection preTitle="Инсайты" title="Все респонденты сходились в одном: документация не проводит по процессу пошагово">
+        <p>Самый частый вопрос новых команд — «с чего начать?». Один из участников описал первое знакомство с инструкцией коротко: реакция была «непонятно», даже после прочтения quick start. Другой отметил, что вместо таблицы шагов хотел бы видеть понятный воркфлоу, по которому можно просто идти</p>
+        <p>Респонденты почти единогласно говорили, что в сложных случаях идут не в документацию, а к коллегам — и что статус своего агента чаще всего отслеживают вручную, через переписку или личные договорённости, а не через какой-либо системный источник правды</p>
+      </CaseSection>
+
+      <ImageBlock image={insightsDiagram} />
+    </div>
+
+    <div class="grouped-section">
+      <CaseSection preTitle="Результат" title="По итогам исследования сформулировал рекомендации по каждой проблемной зоне">
+        Провёл 8 интервью с продукт-оунерами и аналитиками, которые ведут процесс выкатки ИИ-агентов, и подтвердил 3 из 4 гипотез. Собрал набор конкретных рекомендаций по документации, интерфейсу и процессу и презентовал результаты команде.
+      </CaseSection>
+
+      <ImageBlock image={resultSummary} />
+    </div>
+  </div>
+</CaseLayout>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 100px;
+    width: 100%;
+    padding-block: 24px 96px;
+  }
+
+  .grouped-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+    width: 100%;
+  }
+
+  .interview-guide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    padding: 36px;
+    border-radius: var(--radius-2xl);
+    background: var(--color-black-3);
+  }
+
+  .guide-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .guide-label {
+    color: var(--color-zinc-dust);
+  }
+
+  .guide-detail {
+    color: var(--color-black);
+  }
+
+  .guide-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 27px;
+    list-style: disc;
+    color: var(--color-black);
+    width: 100%;
+  }
+</style>

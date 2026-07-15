@@ -1,0 +1,82 @@
+@import './reset.css';
+@import './fonts.css';
+@import './tokens.css';
+
+html {
+  background: var(--color-white);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  color: var(--color-black);
+}
+
+/* Базовые классы под типографику из Figma */
+.text-h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-line);
+  font-weight: var(--text-h1-weight);
+}
+
+.text-h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-line);
+  font-weight: var(--text-h2-weight);
+}
+
+.text-pretitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-pretitle-size);
+  line-height: var(--text-pretitle-line);
+  font-weight: var(--text-pretitle-weight);
+  color: var(--color-blue-dusk);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  font-weight: var(--text-body-weight);
+}
+
+.text-label {
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-line);
+  font-weight: var(--text-label-weight);
+}
+
+.text-button {
+  font-family: var(--font-body);
+  font-size: var(--text-button-size);
+  line-height: var(--text-button-line);
+  font-weight: var(--text-button-weight);
+}
+
+.text-tag {
+  font-family: var(--font-body);
+  font-size: var(--text-tag-size);
+  line-height: var(--text-tag-line);
+  font-weight: var(--text-tag-weight);
+}
+
+.text-small {
+  font-family: var(--font-body);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  font-weight: var(--text-small-weight);
+}
+
+/*
+  База под hover-эффекты: transition уже навешан на интерактивные элементы,
+  сами :hover-стили будут добавлены позже — сейчас без изменений при наведении.
+*/
+a,
+button,
+[data-interactive] {
+  transition: background-color 150ms ease, opacity 150ms ease, color 150ms ease, border-color 150ms ease;
+}

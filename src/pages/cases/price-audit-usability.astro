@@ -1,0 +1,223 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+import CaseHero from '../../components/CaseHero.astro';
+import CaseSection from '../../components/CaseSection.astro';
+import ImageBlock from '../../components/ImageBlock.astro';
+import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
+import sberLogo from '../../assets/images/logos/sber-logo.png';
+import guideImage from '../../assets/images/cases/price-audit-usability/guide.png';
+import interviewScreenshot from '../../assets/images/cases/price-audit-usability/interview-screenshot.png';
+import insightsStats from '../../assets/images/cases/price-audit-usability/insights-stats.png';
+import insightsAnswers from '../../assets/images/cases/price-audit-usability/insights-answers.png';
+import insightsDetail from '../../assets/images/cases/price-audit-usability/insights-detail.png';
+import recognitionErrorBefore from '../../assets/images/cases/price-audit-usability/recognition-error-before.png';
+import recognitionErrorAfter from '../../assets/images/cases/price-audit-usability/recognition-error-after.png';
+import resultsTableBefore from '../../assets/images/cases/price-audit-usability/results-table-before.png';
+import resultsTableAfter from '../../assets/images/cases/price-audit-usability/results-table-after.png';
+
+const meta = [
+  { label: 'Роль', value: 'Продуктовый дизайнер' },
+  { label: 'Год', value: '2026' },
+];
+
+const results = [
+  { value: '6', label: 'Участников тестирования' },
+  { value: '2 из 3', label: 'Гипотезы подтверждены' },
+  { value: '12', label: 'Проблем выявлено' },
+];
+
+interface MethodologyRow {
+  label: string;
+  intro?: string;
+  text?: string;
+  items?: string[];
+}
+
+const methodology: MethodologyRow[] = [
+  {
+    label: 'Бизнес-цели и ключевые результаты',
+    items: ['Сократить время и расходы на поиск проверенных поставщиков необходимых товаров и услуг'],
+  },
+  {
+    label: 'Цель исследования',
+    items: [
+      'Определить в достаточной ли мере новая версия сервиса закрывает потребности пользователя в сценарии оценки спецификаций',
+      'Какие боли есть при прихождении сценария',
+      'Определить какие недостатки есть в прототипе и что можно в нем улучшить',
+    ],
+  },
+  {
+    label: 'Предполагаемый результат',
+    text: 'Обратная связь поможет команде принять взвешенное решение о доработке текущего функционала и устранении недочетов для улучшения пользовательского опыта',
+  },
+  {
+    label: 'Проверяемые гипотезы',
+    items: [
+      'Пользователям сложно понять логику интерфейса без дополнительной инструкции',
+      'Пользователям сложно интерпретировать результаты аудита спецификаций',
+      'Пользователям недостаточно данных для принятия решений в рамках сценария аудита спецификации',
+    ],
+  },
+  { label: 'Тип исследования', text: 'Юзабили-тестирование с элементами интервью' },
+  { label: 'Формат', text: 'Очное модерируемое' },
+  {
+    label: 'Респонденты',
+    intro: 'Сотрудники блока "Строительство", которые:',
+    items: ['участвуют в процессе оценки спецификаций', 'принимают участие в определении стоимости закупки'],
+  },
+  { label: 'Количество', text: '6 человек' },
+];
+---
+
+<CaseLayout
+  title="Провел юзабилити-тестирование для Аудита цен"
+  description="Инициировал тестирование прототипа с 6 сотрудниками блока «Строительство», подтвердил 2 из 3 гипотез и приоритизировал 12 найденных проблем"
+>
+  <div class="case">
+    <CaseHero
+      title="Провел юзабилити-тестирование"
+      companyLogo={sberLogo}
+      companyName="Аудита цен"
+      description="Инициировал тестирование прототипа с 6 сотрудниками блока «Строительство», подтвердил 2 из 3 гипотез и приоритизировал 12 найденных проблем. Скорректированные макеты получили положительную реакцию и от заказчика, и от пользователей на согласовании"
+      meta={meta}
+      results={results}
+    />
+
+    <CaseSection
+      preTitle="Контекст и задача"
+      title="Аудит цен — сервис, который помогает проверять закупочные цены на соответствие рынку"
+    >
+      Он разрабатывался почти год, и за это время требования к интерфейсу и сценарии использования несколько раз
+      менялись. Команда постоянно была на связи с заказчиком, но обратная связь от конечных пользователей оставалась
+      негативной. Нужно было понять, закрывает ли новая версия сервиса реальные потребности пользователей в сценарии
+      аудита спецификации, и что мешает работать с интерфейсом самостоятельно
+    </CaseSection>
+
+    <section class="section-group">
+      <CaseSection preTitle="Процесс" title="Я инициировал проведение юзабилити-тестирования">
+        Определил методологию, сформулировал 3 гипотезы, подготовил интерактивный прототип и гайд исследования
+      </CaseSection>
+
+      <div class="methodology">
+        {methodology.map((row) => (
+          <div class="methodology-row">
+            <p class="text-body row-label" data-i18n-scope>{row.label}</p>
+            {row.intro && <p class="text-label row-value" data-i18n-scope>{row.intro}</p>}
+            {row.text && <p class="text-label row-value" data-i18n-scope>{row.text}</p>}
+            {row.items && (
+              <ul class="row-list">
+                {row.items.map((item) => (
+                  <li class="text-label row-value" data-i18n-scope>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <ImageBlock image={guideImage} />
+      <ImageBlock image={interviewScreenshot} />
+    </section>
+
+    <section class="section-group">
+      <CaseSection preTitle="Инсайты" title="2 из 3 гипотез подтвердились">
+        По итогам тестирования узнал различные инсайты, выявил и приоритизировал 12 проблем разной критичности — 5 из
+        них в высоком приоритете
+      </CaseSection>
+
+      <ImageBlock image={insightsStats} />
+      <ImageBlock image={insightsAnswers} />
+      <ImageBlock image={insightsDetail} />
+    </section>
+
+    <section class="section-group">
+      <CaseSection
+        preTitle="Доработка"
+        title="Согласовал список доработок с командой и заказчиком, скорректировал макеты"
+      >
+        Сделал ошибки заметнее, переписал формулировки результатов, дал более чёткие подсказки по интерфейсу
+      </CaseSection>
+
+      <BeforeAfterSlider
+        before={recognitionErrorBefore}
+        after={recognitionErrorAfter}
+        beforeLabel="Старый вариант"
+        afterLabel="Новый вариант"
+        caption="Состояние ошибки распознавания в блоке заполнения запроса — до и после юзабилити-тестирования"
+      />
+
+      <BeforeAfterSlider
+        before={resultsTableBefore}
+        after={resultsTableAfter}
+        beforeLabel="Старый вариант"
+        afterLabel="Новый вариант"
+        caption="Блок результатов аудита спецификации — до и после юзабилити-тестирования"
+      />
+    </section>
+
+    <CaseSection
+      preTitle="Результат"
+      title="Провёл 6 модерируемых сессий, подтвердил 2 из 3 гипотез, приоритизировал 12 проблем"
+    >
+      При демонстрации результатов на созвоне с заказчиком и стейкхолдерами прозвучала прямая положительная оценка
+      проделанной работы, а сотрудники блока «Строительство» позитивно отреагировали на изменения при финальном
+      согласовании
+    </CaseSection>
+  </div>
+</CaseLayout>
+
+<style>
+  .case {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 100px;
+    width: 100%;
+    padding-bottom: 100px;
+  }
+
+  .section-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+    width: 100%;
+  }
+
+  .methodology {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    padding: 36px;
+    border-radius: var(--radius-2xl);
+    background: var(--color-black-3);
+  }
+
+  .methodology-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .row-label {
+    color: var(--color-zinc-dust);
+  }
+
+  .row-value {
+    color: var(--color-black);
+  }
+
+  .row-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding-left: 27px;
+    list-style: disc;
+  }
+</style>

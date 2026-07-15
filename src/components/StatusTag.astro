@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class:list={['status-tag', className]}>
+  <span class="dot"></span>
+  <p class="text-tag"><slot /></p>
+</div>
+
+<style>
+  .status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--color-status-bg);
+    color: var(--color-green-teal);
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 30px;
+    background: var(--color-green-teal);
+    flex-shrink: 0;
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  class?: string;
+}
+const { value, label, class: className } = Astro.props;
+---
+
+<div class:list={['result-card', className]}>
+  <p class="text-h1 value">{value}</p>
+  <p class="text-body label" data-i18n-scope>{label}</p>
+</div>
+
+<style>
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 28px 24px;
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-black-6);
+  }
+
+  .value {
+    white-space: nowrap;
+  }
+
+  .label {
+    color: var(--color-zinc-dust);
+  }
+</style>

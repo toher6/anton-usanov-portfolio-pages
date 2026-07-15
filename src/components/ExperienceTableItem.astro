@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import sberLogo from '../assets/images/logos/sber-logo.png';
+import dexsportLogo from '../assets/images/logos/dexsport-logo.png';
+
+interface Props {
+  period: string;
+  role: string;
+  companyLogo: 'sber' | 'dexsport';
+  companyName: string;
+  org: string;
+  description: string;
+}
+
+const { period, role, companyLogo, companyName, org, description } = Astro.props;
+const logos = { sber: sberLogo, dexsport: dexsportLogo };
+---
+
+<div class="experience-item">
+  <p class="text-body period">{period}</p>
+  <div class="details">
+    <div class="title">
+      <p class="text-label" data-i18n-scope>{role}</p>
+      <p class="text-label dot">·</p>
+      <div class="company">
+        <Image src={logos[companyLogo]} alt="" width={24} height={24} class="company-logo" />
+        <p class="text-label">{companyName}</p>
+      </div>
+      <p class="text-label dot">·</p>
+      <p class="text-label" data-i18n-scope>{org}</p>
+    </div>
+    <p class="text-body description" data-i18n-scope>{description}</p>
+  </div>
+</div>
+
+<style>
+  .experience-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .period {
+    color: var(--color-zinc-dust);
+    white-space: nowrap;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 900px;
+  }
+
+  .title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .dot {
+    color: var(--color-black);
+  }
+
+  .company {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-logo {
+    border-radius: 4px;
+  }
+
+  .description {
+    color: var(--color-zinc-dust);
+    max-width: 780px;
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ResultCard from './ResultCard.astro';
+
+interface Props {
+  title: string;
+  companyLogo: ImageMetadata;
+  companyName: string;
+  description: string;
+  meta: { label: string; value: string }[];
+  results: { value: string; label: string }[];
+  coverImage?: ImageMetadata;
+}
+
+const { title, companyLogo, companyName, description, meta, results, coverImage } = Astro.props;
+---
+
+<header class="case-hero">
+  <div class="head">
+    <div class="case-title">
+      <p class="text-h1" data-i18n-scope>{title}</p>
+      <div class="row">
+        <p class="text-h1" data-i18n="common.for">для</p>
+        <div class="product-name">
+          <Image src={companyLogo} alt="" width={48} height={48} class="company-logo" />
+          <p class="text-h1" data-i18n-scope>{companyName}</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-body description" data-i18n-scope>{description}</p>
+  </div>
+
+  <div class="meta">
+    {meta.map((item) => (
+      <div class="meta-item">
+        <p class="text-body meta-label" data-i18n-scope>{item.label}</p>
+        <p class="text-label" data-i18n-scope>{item.value}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="results">
+    {results.map((item) => (
+      <ResultCard value={item.value} label={item.label} />
+    ))}
+  </div>
+
+  {coverImage && <Image src={coverImage} alt="" width={1200} height={568} class="cover" />}
+</header>
+
+<style>
+  .case-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 44px;
+    width: 100%;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 1060px;
+    max-width: 100%;
+  }
+
+  .case-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .company-logo {
+    border-radius: 6px;
+  }
+
+  .description {
+    color: var(--color-zinc-dust);
+    max-width: 800px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 132px;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .meta-label {
+    color: var(--color-zinc-dust);
+  }
+
+  .results {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .cover {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 568;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+  }
+</style>

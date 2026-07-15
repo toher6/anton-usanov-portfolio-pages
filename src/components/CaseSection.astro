@@ -1,0 +1,34 @@
+---
+interface Props {
+  preTitle?: string;
+  title?: string;
+  class?: string;
+}
+const { preTitle, title, class: className } = Astro.props;
+---
+
+<div class:list={['case-section', className]}>
+  {preTitle && <p class="text-pretitle" data-i18n-scope>{preTitle}</p>}
+  {title && <p class="text-h2" data-i18n-scope>{title}</p>}
+  <div class="text-body description" data-i18n-scope>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .case-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .description {
+    color: var(--color-zinc-dust);
+  }
+  .description:empty {
+    display: none;
+  }
+</style>

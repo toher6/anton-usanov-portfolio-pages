@@ -1,0 +1,187 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+import CaseHero from '../../components/CaseHero.astro';
+import CaseSection from '../../components/CaseSection.astro';
+import ImageGrid from '../../components/ImageGrid.astro';
+import companyLogo from '../../assets/images/logos/sber-logo.png';
+import coverImage from '../../assets/images/cases/datasets-catalog/cover.png';
+import competitorAnalysis1 from '../../assets/images/cases/datasets-catalog/competitor-analysis-1.png';
+import competitorAnalysis2 from '../../assets/images/cases/datasets-catalog/competitor-analysis-2.png';
+import catalogsScreen1 from '../../assets/images/cases/datasets-catalog/catalogs-screens-1.png';
+import catalogsScreen2 from '../../assets/images/cases/datasets-catalog/catalogs-screens-2.png';
+import detailPageScreen1 from '../../assets/images/cases/datasets-catalog/detail-page-screen-1.png';
+import detailPageScreen2 from '../../assets/images/cases/datasets-catalog/detail-page-screen-2.png';
+import finalMockup1 from '../../assets/images/cases/datasets-catalog/final-mockups-1.png';
+import finalMockup2 from '../../assets/images/cases/datasets-catalog/final-mockups-2.png';
+
+const title = 'Спроектировал разделы публикации датасетов и моделей';
+const description =
+  'За месяц спроектировал каталоги моделей и датасетов — инструменты публикации для внутренних и внешних Data Science и ML-специалистов. Провёл конкурентный анализ сервисов и интервью со специалистами, чтобы понять критерии поиска и приоритеты в фильтрации';
+
+const meta = [
+  { label: 'Роль', value: 'Продуктовый дизайнер' },
+  { label: 'Платформа', value: 'Desktop, tablet, mobile' },
+  { label: 'Год', value: '2025' },
+];
+
+const results = [
+  { value: '500 - 1000', label: 'Активных пользователей в месяц' },
+  { value: '50 - 150', label: 'Опубликованных датасетов' },
+  { value: '30 - 80', label: 'Опубликованных моделей' },
+];
+
+const interviewSpecs = [
+  { label: 'Тип исследования', value: 'Экспресс-интервью' },
+  { label: 'Формат', value: 'Онлайн-встречи на 30 минут' },
+  { label: 'Респонденты', value: 'Data Science специалисты Сбера' },
+  { label: 'Количество', value: '5 человек' },
+];
+
+const insights = [
+  {
+    number: '#1',
+    text: 'Пользователи ищут датасеты и модели как через поисковик, так и на специализированных сервисах',
+  },
+  {
+    number: '#2',
+    text: 'При поиске датасетов обращают внимание на количество файлов и количество строк в нем. Самые часто-используемые фильтры: тип данных, решаемая задача, наличие разметки',
+  },
+  {
+    number: '#3',
+    text: 'При поиске моделей обращают внимание на тип решаемой задачи, могут отфильтровать по фреймворку',
+  },
+];
+---
+
+<CaseLayout title={title} description={description}>
+  <div class="case">
+    <CaseHero
+      title={title}
+      companyLogo={companyLogo}
+      companyName="Платформы AI"
+      description={description}
+      meta={meta}
+      results={results}
+      coverImage={coverImage}
+    />
+    <p class="text-tag disclaimer" data-i18n-scope>*прогнозируемые показатели</p>
+
+    <CaseSection
+      preTitle="Контекст и задача"
+      title="Каталоги моделей и датасетов на Платформе AI — инструмент публикации для внутренних и внешних ML-специалистов"
+    >
+      Нужен был инструмент, который позволит специалистам находить нужные данные и модели по релевантным критериям, а
+      владельцам — публиковать их с гибкими настройками доступа (публично или ограниченному кругу) и с заделом под
+      будущую монетизацию
+    </CaseSection>
+
+    <CaseSection
+      preTitle="Конкурентный анализ"
+      title="На рынке уже существовали похожие решения, поэтому начал с анализа аналогов"
+    >
+      Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
+      Amazon Data Marketplace, Google Dataset Search
+    </CaseSection>
+    <ImageGrid images={[competitorAnalysis1, competitorAnalysis2]} />
+
+    <CaseSection preTitle="Интервью" title="Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты" />
+    <div class="spec-grid">
+      <div class="spec-card">
+        {interviewSpecs.map((item) => (
+          <div class="spec-row">
+            <p class="text-body spec-label" data-i18n-scope>{item.label}</p>
+            <p class="text-label" data-i18n-scope>{item.value}</p>
+          </div>
+        ))}
+      </div>
+      <div class="insight-card">
+        <p class="text-body spec-label" data-i18n-scope>Ключевые инсайты</p>
+        {insights.map((item) => (
+          <div class="insight-row">
+            <p class="text-body insight-number" data-i18n-scope>{item.number}</p>
+            <p class="text-label insight-text" data-i18n-scope>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <CaseSection
+      preTitle="Финальное дизайн-решение"
+      title="На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы"
+    >
+      Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для
+      публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"
+    </CaseSection>
+
+    <ImageGrid images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
+    <ImageGrid images={[detailPageScreen1, detailPageScreen2]} caption="Страницы датасета и модели" />
+    <ImageGrid images={[finalMockup1, finalMockup2]} caption="Отрисованные макеты" />
+  </div>
+</CaseLayout>
+
+<style>
+  .case {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 96px;
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .disclaimer {
+    margin-top: -64px;
+    color: var(--color-blue-dusk);
+  }
+
+  .spec-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .spec-card,
+  .insight-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 36px;
+    border-radius: var(--radius-2xl);
+    background: var(--color-black-3);
+  }
+
+  .spec-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .spec-label {
+    color: var(--color-zinc-dust);
+  }
+
+  .insight-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .insight-number {
+    flex-shrink: 0;
+    width: 36px;
+    color: var(--color-zinc-dust);
+  }
+
+  .insight-text {
+    flex: 1 0 0;
+    min-width: 0;
+  }
+</style>

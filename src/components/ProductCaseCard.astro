@@ -1,0 +1,121 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ScopeTag from './ScopeTag.astro';
+import Button from './Button.astro';
+
+interface Props {
+  tags: string[];
+  title: string;
+  companyLogo: ImageMetadata;
+  companyName: string;
+  description: string;
+  href: string;
+  image: ImageMetadata;
+}
+
+const { tags, title, companyLogo, companyName, description, href, image } = Astro.props;
+---
+
+<article class="card">
+  <div class="head">
+    <div class="description">
+      <div class="tags">
+        {tags.map((tag) => <ScopeTag>{tag}</ScopeTag>)}
+      </div>
+      <div class="case-title">
+        <p class="text-h2" data-i18n-scope>{title}</p>
+        <div class="row">
+          <p class="text-h2" data-i18n="common.for">для</p>
+          <div class="product-name">
+            <Image src={companyLogo} alt="" width={32} height={32} class="company-logo" />
+            <p class="text-h2" data-i18n-scope>{companyName}</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-body summary" data-i18n-scope>{description}</p>
+    </div>
+    <Button variant="primary" href={href} icon="arrow-up-right">Смотреть кейс</Button>
+  </div>
+  <a href={href} class="image-link" aria-label={title}>
+    <Image src={image} alt="" width={1200} height={568} class="image" />
+  </a>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 56px;
+    padding-top: 36px;
+    border-radius: var(--radius-2xl);
+    background: var(--color-black-3);
+    overflow: clip;
+    width: 100%;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    padding-left: 36px;
+    max-width: 871px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    padding-bottom: 4px;
+    flex-wrap: wrap;
+  }
+
+  .case-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-logo {
+    border-radius: 4px;
+  }
+
+  .summary {
+    color: var(--color-zinc-dust);
+    max-width: 780px;
+  }
+
+  .image-link {
+    display: block;
+    width: 100%;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 568;
+    object-fit: cover;
+    object-position: top;
+  }
+</style>

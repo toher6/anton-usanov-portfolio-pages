@@ -1,0 +1,37 @@
+---
+import telegram from '../assets/images/icons/telegram.svg?raw';
+import email from '../assets/images/icons/email.svg?raw';
+import cv from '../assets/images/icons/cv.svg?raw';
+import arrowUpRight from '../assets/images/icons/arrow-up-right.svg?raw';
+import arrowLeftCircle from '../assets/images/icons/arrow-left-circle.svg?raw';
+
+const icons = {
+  telegram,
+  email,
+  cv,
+  'arrow-up-right': arrowUpRight,
+  'arrow-left-circle': arrowLeftCircle,
+};
+
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<span class:list={['icon', className]} set:html={icons[name]} />
+
+<style>
+  .icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+</style>

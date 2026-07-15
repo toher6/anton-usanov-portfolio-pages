@@ -1,0 +1,56 @@
+---
+import Button from './Button.astro';
+import auLogo from '../assets/images/logos/au-logo.svg?raw';
+import { CONTACTS } from '../data/contacts';
+import { SITE } from '../data/site';
+---
+
+<footer class="footer">
+  <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
+  <nav class="footer__links">
+    <Button variant="tertiary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
+      Telegram
+    </Button>
+    <Button variant="tertiary" icon="email" iconPosition="left" copy={CONTACTS.email}>
+      Email
+    </Button>
+    <Button variant="tertiary" icon="cv" iconPosition="left" href={CONTACTS.cv} target="_blank" rel="noreferrer">
+      CV
+    </Button>
+  </nav>
+  <p class="text-small updated" data-i18n="footer.updated">{SITE.updatedAt}</p>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    width: 100%;
+  }
+
+  .logo {
+    display: block;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  .logo :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .footer__links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .updated {
+    width: 156px;
+    text-align: right;
+    color: var(--color-zinc-dust);
+  }
+</style>
