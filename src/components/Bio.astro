@@ -8,7 +8,7 @@ import { CONTACTS } from '../data/contacts';
 
 <section class="hero">
   <div class="dots" aria-hidden="true"></div>
-  <Image src={profilePhoto} alt="Антон Усанов" width={224} height={224} class="photo" />
+  <Image src={profilePhoto} alt="Антон Усанов" width={672} height={672} quality={90} class="photo" />
   <div class="description">
     <StatusTag data-i18n="hero.status">Открыт к предложениям</StatusTag>
     <div class="bio">
@@ -44,7 +44,7 @@ import { CONTACTS } from '../data/contacts';
   .dots {
     position: absolute;
     inset: 0 -88px;
-    background-image: radial-gradient(var(--color-black-9) 1px, transparent 1px);
+    background-image: radial-gradient(var(--color-black-24) 1px, transparent 1px);
     background-size: 16px 16px;
     -webkit-mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 90%);
     mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 90%);
