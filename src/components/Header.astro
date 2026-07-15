@@ -6,7 +6,6 @@ import { CONTACTS } from '../data/contacts';
 ---
 
 <header class="header">
-  <div class="header__overlay"></div>
   <div class="header__bar">
     <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
     <nav class="header__links">
@@ -29,20 +28,10 @@ import { CONTACTS } from '../data/contacts';
     position: sticky;
     top: 0;
     z-index: 50;
-    height: 84px;
-  }
-
-  .header__overlay {
-    position: absolute;
-    inset: 0;
-    background: var(--color-header-overlay);
-    backdrop-filter: blur(2px);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding-top: 16px;
   }
 
   .header__bar {
-    position: absolute;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
