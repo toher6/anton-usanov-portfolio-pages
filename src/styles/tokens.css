@@ -8,7 +8,7 @@
   --color-white: #ffffff; /* White 100 */
   --color-zinc-dust: #5b5b5b; /* Zinc dust */
   --color-blue-dusk: #8c929c; /* Blue dusk */
-  --color-green-teal: #10b173; /* Green teal */
+  --color-green-teal: #1bb87c; /* Green teal */
   --color-errigal-white: #f2f2f4; /* Errigal white */
   --color-dr-white: #fafafa; /* Dr.White */
 
@@ -21,7 +21,7 @@
 
   /* Точечные фирменные подложки, встречающиеся в макетах */
   --color-header-bg: #f9f9fa;
-  --color-status-bg: #e7f7f1;
+  --color-status-bg: rgba(45, 235, 67, 0.3);
 
   /* Типографика */
   --font-heading: 'Onest', sans-serif;
