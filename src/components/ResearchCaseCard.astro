@@ -24,7 +24,7 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
         <div class="row">
           <p class="text-h2" data-i18n="common.for">для</p>
           <div class="product-name">
-            <Image src={companyLogo} alt="" width={32} height={32} class="company-logo" />
+            <Image src={companyLogo} alt="" width={96} height={96} quality={90} class="company-logo" />
             <p class="text-h2" data-i18n-scope>{companyName}</p>
           </div>
         </div>
@@ -93,6 +93,8 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
   }
 
   .company-logo {
+    width: 32px;
+    height: 32px;
     border-radius: 4px;
   }
 

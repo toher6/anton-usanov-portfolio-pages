@@ -23,7 +23,7 @@ const { title, companyLogo, companyName, description, meta, results, coverImage 
       <div class="row">
         <p class="text-h1" data-i18n="common.for">для</p>
         <div class="product-name">
-          <Image src={companyLogo} alt="" width={48} height={48} class="company-logo" />
+          <Image src={companyLogo} alt="" width={144} height={144} quality={90} class="company-logo" />
           <p class="text-h1" data-i18n-scope>{companyName}</p>
         </div>
       </div>
@@ -87,6 +87,8 @@ const { title, companyLogo, companyName, description, meta, results, coverImage 
   }
 
   .company-logo {
+    width: 48px;
+    height: 48px;
     border-radius: 6px;
   }
 
