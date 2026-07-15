@@ -24,12 +24,10 @@ async function handleCopyClick(button: HTMLElement) {
     button.dataset.originalLabel = label.textContent ?? '';
   }
 
-  button.style.width = `${button.getBoundingClientRect().width}px`;
   label.textContent = feedbackText();
 
   const timer = window.setTimeout(() => {
     label.textContent = button.dataset.originalLabel ?? '';
-    button.style.width = '';
     delete button.dataset.originalLabel;
     timers.delete(button);
   }, FEEDBACK_MS);
