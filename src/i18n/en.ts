@@ -7,6 +7,8 @@ export const EN: Record<string, string> = {
   'Смотреть кейс': 'View case',
   'На главную': 'Back to home',
   'Обновлено 15 июля 2026': 'Updated July 15, 2026',
+  'Страница не найдена': 'Page not found',
+  'Похоже, такой страницы не существует или она была перемещена': "Looks like this page doesn't exist or has been moved",
 
   // Hero / bio
   'Открыт к предложениям': 'Open to offers',
