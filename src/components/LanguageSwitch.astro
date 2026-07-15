@@ -38,6 +38,10 @@ const { class: className } = Astro.props;
     background: var(--color-white);
     color: var(--color-black);
   }
+
+  .switch-item[aria-pressed='false']:hover {
+    background: var(--color-black-3);
+  }
 </style>
 
 <script>
