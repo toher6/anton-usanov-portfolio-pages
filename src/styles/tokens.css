@@ -74,7 +74,8 @@
   --shadow-elevation:
     0px 1px 1px -0.5px var(--color-black-3),
     0px 3px 3px -1.5px var(--color-black-3),
-    0px 20px 20px -12px var(--color-black-3);
+    0px 20px 20px -12px var(--color-black-3),
+    0px 32px 32px -16px var(--color-black-3);
 
   /* Раскладка */
   --content-width: 1200px;
