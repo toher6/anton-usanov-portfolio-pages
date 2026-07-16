@@ -1,4 +1,4 @@
-import sberLogo from '../assets/images/logos/sber-logo.png';
+import sberLogo from '../assets/images/logos/sber-logo.svg';
 import datasetsCatalogCover from '../assets/images/covers/datasets-catalog.png';
 import clientInterfaceBuilderCover from '../assets/images/covers/client-interface-builder.png';
 import priceAuditCover from '../assets/images/covers/price-audit-usability.png';
