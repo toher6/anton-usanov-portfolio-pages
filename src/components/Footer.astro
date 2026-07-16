@@ -6,7 +6,9 @@ import { SITE } from '../data/site';
 ---
 
 <footer class="footer">
-  <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
+  <div class="logo-frame">
+    <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
+  </div>
   <nav class="footer__links">
     <Button variant="tertiary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
       Telegram
@@ -29,6 +31,13 @@ import { SITE } from '../data/site';
     margin-top: 220px;
     padding-bottom: 40px;
     width: 100%;
+  }
+
+  .logo-frame {
+    display: flex;
+    align-items: center;
+    width: 156px;
+    flex-shrink: 0;
   }
 
   .logo {
