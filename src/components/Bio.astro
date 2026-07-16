@@ -8,7 +8,9 @@ import { CONTACTS } from '../data/contacts';
 
 <section class="hero">
   <div class="dots" aria-hidden="true"></div>
-  <Image src={profilePhoto} alt="Антон Усанов" width={576} height={576} quality={90} class="photo" />
+  <div class="photo-frame">
+    <Image src={profilePhoto} alt="Антон Усанов" width={702} height={702} quality={90} class="photo" />
+  </div>
   <div class="description">
     <StatusTag data-i18n="hero.status">Открыт к предложениям</StatusTag>
     <div class="bio">
@@ -51,12 +53,21 @@ import { CONTACTS } from '../data/contacts';
     pointer-events: none;
   }
 
-  .photo {
+  .photo-frame {
     position: relative;
     width: 192px;
     height: 192px;
     border-radius: 22px;
-    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .photo {
+    position: absolute;
+    left: -9.9%;
+    top: -2.6%;
+    width: 121.87%;
+    height: 121.87%;
+    max-width: none;
   }
 
   .description {
