@@ -12,7 +12,7 @@ export const PRODUCT_CASES = [
     companyName: 'Платформы AI',
     description:
       'За месяц спроектировал каталоги моделей и датасетов — инструменты публикации для внутренних и внешних Data Science и ML-специалистов. Провёл конкурентный анализ сервисов и интервью со специалистами, чтобы понять критерии поиска и приоритеты в фильтрации',
-    href: '/cases/datasets-catalog/',
+    href: '/datasets-catalog/',
     image: datasetsCatalogCover,
   },
   {
@@ -22,7 +22,7 @@ export const PRODUCT_CASES = [
     companyName: 'Платформы AI',
     description:
       'За 2 месяца спроектировал гибкий конструктор клиентского интерфейса. Провёл 2 раунда юзабилити-тестирования и совместно с аналитиками продумал логику настройки готовых блоков под задачи публикуемых в каталоге продуктов',
-    href: '/cases/client-interface-builder/',
+    href: '/client-interface-builder/',
     image: clientInterfaceBuilderCover,
   },
 ];
@@ -34,7 +34,7 @@ export const RESEARCH_CASES = [
     companyName: 'Аудита цен',
     description:
       'Инициировал тестирование прототипа с 6 сотрудниками блока «Строительство», подтвердил 2 из 3 гипотез и приоритизировал 12 найденных проблем. Скорректированные макеты получили положительную реакцию и от заказчика, и от пользователей на согласовании',
-    href: '/cases/price-audit-usability/',
+    href: '/price-audit-usability/',
     image: priceAuditCover,
   },
   {
@@ -43,7 +43,7 @@ export const RESEARCH_CASES = [
     companyName: 'AI Gateway',
     description:
       'Провёл исследование для сервиса для внутренних разработчиков ИИ-агентов. Подготовил гайд и провёл 8 глубинных интервью с командами, которые проходят процесс вывода ИИ-агента в продакшн. Подтвердил 3 из 4 гипотез и сформировал рекомендации на основе инсайтов',
-    href: '/cases/aigw-interview/',
+    href: '/aigw-interview/',
     image: aigwInterviewCover,
   },
 ];

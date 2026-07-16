@@ -32,7 +32,7 @@ npm run preview  # локально просмотреть собранную в
 src/
 ├── components/   # переиспользуемые блоки (Header, Footer, Button, карточки кейсов и т.д.)
 ├── layouts/      # общая обёртка страниц (BaseLayout, CaseLayout)
-├── pages/        # маршруты сайта: index.astro = /, pages/cases/*.astro = /cases/*
+├── pages/        # маршруты сайта: index.astro = /, каждый кейс отдельным файлом = /slug/
 ├── styles/       # токены дизайн-системы, reset, глобальные стили
 ├── i18n/         # RU/EN словари для переключателя языка
 └── data/         # контент карточек кейсов на главной
