@@ -16,7 +16,9 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
 ---
 
 <article class="card">
-  <Image src={image} alt="" width={1662} height={1260} quality={90} class="image" />
+  <a href={href} class="image-link" aria-label={title}>
+    <Image src={image} alt="" width={1662} height={1260} quality={90} class="image" />
+  </a>
   <div class="right">
     <div class="description">
       <div class="title">
@@ -47,11 +49,17 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
     height: 420px;
   }
 
+  .image-link {
+    display: block;
+    flex-shrink: 0;
+  }
+
   .image {
     width: 554px;
     height: 420px;
     object-fit: cover;
     flex-shrink: 0;
+    user-select: none;
   }
 
   .right {
