@@ -3,7 +3,7 @@
 @import './tokens.css';
 
 html {
-  background: var(--color-white);
+  background: var(--color-dr-white);
 }
 
 body {
