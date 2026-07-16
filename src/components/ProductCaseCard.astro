@@ -37,9 +37,7 @@ const { tags, title, companyLogo, companyName, description, href, image } = Astr
     </div>
     <Button variant="primary" href={href} icon="arrow-up-right">Смотреть кейс</Button>
   </div>
-  <a href={href} class="image-link" aria-label={title}>
-    <Image src={image} alt="" width={3600} height={1704} quality={90} class="image" />
-  </a>
+  <Image src={image} alt="" width={3600} height={1704} quality={90} class="image" />
 </article>
 
 <style>
@@ -106,11 +104,6 @@ const { tags, title, companyLogo, companyName, description, href, image } = Astr
   .summary {
     color: var(--color-zinc-dust);
     max-width: 780px;
-  }
-
-  .image-link {
-    display: block;
-    width: 100%;
   }
 
   .image {
