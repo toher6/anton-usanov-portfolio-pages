@@ -75,7 +75,14 @@
     0px 1px 1px -0.5px var(--color-black-3),
     0px 3px 3px -1.5px var(--color-black-3),
     0px 20px 20px -12px var(--color-black-3),
-    0px 32px 32px -16px var(--color-black-3);
+    0px 32px 32px -16px var(--color-black-3),
+    0px 56px 56px -28px var(--color-black-3);
+  --shadow-photo:
+    0px 53px 15px 0px rgba(0, 0, 0, 0),
+    0px 34px 14px 0px rgba(0, 0, 0, 0.01),
+    0px 19px 12px 0px rgba(0, 0, 0, 0.05),
+    0px 9px 9px 0px rgba(0, 0, 0, 0.09),
+    0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 
   /* Раскладка */
   --content-width: 1200px;
