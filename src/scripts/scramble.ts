@@ -81,7 +81,7 @@ function applyLang(lang: 'ru' | 'en') {
       originals.set(el, el.textContent ?? '');
     }
     const ru = originals.get(el) ?? '';
-    const target = lang === 'ru' ? ru : (EN[ru.trim()] ?? ru);
+    const target = lang === 'ru' ? ru : (el.dataset.i18nEn ?? EN[ru.trim()] ?? ru);
     let scrambler = scramblers.get(el);
     if (!scrambler) {
       scrambler = new TextScramble(el);
