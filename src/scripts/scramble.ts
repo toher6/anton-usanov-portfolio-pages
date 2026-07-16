@@ -75,6 +75,26 @@ function topLevelTargets(): HTMLElement[] {
   return outer.flatMap(leafTargets);
 }
 
+// Random intermediate characters can be wider/narrower than either the RU or
+// EN text, so the scramble can briefly wrap onto an extra line and reflow
+// everything below it. Locking each element to the taller of its before/after
+// height for the duration keeps the page from bouncing during the animation.
+function lockHeight(el: HTMLElement, targetText: string) {
+  const beforeHeight = el.getBoundingClientRect().height;
+  const currentText = el.textContent ?? '';
+  el.textContent = targetText;
+  const afterHeight = el.getBoundingClientRect().height;
+  el.textContent = currentText;
+
+  el.style.minHeight = `${Math.max(beforeHeight, afterHeight)}px`;
+  el.style.overflow = 'hidden';
+}
+
+function unlockHeight(el: HTMLElement) {
+  el.style.minHeight = '';
+  el.style.overflow = '';
+}
+
 function applyLang(lang: 'ru' | 'en') {
   for (const el of topLevelTargets()) {
     if (!originals.has(el)) {
@@ -87,7 +107,8 @@ function applyLang(lang: 'ru' | 'en') {
       scrambler = new TextScramble(el);
       scramblers.set(el, scrambler);
     }
-    scrambler.setText(target);
+    lockHeight(el, target);
+    scrambler.setText(target).then(() => unlockHeight(el));
   }
 }
 
