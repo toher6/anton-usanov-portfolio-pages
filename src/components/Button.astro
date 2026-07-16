@@ -48,15 +48,21 @@ const Tag = href ? 'a' : 'button';
     border-radius: var(--radius-md);
     white-space: nowrap;
     cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+  .button:hover {
+    transform: translateY(-5px);
   }
 
   .button--primary {
     padding: 10px 16px;
-    background: var(--color-black);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(90deg, var(--color-black) 0%, var(--color-black) 100%);
     color: var(--color-white);
   }
   .button--primary:hover {
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%);
+    background-image: none;
+    background-color: var(--color-black);
   }
   .button--primary:active {
     outline: 2px solid var(--color-zinc-dust);
@@ -83,5 +89,8 @@ const Tag = href ? 'a' : 'button';
   }
   .button--tertiary:hover {
     color: var(--color-black);
+  }
+  .button--tertiary:active {
+    color: var(--color-zinc-dust);
   }
 </style>
