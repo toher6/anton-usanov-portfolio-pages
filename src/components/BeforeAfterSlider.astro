@@ -17,12 +17,13 @@ const uid = Math.random().toString(36).slice(2, 9);
 
 <figure class="slider-block">
   <div class="slider" data-before-after-slider style={`--pos: 50%`}>
-    <Image src={after} alt="" width={1168} class="layer layer--after" />
-    <Image src={before} alt="" width={1168} class="layer layer--before" />
+    <Image src={after} alt="" width={Math.min(2400, after.width)} quality={90} class="layer layer--after" />
+    <Image src={before} alt="" width={Math.min(2400, before.width)} quality={90} class="layer layer--before" />
     <span class="tag tag--left" data-i18n-scope>{beforeLabel}</span>
     <span class="tag tag--right" data-i18n-scope>{afterLabel}</span>
+    <div class="divider-line" aria-hidden="true"></div>
     <div class="handle" aria-hidden="true">
-      <Icon name="arrow-up-right" class="handle-icon" />
+      <Icon name="arrows-horizontal" class="handle-icon" />
     </div>
     <input
       type="range"
@@ -95,6 +96,17 @@ const uid = Math.random().toString(36).slice(2, 9);
     right: 32px;
   }
 
+  .divider-line {
+    position: absolute;
+    top: 0;
+    left: var(--pos);
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: var(--color-black-6);
+    pointer-events: none;
+  }
+
   .handle {
     position: absolute;
     top: 50%;
@@ -102,8 +114,9 @@ const uid = Math.random().toString(36).slice(2, 9);
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    border-radius: var(--radius-md);
-    background: var(--color-white);
+    border-radius: 10px;
+    background: var(--color-black);
+    color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +126,6 @@ const uid = Math.random().toString(36).slice(2, 9);
   .handle-icon {
     width: 20px;
     height: 20px;
-    transform: rotate(45deg);
   }
 
   .range {
