@@ -13,7 +13,7 @@ const { images, caption } = Astro.props;
 <figure class="image-grid">
   <div class="row">
     {images.map((image) => (
-      <Image src={image} alt="" width={800} class="image" />
+      <Image src={image} alt="" width={Math.min(1600, image.width)} quality={90} class="image" />
     ))}
   </div>
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}

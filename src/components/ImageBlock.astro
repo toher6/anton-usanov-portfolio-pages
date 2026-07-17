@@ -14,10 +14,10 @@ const { image, caption, framed = true } = Astro.props;
 <figure class="image-block">
   {framed ? (
     <div class="frame">
-      <Image src={image} alt="" width={1168} class="image" />
+      <Image src={image} alt="" width={Math.min(2336, image.width)} quality={90} class="image" />
     </div>
   ) : (
-    <Image src={image} alt="" width={1200} class="image image--flush" />
+    <Image src={image} alt="" width={Math.min(2400, image.width)} quality={90} class="image image--flush" />
   )}
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>
