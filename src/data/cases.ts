@@ -12,7 +12,7 @@ export const PRODUCT_CASES = [
     companyName: 'Платформы AI',
     description:
       'За месяц спроектировал каталоги моделей и датасетов — инструменты публикации для внутренних и внешних Data Science и ML-специалистов. Провёл конкурентный анализ сервисов и интервью со специалистами, чтобы понять критерии поиска и приоритеты в фильтрации',
-    href: '/datasets-catalog/',
+    href: '/datasets-and-models-catalogs/',
     image: datasetsCatalogCover,
   },
   {

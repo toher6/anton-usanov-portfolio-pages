@@ -5,15 +5,15 @@ import CaseSection from '../components/CaseSection.astro';
 import ImageGrid from '../components/ImageGrid.astro';
 import Gallery from '../components/Gallery.astro';
 import companyLogo from '../assets/images/logos/sber-logo.svg';
-import coverImage from '../assets/images/cases/datasets-catalog/cover.png';
-import competitorAnalysis1 from '../assets/images/cases/datasets-catalog/competitor-analysis-1.png';
-import competitorAnalysis2 from '../assets/images/cases/datasets-catalog/competitor-analysis-2.png';
-import catalogsScreen1 from '../assets/images/cases/datasets-catalog/catalogs-screens-1.png';
-import catalogsScreen2 from '../assets/images/cases/datasets-catalog/catalogs-screens-2.png';
-import detailPageScreen1 from '../assets/images/cases/datasets-catalog/detail-page-screen-1.png';
-import detailPageScreen2 from '../assets/images/cases/datasets-catalog/detail-page-screen-2.png';
-import finalMockup1 from '../assets/images/cases/datasets-catalog/final-mockups-1.png';
-import finalMockup2 from '../assets/images/cases/datasets-catalog/final-mockups-2.png';
+import coverImage from '../assets/images/cases/datasets-and-models-catalogs/cover.png';
+import competitorAnalysis1 from '../assets/images/cases/datasets-and-models-catalogs/competitor-analysis-1.png';
+import competitorAnalysis2 from '../assets/images/cases/datasets-and-models-catalogs/competitor-analysis-2.png';
+import catalogsScreen1 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-1.png';
+import catalogsScreen2 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-2.png';
+import detailPageScreen1 from '../assets/images/cases/datasets-and-models-catalogs/detail-page-screen-1.png';
+import detailPageScreen2 from '../assets/images/cases/datasets-and-models-catalogs/detail-page-screen-2.png';
+import finalMockup1 from '../assets/images/cases/datasets-and-models-catalogs/final-mockups-1.png';
+import finalMockup2 from '../assets/images/cases/datasets-and-models-catalogs/final-mockups-2.png';
 
 const title = 'Спроектировал разделы публикации датасетов и моделей';
 const description =
@@ -76,47 +76,53 @@ const insights = [
       будущую монетизацию
     </CaseSection>
 
-    <CaseSection
-      preTitle="Конкурентный анализ"
-      title="На рынке уже существовали похожие решения, поэтому начал с анализа аналогов"
-    >
-      Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
-      Amazon Data Marketplace, Google Dataset Search
-    </CaseSection>
-    <Gallery images={[competitorAnalysis1, competitorAnalysis2]} />
+    <div class="case-block">
+      <CaseSection
+        preTitle="Конкурентный анализ"
+        title="На рынке уже существовали похожие решения, поэтому начал с анализа аналогов"
+      >
+        Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
+        Amazon Data Marketplace, Google Dataset Search
+      </CaseSection>
+      <Gallery images={[competitorAnalysis1, competitorAnalysis2]} />
+    </div>
 
-    <CaseSection preTitle="Интервью" title="Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты" />
-    <div class="spec-grid">
-      <div class="spec-card">
-        {interviewSpecs.map((item) => (
-          <div class="spec-row">
-            <p class="text-body spec-label" data-i18n-scope>{item.label}</p>
-            <p class="text-label" data-i18n-scope>{item.value}</p>
-          </div>
-        ))}
-      </div>
-      <div class="insight-card">
-        <p class="text-body spec-label" data-i18n-scope>Ключевые инсайты</p>
-        {insights.map((item) => (
-          <div class="insight-row">
-            <p class="text-body insight-number" data-i18n-scope>{item.number}</p>
-            <p class="text-label insight-text" data-i18n-scope>{item.text}</p>
-          </div>
-        ))}
+    <div class="case-block">
+      <CaseSection preTitle="Интервью" title="Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты" />
+      <div class="spec-grid">
+        <div class="spec-card">
+          {interviewSpecs.map((item) => (
+            <div class="spec-row">
+              <p class="text-body spec-label" data-i18n-scope>{item.label}</p>
+              <p class="text-label" data-i18n-scope>{item.value}</p>
+            </div>
+          ))}
+        </div>
+        <div class="insight-card">
+          <p class="text-body spec-label" data-i18n-scope>Ключевые инсайты</p>
+          {insights.map((item) => (
+            <div class="insight-row">
+              <p class="text-body insight-number" data-i18n-scope>{item.number}</p>
+              <p class="text-label insight-text" data-i18n-scope>{item.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
 
-    <CaseSection
-      preTitle="Финальное дизайн-решение"
-      title="На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы"
-    >
-      Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для
-      публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"
-    </CaseSection>
+    <div class="case-block">
+      <CaseSection
+        preTitle="Финальное дизайн-решение"
+        title="На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы"
+      >
+        Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для
+        публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"
+      </CaseSection>
 
-    <Gallery framed images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
-    <ImageGrid images={[detailPageScreen1, detailPageScreen2]} caption="Страницы датасета и модели" />
-    <Gallery images={[finalMockup1, finalMockup2]} height={962} caption="Отрисованные макеты" />
+      <Gallery framed images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
+      <ImageGrid images={[detailPageScreen1, detailPageScreen2]} caption="Страницы датасета и модели" />
+      <Gallery images={[finalMockup1, finalMockup2]} height={962} caption="Отрисованные макеты" />
+    </div>
   </div>
 </CaseLayout>
 
@@ -129,6 +135,14 @@ const insights = [
     width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
+  }
+
+  .case-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 44px;
+    width: 100%;
   }
 
   .spec-grid {
