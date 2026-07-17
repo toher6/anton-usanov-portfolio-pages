@@ -147,7 +147,7 @@ const insights = [
 
   .spec-grid {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 32px;
     width: 100%;
   }
@@ -163,6 +163,11 @@ const insights = [
     padding: 36px;
     border-radius: var(--radius-2xl);
     background: var(--color-black-3);
+  }
+
+  .insight-card {
+    justify-content: space-between;
+    gap: 0;
   }
 
   .spec-row {

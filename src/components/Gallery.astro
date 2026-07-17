@@ -7,24 +7,15 @@ interface Props {
   caption?: string;
   framed?: boolean;
   height?: number;
-  slotWidth?: number;
 }
 
-const { images, caption, framed = false, height = 600, slotWidth = 800 } = Astro.props;
-const innerHeight = height - 32;
-const innerWidth = slotWidth - 32;
+const { images, caption, framed = false, height = 600 } = Astro.props;
+const displayHeight = framed ? height - 32 : height;
 
-function unframedSize(image: ImageMetadata) {
-  const height2x = Math.min(height * 2, image.height);
-  const width2x = Math.round(height2x * (image.width / image.height));
-  return { width: width2x, height: height2x };
-}
-
-function framedSize(image: ImageMetadata) {
-  return {
-    width: Math.min(innerWidth * 2, image.width),
-    height: Math.min(innerHeight * 2, image.height),
-  };
+function imageSize(image: ImageMetadata) {
+  const h = Math.min(displayHeight * 2, image.height);
+  const w = Math.round(h * (image.width / image.height));
+  return { width: w, height: h };
 }
 ---
 
@@ -32,11 +23,11 @@ function framedSize(image: ImageMetadata) {
   <div class="row" style={`height:${height}px`}>
     {images.map((image) =>
       framed ? (
-        <div class="frame" style={`width:${slotWidth}px`}>
-          <Image src={image} alt="" {...framedSize(image)} quality={90} class="image" />
+        <div class="frame">
+          <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
         </div>
       ) : (
-        <Image src={image} alt="" {...unframedSize(image)} quality={90} class="image" />
+        <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
       )
     )}
   </div>
@@ -82,7 +73,6 @@ function framedSize(image: ImageMetadata) {
     background: var(--color-black-3);
   }
   .frame .image {
-    width: 100%;
     border-radius: var(--radius-sm);
   }
 
