@@ -6,18 +6,19 @@ interface Props {
   image: ImageMetadata;
   caption?: string;
   framed?: boolean;
+  radius?: string;
 }
 
-const { image, caption, framed = true } = Astro.props;
+const { image, caption, framed = true, radius } = Astro.props;
 ---
 
 <figure class="image-block">
   {framed ? (
     <div class="frame">
-      <Image src={image} alt="" width={Math.min(2336, image.width)} quality={90} class="image" />
+      <Image src={image} alt="" width={Math.min(2336, image.width)} quality={90} class="image" style={radius ? `border-radius:${radius}` : undefined} />
     </div>
   ) : (
-    <Image src={image} alt="" width={Math.min(2400, image.width)} quality={90} class="image image--flush" />
+    <Image src={image} alt="" width={Math.min(2400, image.width)} quality={90} class="image image--flush" style={radius ? `border-radius:${radius}` : undefined} />
   )}
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>

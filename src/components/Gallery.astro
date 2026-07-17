@@ -5,15 +5,13 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   images: ImageMetadata[];
   caption?: string;
-  framed?: boolean;
   height?: number;
 }
 
-const { images, caption, framed = false, height = 600 } = Astro.props;
-const displayHeight = framed ? height - 32 : height;
+const { images, caption, height = 600 } = Astro.props;
 
 function imageSize(image: ImageMetadata) {
-  const h = Math.min(displayHeight * 2, image.height);
+  const h = Math.min(height * 2, image.height);
   const w = Math.round(h * (image.width / image.height));
   return { width: w, height: h };
 }
@@ -21,15 +19,9 @@ function imageSize(image: ImageMetadata) {
 
 <figure class="gallery">
   <div class="row" style={`height:${height}px`}>
-    {images.map((image) =>
-      framed ? (
-        <div class="frame">
-          <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
-        </div>
-      ) : (
-        <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
-      )
-    )}
+    {images.map((image) => (
+      <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
+    ))}
   </div>
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>
@@ -61,19 +53,6 @@ function imageSize(image: ImageMetadata) {
     max-width: none;
     border-radius: var(--radius-lg);
     object-fit: cover;
-  }
-
-  .frame {
-    flex-shrink: 0;
-    display: flex;
-    height: 100%;
-    padding: 16px;
-    box-sizing: border-box;
-    border-radius: var(--radius-xl);
-    background: var(--color-black-3);
-  }
-  .frame .image {
-    border-radius: var(--radius-sm);
   }
 
   .caption {
