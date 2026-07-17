@@ -10,10 +10,11 @@ interface Props {
   description: string;
   meta: { label: string; value: string }[];
   results: { value: string; label: string }[];
+  resultsDisclaimer?: string;
   coverImage?: ImageMetadata;
 }
 
-const { title, companyLogo, companyName, description, meta, results, coverImage } = Astro.props;
+const { title, companyLogo, companyName, description, meta, results, resultsDisclaimer, coverImage } = Astro.props;
 ---
 
 <header class="case-hero">
@@ -40,10 +41,13 @@ const { title, companyLogo, companyName, description, meta, results, coverImage 
     ))}
   </div>
 
-  <div class="results">
-    {results.map((item) => (
-      <ResultCard value={item.value} label={item.label} />
-    ))}
+  <div class="results-group">
+    <div class="results">
+      {results.map((item) => (
+        <ResultCard value={item.value} label={item.label} />
+      ))}
+    </div>
+    {resultsDisclaimer && <p class="text-tag disclaimer" data-i18n-scope>{resultsDisclaimer}</p>}
   </div>
 
   {coverImage && <Image src={coverImage} alt="" width={3600} height={1704} quality={90} class="cover" />}
@@ -114,11 +118,24 @@ const { title, companyLogo, companyName, description, meta, results, coverImage 
     color: var(--color-zinc-dust);
   }
 
+  .results-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
   .results {
     display: flex;
     align-items: center;
     gap: 32px;
     flex-wrap: wrap;
+  }
+
+  .disclaimer {
+    color: var(--color-blue-dusk);
+    margin-bottom: 20px;
   }
 
   .cover {

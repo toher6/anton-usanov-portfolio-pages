@@ -3,6 +3,7 @@ import CaseLayout from '../layouts/CaseLayout.astro';
 import CaseHero from '../components/CaseHero.astro';
 import CaseSection from '../components/CaseSection.astro';
 import ImageGrid from '../components/ImageGrid.astro';
+import Gallery from '../components/Gallery.astro';
 import companyLogo from '../assets/images/logos/sber-logo.svg';
 import coverImage from '../assets/images/cases/datasets-catalog/cover.png';
 import competitorAnalysis1 from '../assets/images/cases/datasets-catalog/competitor-analysis-1.png';
@@ -62,9 +63,9 @@ const insights = [
       description={description}
       meta={meta}
       results={results}
+      resultsDisclaimer="*прогнозируемые показатели"
       coverImage={coverImage}
     />
-    <p class="text-tag disclaimer" data-i18n-scope>*прогнозируемые показатели</p>
 
     <CaseSection
       preTitle="Контекст и задача"
@@ -82,7 +83,7 @@ const insights = [
       Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
       Amazon Data Marketplace, Google Dataset Search
     </CaseSection>
-    <ImageGrid images={[competitorAnalysis1, competitorAnalysis2]} />
+    <Gallery images={[competitorAnalysis1, competitorAnalysis2]} />
 
     <CaseSection preTitle="Интервью" title="Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты" />
     <div class="spec-grid">
@@ -113,9 +114,9 @@ const insights = [
       публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"
     </CaseSection>
 
-    <ImageGrid images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
+    <Gallery framed images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
     <ImageGrid images={[detailPageScreen1, detailPageScreen2]} caption="Страницы датасета и модели" />
-    <ImageGrid images={[finalMockup1, finalMockup2]} caption="Отрисованные макеты" />
+    <Gallery images={[finalMockup1, finalMockup2]} height={962} caption="Отрисованные макеты" />
   </div>
 </CaseLayout>
 
@@ -124,15 +125,10 @@ const insights = [
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 96px;
+    gap: 100px;
     width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
-  }
-
-  .disclaimer {
-    margin-top: -64px;
-    color: var(--color-blue-dusk);
   }
 
   .spec-grid {

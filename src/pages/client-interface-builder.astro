@@ -3,7 +3,7 @@ import CaseLayout from '../layouts/CaseLayout.astro';
 import CaseHero from '../components/CaseHero.astro';
 import CaseSection from '../components/CaseSection.astro';
 import ImageBlock from '../components/ImageBlock.astro';
-import ImageGrid from '../components/ImageGrid.astro';
+import Gallery from '../components/Gallery.astro';
 
 import sberLogo from '../assets/images/logos/sber-logo.svg';
 import coverImage from '../assets/images/cases/client-interface-builder/cover.png';
@@ -96,7 +96,7 @@ const researchInsights = [
         <p>Я проанализировал интерфейсы конструкторов бизнес-процессов и сценариев, low-code платформы с визуальной сборкой, конструкторы чат-ботов</p>
         <p>Параллельно мы с аналитиками и владельцем продукта брейнштормили сценарии использования конструктора, пользовательский путь, варианты отображения этапов создания ИИ-приложения и нейминг блоков конструктора</p>
       </CaseSection>
-      <ImageGrid images={[competitor1, competitor2, competitor3]} caption="Скриншоты аналогов" />
+      <Gallery images={[competitor1, competitor2, competitor3]} caption="Скриншоты аналогов" />
     </div>
 
     <div class="case-block">
@@ -137,12 +137,12 @@ const researchInsights = [
       <CaseSection preTitle="Новая итерация и финальное дизайн-решение" title="На основе фидбэка и референсов собрал новый прототип и провел 2 раунд тестирования. Критических проблем не выявил">
         Комментарии касались в основном текстов, которые доработал во время сборки финальных макетов
       </CaseSection>
-      <ImageGrid
+      <Gallery
         images={[survey1, survey2, survey3, survey4, survey5, survey6, survey7]}
         caption="Предварительный опрос, на основе которого формируются статусы публикуемого продукта"
       />
       <ImageBlock image={mainScreen} caption="Главный экран конструктора со статусной сеткой и карточками с наполнением статусов" />
-      <ImageGrid images={[blocks1, blocks2, blocks3, blocks4, blocks5, blocks6]} caption="Каталог блоков и примеры их настройки" />
+      <Gallery images={[blocks1, blocks2, blocks3, blocks4, blocks5, blocks6]} caption="Каталог блоков и примеры их настройки" />
       <ImageBlock image={previewMode} caption="Режим предпросмотра настроенного интерфейса" />
     </div>
 

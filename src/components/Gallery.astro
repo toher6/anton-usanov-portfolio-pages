@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  images: ImageMetadata[];
+  caption?: string;
+  framed?: boolean;
+  height?: number;
+  slotWidth?: number;
+}
+
+const { images, caption, framed = false, height = 600, slotWidth = 800 } = Astro.props;
+const innerHeight = height - 32;
+const innerWidth = slotWidth - 32;
+---
+
+<figure class="gallery">
+  <div class="row" style={`height:${height}px`}>
+    {images.map((image) =>
+      framed ? (
+        <div class="frame" style={`width:${slotWidth}px`}>
+          <Image src={image} alt="" width={innerWidth} height={innerHeight} quality={90} class="image" />
+        </div>
+      ) : (
+        <Image
+          src={image}
+          alt=""
+          width={Math.round(height * (image.width / image.height))}
+          height={height}
+          quality={90}
+          class="image"
+        />
+      )
+    )}
+  </div>
+  {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
+</figure>
+
+<style>
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .image {
+    flex-shrink: 0;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+  }
+
+  .frame {
+    flex-shrink: 0;
+    display: flex;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: var(--radius-xl);
+    background: var(--color-black-3);
+  }
+  .frame .image {
+    border-radius: var(--radius-sm);
+  }
+
+  .caption {
+    color: var(--color-blue-dusk);
+    text-align: center;
+  }
+</style>
