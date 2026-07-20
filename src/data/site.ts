@@ -21,7 +21,7 @@ function getLastUpdatedDate(): Date {
 const lastUpdated = getLastUpdatedDate();
 
 export const SITE = {
-  title: 'Антон Усанов — продуктовый дизайнер',
+  title: 'Anton Usanov — Portfolio',
   description: 'Продуктовый дизайнер с опытом работы над продуктами в сферах AI, девелопмента, логистики, web3',
   // Дата берётся из последнего git-коммита при каждой сборке, вручную менять не нужно
   updatedAt: `Обновлено ${lastUpdated.getDate()} ${RU_MONTHS[lastUpdated.getMonth()]} ${lastUpdated.getFullYear()}`,
