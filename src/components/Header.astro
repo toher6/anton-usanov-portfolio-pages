@@ -66,6 +66,10 @@ import { CONTACTS } from '../data/contacts';
     width: 40px;
     height: 40px;
     flex-shrink: 0;
+    /* Скругление задаём тут: одинаковый clipPath id в нескольких инлайн-копиях
+       SVG (header + футеры) ломает clip-path внутри самой картинки */
+    border-radius: 8px;
+    overflow: hidden;
     transition: opacity 250ms ease;
   }
   .logo :global(svg) {
