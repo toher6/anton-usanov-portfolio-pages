@@ -37,7 +37,9 @@ const { tags, title, companyLogo, companyName, description, href, image } = Astr
     </div>
     <Button variant="primary" href={href} icon="arrow-up-right">Смотреть кейс</Button>
   </div>
-  <Image src={image} alt="" width={3600} height={1704} quality={90} class="image" />
+  <div class="image-container">
+    <Image src={image} alt="" width={3600} height={1704} quality={90} class="image" />
+  </div>
 </article>
 
 <style>
@@ -106,10 +108,16 @@ const { tags, title, companyLogo, companyName, description, href, image } = Astr
     max-width: 780px;
   }
 
+  .image-container {
+    width: 100%;
+    aspect-ratio: 1200 / 568;
+    border-radius: var(--radius-2xl);
+    overflow: clip;
+  }
+
   .image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1200 / 568;
+    height: 100%;
     object-fit: cover;
     object-position: top;
     user-select: none;

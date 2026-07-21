@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../Button.astro';
+import StatusTag from '../StatusTag.astro';
+import LanguageSwitch from '../LanguageSwitch.astro';
+import profilePhoto from '../../assets/images/profile/profile-photo.jpg';
+import { CONTACTS } from '../../data/contacts';
+---
+
+<section class="hero-mobile">
+  <LanguageSwitch />
+  <div class="content">
+    <svg class="dots" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="hero-dot-grid-m" width="16" height="16" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.9554" fill="var(--color-black-24)" />
+        </pattern>
+        <radialGradient
+          id="hero-dot-fade-m"
+          gradientUnits="objectBoundingBox"
+          cx="0.5"
+          cy="0.5"
+          r="0.5"
+          gradientTransform="translate(0.5 0.5) scale(0.965 1) translate(-0.5 -0.5)"
+        >
+          <stop offset="20%" stop-color="#fff" />
+          <stop offset="90%" stop-color="#000" />
+        </radialGradient>
+        <mask id="hero-dot-mask-m" maskContentUnits="objectBoundingBox">
+          <rect width="1" height="1" fill="url(#hero-dot-fade-m)" />
+        </mask>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hero-dot-grid-m)" mask="url(#hero-dot-mask-m)" />
+    </svg>
+    <div class="photo-frame">
+      <Image src={profilePhoto} alt="Антон Усанов" width={456} height={456} quality={90} class="photo" />
+    </div>
+    <div class="description">
+      <StatusTag data-i18n="hero.status">Открыт к предложениям</StatusTag>
+      <div class="bio">
+        <p class="text-h1" data-i18n="hero.name">Антон Усанов</p>
+        <p class="text-body subtitle" data-i18n="hero.subtitle">
+          Продуктовый дизайнер с опытом работы над продуктами в сферах AI, девелопмента, логистики, web3
+        </p>
+      </div>
+      <div class="buttons">
+        <Button variant="primary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
+          Telegram
+        </Button>
+        <Button variant="primary" icon="email" iconPosition="left" copy={CONTACTS.email}>
+          Email
+        </Button>
+        <Button variant="primary" icon="cv" iconPosition="left" href={CONTACTS.cv} target="_blank" rel="noreferrer">
+          CV
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+    width: 100%;
+  }
+
+  .dots {
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 855px;
+    height: 401px;
+    max-width: none;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .photo-frame {
+    position: relative;
+    z-index: 1;
+    width: 152px;
+    height: 152px;
+    border: 4.75px solid var(--color-white);
+    border-radius: 19px;
+    overflow: hidden;
+    transform: rotate(-3deg);
+    box-shadow: var(--shadow-photo);
+  }
+
+  .photo {
+    position: absolute;
+    left: -10.03%;
+    top: -0.13%;
+    width: 121.87%;
+    height: 121.87%;
+    max-width: none;
+  }
+
+  .description {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .subtitle {
+    color: var(--color-zinc-dust);
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+</style>

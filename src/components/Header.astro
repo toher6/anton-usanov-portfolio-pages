@@ -41,6 +41,24 @@ import { CONTACTS } from '../data/contacts';
     background: var(--color-header-bg);
     border: 1px solid var(--color-black-6);
     box-shadow: var(--shadow-elevation);
+    transition: background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+  }
+
+  /*
+    Пока hero-block в зоне видимости, шапка «пустая» — видно только
+    переключатель языка (он остаётся на своём месте), а подложка, логотип
+    и навигация скрыты. После прокрутки за hero-block шапка проявляется.
+  */
+  .header:not(.header--pinned) .header__bar {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .header:not(.header--pinned) .logo,
+  .header:not(.header--pinned) .header__links {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .logo {
@@ -48,6 +66,7 @@ import { CONTACTS } from '../data/contacts';
     width: 40px;
     height: 40px;
     flex-shrink: 0;
+    transition: opacity 250ms ease;
   }
   .logo :global(svg) {
     display: block;
@@ -59,5 +78,43 @@ import { CONTACTS } from '../data/contacts';
     display: flex;
     align-items: center;
     gap: 24px;
+    transition: opacity 250ms ease;
+  }
+
+  /* Мобильная вёрстка: хедера нет — переключатель языка живёт в hero-блоке */
+  @media (max-width: 575.98px) {
+    .header {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  function initHeaderReveal() {
+    const header = document.querySelector<HTMLElement>('.header');
+    if (!header || header.dataset.revealWired) return;
+    header.dataset.revealWired = 'true';
+
+    const hero = document.querySelector('.hero');
+    // Нет hero-block (например, страница 404) — шапка всегда видима
+    if (!hero) {
+      header.classList.add('header--pinned');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          header.classList.toggle('header--pinned', !entry.isIntersecting);
+        }
+      },
+      // Верхняя граница сдвинута на высоту шапки (16px отступ + 68px бар),
+      // чтобы шапка проявлялась, когда hero уходит под неё
+      { rootMargin: '-84px 0px 0px 0px' },
+    );
+    observer.observe(hero);
+  }
+
+  initHeaderReveal();
+  document.addEventListener('astro:page-load', initHeaderReveal);
+</script>

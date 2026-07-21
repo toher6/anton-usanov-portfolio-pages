@@ -1,4 +1,4 @@
-const FEEDBACK_MS = 5000;
+const FEEDBACK_MS = 3000;
 const timers = new WeakMap<HTMLElement, number>();
 
 function feedbackText(): string {

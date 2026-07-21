@@ -23,6 +23,7 @@ export const EN: Record<string, string> = {
 
   // Experience
   'Продуктовый дизайнер': 'Product Designer',
+  'Сбер': 'Sber',
   'Крупнейший банк РФ': "Russia's largest bank",
   'Проектировал и развивал b2b и внутренние сервисы на основе искусственного интеллекта. От продуктовой аналитики, формирования гипотез и исследований до прототипирования и реализации в продакшн':
     'Designed and developed b2b and internal AI-powered services — from product analytics, hypotheses and research to prototyping and shipping to production',
@@ -35,6 +36,12 @@ export const EN: Record<string, string> = {
   'Продуктовый подход для дизайнеров': 'Product approach for designers',
   'Дизайнер интерфейсов': 'Interface Designer',
   'Инновационные технологии в сфере государственного управления': 'Innovative technologies in public administration',
+  'Яндекс.Практикум': 'Yandex.Practicum',
+  'МИРЭА — Российский технологический университет': 'MIREA — Russian Technological University',
+
+  // Company names (homepage cards + case heroes)
+  'Платформы AI': 'Platform AI',
+  'Аудита цен': 'Price Audit',
 
   // Product cases (homepage cards)
   'Спроектировал разделы публикации датасетов и моделей': 'Designed dataset and model publishing sections',

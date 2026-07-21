@@ -6,51 +6,109 @@ import EducationItem from '../components/EducationItem.astro';
 import ProductCaseCard from '../components/ProductCaseCard.astro';
 import ResearchCaseCard from '../components/ResearchCaseCard.astro';
 import Divider from '../components/Divider.astro';
+import HeroMobile from '../components/mobile/HeroMobile.astro';
+import ExperienceItemMobile from '../components/mobile/ExperienceItemMobile.astro';
+import EducationItemMobile from '../components/mobile/EducationItemMobile.astro';
+import CaseCardMobile from '../components/mobile/CaseCardMobile.astro';
 import { EXPERIENCE } from '../data/experience';
 import { EDUCATION } from '../data/education';
 import { PRODUCT_CASES, RESEARCH_CASES } from '../data/cases';
+
+// Кадрирование обложек в мобильных карточках — по умолчанию center;
+// точечные переопределения там, где в макете показана другая часть картинки
+const MOBILE_IMAGE_POSITION: Record<string, string> = {
+  '/client-interface-builder/': 'left',
+};
 ---
 
 <BaseLayout>
-  <div class="page">
-    <Bio />
+  <div class="home-desktop">
+    <div class="page">
+      <Bio />
 
-    <section class="section">
+      <section class="section">
+        <h2 class="text-h1" data-i18n="sections.experience">Опыт работы</h2>
+        <div class="experience-table">
+          {EXPERIENCE.map((entry, i) => (
+            <>
+              <ExperienceTableItem {...entry} />
+              {i < EXPERIENCE.length - 1 && <Divider />}
+            </>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="text-h1" data-i18n="sections.productCases">Продуктовые кейсы</h2>
+        <div class="cards">
+          {PRODUCT_CASES.map((item) => (
+            <ProductCaseCard {...item} />
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="text-h1" data-i18n="sections.researchCases">Исследовательские кейсы</h2>
+        <div class="cards">
+          {RESEARCH_CASES.map((item) => (
+            <ResearchCaseCard {...item} />
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="text-h1" data-i18n="sections.education">Образование</h2>
+        <div class="education-items">
+          {EDUCATION.map((entry, i) => (
+            <>
+              <EducationItem {...entry} />
+              {i < EDUCATION.length - 1 && <Divider />}
+            </>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="home-mobile">
+    <HeroMobile />
+
+    <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.experience">Опыт работы</h2>
-      <div class="experience-table">
+      <div class="m-list m-list--experience">
         {EXPERIENCE.map((entry, i) => (
           <>
-            <ExperienceTableItem {...entry} />
+            <ExperienceItemMobile {...entry} />
             {i < EXPERIENCE.length - 1 && <Divider />}
           </>
         ))}
       </div>
     </section>
 
-    <section class="section">
+    <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.productCases">Продуктовые кейсы</h2>
-      <div class="cards">
+      <div class="m-cards">
         {PRODUCT_CASES.map((item) => (
-          <ProductCaseCard {...item} />
+          <CaseCardMobile {...item} imagePosition={MOBILE_IMAGE_POSITION[item.href]} />
         ))}
       </div>
     </section>
 
-    <section class="section">
+    <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.researchCases">Исследовательские кейсы</h2>
-      <div class="cards">
+      <div class="m-cards">
         {RESEARCH_CASES.map((item) => (
-          <ResearchCaseCard {...item} />
+          <CaseCardMobile {...item} />
         ))}
       </div>
     </section>
 
-    <section class="section">
+    <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.education">Образование</h2>
-      <div class="education-items">
+      <div class="m-list m-list--education">
         {EDUCATION.map((entry, i) => (
           <>
-            <EducationItem {...entry} />
+            <EducationItemMobile {...entry} />
             {i < EDUCATION.length - 1 && <Divider />}
           </>
         ))}
@@ -86,5 +144,51 @@ import { PRODUCT_CASES, RESEARCH_CASES } from '../data/cases';
 
   .cards {
     gap: 56px;
+  }
+
+  /* Мобильное дерево скрыто на десктопе, десктопное — на мобильном */
+  .home-mobile {
+    display: none;
+  }
+
+  @media (max-width: 575.98px) {
+    .home-desktop {
+      display: none;
+    }
+
+    .home-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 92px;
+      padding-top: 20px;
+    }
+
+    .m-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .m-list,
+    .m-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .m-list--experience {
+      gap: 32px;
+    }
+
+    .m-list--education {
+      gap: 20px;
+    }
+
+    .m-cards {
+      gap: 24px;
+    }
   }
 </style>

@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import sberLogo from '../../assets/images/logos/sber-logo.svg';
+import dexsportLogo from '../../assets/images/logos/dexsport-logo.svg';
+
+interface Props {
+  period: string;
+  role: string;
+  companyLogo: 'sber' | 'dexsport';
+  companyName: string;
+  org: string;
+  description: string;
+}
+
+const { period, role, companyLogo, companyName, org, description } = Astro.props;
+const logos = { sber: sberLogo, dexsport: dexsportLogo };
+---
+
+<div class="experience-item-mobile">
+  <p class="text-body period">{period}</p>
+  <div class="details">
+    <div class="title">
+      <p class="text-label role" data-i18n-scope>{role}</p>
+      <div class="meta">
+        <div class="company">
+          <Image src={logos[companyLogo]} alt="" width={60} height={60} quality={90} fit="contain" class="company-logo" />
+          <p class="text-label" data-i18n-scope>{companyName}</p>
+        </div>
+        <p class="text-label dot">·</p>
+        <p class="text-label" data-i18n-scope>{org}</p>
+      </div>
+    </div>
+    <p class="text-body description" data-i18n-scope>{description}</p>
+  </div>
+</div>
+
+<style>
+  .experience-item-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .period {
+    color: var(--color-zinc-dust);
+    white-space: nowrap;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .dot {
+    color: var(--color-black);
+  }
+
+  .description {
+    color: var(--color-zinc-dust);
+  }
+</style>

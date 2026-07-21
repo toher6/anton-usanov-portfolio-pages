@@ -16,7 +16,7 @@ const { logo, title, org, year } = Astro.props;
   <Image src={logo} alt="" width={240} height={240} quality={90} fit="contain" class="logo" />
   <div class="description">
     <p class="text-label" data-i18n-scope>{title}</p>
-    <p class="text-body org">{org}</p>
+    <p class="text-body org" data-i18n-scope>{org}</p>
     <p class="text-body year">{year}</p>
   </div>
 </div>

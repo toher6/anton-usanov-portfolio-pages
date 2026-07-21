@@ -37,15 +37,15 @@
   --text-h2-line: 32px;
   --text-h2-weight: 400; /* H2/Desktop — Onest Regular */
 
-  --text-pretitle-size: 18px;
+  --text-pretitle-size: 16px;
   --text-pretitle-line: 24px;
   --text-pretitle-weight: 300; /* Pre-title/Desktop — Onest Light */
 
-  --text-body-size: 18px;
-  --text-body-line: 28px;
+  --text-body-size: 16px;
+  --text-body-line: 24px;
   --text-body-weight: 400; /* Body/Desktop — SF Pro Regular */
 
-  --text-label-size: 18px;
+  --text-label-size: 16px;
   --text-label-line: 24px;
   --text-label-weight: 510; /* Label/Desktop — SF Pro Medium */
 
@@ -96,4 +96,22 @@
      добавлять точечно, без пересмотра структуры. */
   --bp-tablet: 1024px;
   --bp-mobile: 640px;
+}
+
+/*
+  Мобильная раскладка (макет 402px, node 205-877).
+  Ниже 576px десктоп-дерево скрывается, показывается мобильное.
+  H1/H2 на мобилке мельче десктопных; body/label уже 16px в базовых
+  токенах, так что переопределять их тут не нужно.
+*/
+@media (max-width: 575.98px) {
+  :root {
+    --text-h1-size: 32px; /* H1/Mobile — Onest Light */
+    --text-h1-line: 48px;
+
+    --text-h2-size: 18px; /* H2/Mobile — Onest Regular */
+    --text-h2-line: 28px;
+
+    --page-padding-inline: 17px;
+  }
 }

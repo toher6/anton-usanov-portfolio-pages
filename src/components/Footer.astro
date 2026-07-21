@@ -5,11 +5,27 @@ import { CONTACTS } from '../data/contacts';
 import { SITE } from '../data/site';
 ---
 
-<footer class="footer">
+<footer class="footer footer--desktop">
   <div class="logo-frame">
     <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
   </div>
   <nav class="footer__links">
+    <Button variant="tertiary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
+      Telegram
+    </Button>
+    <Button variant="tertiary" icon="email" iconPosition="left" copy={CONTACTS.email}>
+      Email
+    </Button>
+    <Button variant="tertiary" icon="cv" iconPosition="left" href={CONTACTS.cv} target="_blank" rel="noreferrer">
+      CV
+    </Button>
+  </nav>
+  <p class="text-tag updated" data-i18n data-i18n-en={SITE.updatedAtEn}>{SITE.updatedAt}</p>
+</footer>
+
+<footer class="footer-mobile">
+  <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
+  <nav class="footer-mobile__links">
     <Button variant="tertiary" icon="telegram" iconPosition="left" href={CONTACTS.telegram} target="_blank" rel="noreferrer">
       Telegram
     </Button>
@@ -61,6 +77,40 @@ import { SITE } from '../data/site';
   .updated {
     width: 156px;
     text-align: right;
+    font-weight: 400;
     color: var(--color-zinc-dust);
+  }
+
+  /* Мобильный футер — столбец: логотип, три ссылки по ширине, дата по центру */
+  .footer-mobile {
+    display: none;
+  }
+
+  @media (max-width: 575.98px) {
+    .footer--desktop {
+      display: none;
+    }
+
+    .footer-mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 92px;
+      padding-bottom: 44px;
+      width: 100%;
+    }
+
+    .footer-mobile__links {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .footer-mobile .updated {
+      width: auto;
+      text-align: center;
+    }
   }
 </style>

@@ -7,7 +7,7 @@ const { class: className } = Astro.props;
 
 <div class:list={['status-tag', className]}>
   <span class="dot"></span>
-  <p class="text-tag"><slot /></p>
+  <p class="text-tag" data-i18n-scope><slot /></p>
 </div>
 
 <style>
