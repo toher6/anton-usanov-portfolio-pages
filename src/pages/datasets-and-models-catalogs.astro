@@ -4,6 +4,8 @@ import CaseHero from '../components/CaseHero.astro';
 import CaseSection from '../components/CaseSection.astro';
 import ImageBlock from '../components/ImageBlock.astro';
 import Gallery from '../components/Gallery.astro';
+import ResearchPanel from '../components/ResearchPanel.astro';
+import ResultCard from '../components/ResultCard.astro';
 import companyLogo from '../assets/images/logos/sber-logo.svg';
 import coverImage from '../assets/images/cases/datasets-and-models-catalogs/cover.png';
 import competitorAnalysis1 from '../assets/images/cases/datasets-and-models-catalogs/competitor-analysis-1.png';
@@ -11,7 +13,6 @@ import competitorAnalysis2 from '../assets/images/cases/datasets-and-models-cata
 import catalogsScreen1 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-1.png';
 import catalogsScreen2 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-2.png';
 import detailPageScreens from '../assets/images/cases/datasets-and-models-catalogs/detail-page-screens.png';
-import finalMockups from '../assets/images/cases/datasets-and-models-catalogs/final-mockups.png';
 
 const title = 'Спроектировал разделы публикации датасетов и моделей';
 const description =
@@ -61,7 +62,6 @@ const insights = [
       description={description}
       meta={meta}
       results={results}
-      resultsDisclaimer="*прогнозируемые показатели"
       coverImage={coverImage}
     />
 
@@ -82,29 +82,28 @@ const insights = [
         Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
         Amazon Data Marketplace, Google Dataset Search
       </CaseSection>
-      <Gallery images={[competitorAnalysis1, competitorAnalysis2]} />
+      <Gallery images={[competitorAnalysis2, competitorAnalysis1]} />
     </div>
 
     <div class="case-block">
       <CaseSection preTitle="Интервью" title="Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты" />
       <div class="spec-grid">
-        <div class="spec-card">
+        <ResearchPanel tag="Методология" tagColor="var(--color-sky)">
           {interviewSpecs.map((item) => (
             <div class="spec-row">
               <p class="text-body spec-label" data-i18n-scope>{item.label}</p>
               <p class="text-label" data-i18n-scope>{item.value}</p>
             </div>
           ))}
-        </div>
-        <div class="insight-card">
-          <p class="text-body spec-label" data-i18n-scope>Ключевые инсайты</p>
+        </ResearchPanel>
+        <ResearchPanel tag="Ключевые инсайты" tagColor="var(--color-mint)" rowGap={24}>
           {insights.map((item) => (
             <div class="insight-row">
               <p class="text-body insight-number" data-i18n-scope>{item.number}</p>
               <p class="text-label insight-text" data-i18n-scope>{item.text}</p>
             </div>
           ))}
-        </div>
+        </ResearchPanel>
       </div>
     </div>
 
@@ -118,8 +117,20 @@ const insights = [
       </CaseSection>
 
       <Gallery images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
-      <ImageBlock image={detailPageScreens} framed={false} radius="0" caption="Страницы датасета и модели" />
-      <ImageBlock image={finalMockups} framed={false} radius="32px" caption="Отрисованные макеты" />
+      <ImageBlock image={detailPageScreens} framed={false} caption="Страницы датасета и модели" />
+    </div>
+
+    <div class="case-block">
+      <CaseSection preTitle="Результат" title="Спроектировал каталоги моделей и датасетов для Платформы AI">
+        Каталоги и страницы датасетов и моделей рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи
+        единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа четырёх
+        сервисов и пяти интервью со специалистами до финальных макетов
+      </CaseSection>
+      <div class="results-items">
+        {results.map((item) => (
+          <ResultCard value={item.value} label={item.label} />
+        ))}
+      </div>
     </div>
   </div>
 </CaseLayout>
@@ -150,29 +161,18 @@ const insights = [
     width: 100%;
   }
 
-  .spec-card,
-  .insight-card {
+  .results-items {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    flex: 1 0 0;
-    min-width: 0;
-    padding: 36px;
-    border-radius: var(--radius-2xl);
-    background: var(--color-black-3);
-  }
-
-  .insight-card {
-    justify-content: space-between;
-    gap: 0;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   .spec-row {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 4px;
     width: 100%;
   }
 
