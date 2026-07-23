@@ -30,7 +30,7 @@ export const EN: Record<string, string> = {
   'UX/UI дизайнер': 'UX/UI Designer',
   'Web3 iGaming платформа': 'Web3 iGaming platform',
   'Проектировал интерфейсы и развивал дизайн-систему web3-платформы для крипто-ставок на спорт и киберспорт. Вырос от junior до middle: начал с маркетинговых визуалов, перешёл к продуктовым задачам и ключевым экранам платформы':
-    'Designed interfaces and grew the design system of a web3 platform for crypto sports and esports betting. Grew from junior to middle: started with marketing visuals, moved on to product tasks and key platform screens',
+    'Designed interfaces and grew the design system of a web3 platform for crypto sports and esports betting. Grew from junior to mid-level: started with marketing visuals, then moved on to product tasks and key platform screens',
 
   // Education
   'Продуктовый подход для дизайнеров': 'Product approach for designers',
@@ -49,7 +49,7 @@ export const EN: Record<string, string> = {
     'Designed model and dataset catalogs in a month — publishing tools for internal and external Data Science and ML specialists. Ran a competitive analysis and interviews with specialists to understand search criteria and filtering priorities',
   'С нуля спроектировал конструктор клиентского интерфейса': 'Designed a client interface builder from scratch',
   'За 2 месяца спроектировал гибкий конструктор клиентского интерфейса. Провёл 2 раунда юзабилити-тестирования и совместно с аналитиками продумал логику настройки готовых блоков под задачи публикуемых в каталоге продуктов':
-    'Designed a flexible client interface builder in 2 months. Ran 2 rounds of usability testing and worked with analysts to design the configuration logic for pre-built blocks',
+    'Designed a flexible client interface builder in 2 months. Ran 2 rounds of usability testing and worked with analysts to design the configuration logic for pre-built blocks tailored to the needs of products published in the catalog',
 
   // Research cases (homepage cards)
   'Провел юзабилити-тестирование': 'Ran a usability test',
@@ -98,6 +98,17 @@ export const EN: Record<string, string> = {
   'Старый вариант': 'Old version',
   'Новый вариант': 'New version',
 
+  // Подписи в блоках с результатами
+  'Активных пользователей в месяц': 'Active users per month',
+  'Опубликованных датасетов': 'Published datasets',
+  'Опубликованных моделей': 'Published models',
+  'Интервью проведено': 'Interviews conducted',
+  'Подтвержденных гипотезы': 'Hypotheses confirmed',
+  'Участников тестирования': 'Testing participants',
+  'Гипотезы подтверждены': 'Hypotheses confirmed',
+  'Проблем выявлено': 'Issues identified',
+  'Такой страницы не существует': "This page doesn't exist",
+
   // Case: client-interface-builder — remaining sections
   'Создание клиентского интерфейса — один из этапов публикации продукта':
     'Building a client interface is one of the steps in publishing a product',
@@ -106,7 +117,7 @@ export const EN: Record<string, string> = {
   'Спроектировать гибкий, интуитивный инструмент для владельцев ИИ-продуктов':
     'Design a flexible, intuitive tool for AI product owners',
   'Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками':
-    "Custom interface development for every product required huge resources, and uploading third-party code to the platform created security risks. Together with analysts, we concluded the solution was a builder with ready-made blocks",
+    "Custom interface development for every product required huge resources, and uploading third-party code to the platform created security risks. Together with the analytics team, I concluded the solution was a builder with ready-made blocks",
   'Этапы создания клиентского интерфейса в конструкторе':
     'Stages of building a client interface in the builder',
   'Дискавери': 'Discovery',
@@ -146,7 +157,7 @@ export const EN: Record<string, string> = {
   'Каталоги моделей и датасетов на Платформе AI — инструмент публикации для внутренних и внешних ML-специалистов':
     'Model and dataset catalogs on Platform AI — a publishing tool for internal and external ML specialists',
   'Нужен был инструмент, который позволит специалистам находить нужные данные и модели по релевантным критериям, а владельцам — публиковать их с гибкими настройками доступа (публично или ограниченному кругу) и с заделом под будущую монетизацию':
-    'We needed a tool that would let specialists find the data and models they need by relevant criteria, and let owners publish them with flexible access settings (public or restricted) with room for future monetization',
+    'A tool was needed to let specialists find the data and models they need by relevant criteria, and let owners publish them with flexible access settings (public or restricted) with room for future monetization',
   'Конкурентный анализ': 'Competitive analysis',
   'На рынке уже существовали похожие решения, поэтому начал с анализа аналогов': 'Similar solutions already existed on the market, so I started with a competitive analysis',
   'Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world, Amazon Data Marketplace, Google Dataset Search':
@@ -163,7 +174,7 @@ export const EN: Record<string, string> = {
     'When searching for datasets, users pay attention to file count and row count. The most commonly used filters are data type, task, and presence of labeling',
   'При поиске моделей обращают внимание на тип решаемой задачи, могут отфильтровать по фреймворку':
     'When searching for models, users pay attention to the task type and may filter by framework',
-  'Финальное дизайн-решение': 'Final design solution',
+  'Финальное дизайн-решение': 'Final design',
   'На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы':
     'Designed the key sections based on insights from the interviews and competitive analysis',
   'Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"':
@@ -179,7 +190,7 @@ export const EN: Record<string, string> = {
   'AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента':
     'AI Gateway is a web app that helps internal AI agent developers track the status of shipping an AI agent',
   'Нужно было понять, с какими проблемами команды сталкиваются при выкатке решений в продакшн, насколько понятна существующая документация, и стоит ли перерабатывать её в формат интерфейса личного кабинета':
-    'We needed to understand what problems teams run into when shipping to production, how clear the existing documentation is, and whether it was worth reworking it into a dashboard interface',
+    'The goal was to understand what problems teams run into when shipping to production, how clear the existing documentation is, and whether it was worth reworking it into a dashboard interface',
   'Определить ключевые потребности пользователей и их текущие боли при прохождении процесса выкатки ИИ-агента':
     "Identify users' key needs and current pain points when going through the AI agent shipping process",
   'Результат должен был помочь команде принять решение — дорабатывать документацию или проектировать MVP интерфейса взамен существующей инструкции':
@@ -214,7 +225,7 @@ export const EN: Record<string, string> = {
   'Респонденты почти единогласно говорили, что в сложных случаях идут не в документацию, а к коллегам — и что статус своего агента чаще всего отслеживают вручную, через переписку или личные договорённости, а не через какой-либо системный источник правды':
     'Respondents almost unanimously said that in difficult cases they turn to colleagues rather than the documentation — and that they mostly track their agent\'s status manually, through chats or personal arrangements, rather than any single source of truth',
   'По итогам исследования сформулировал рекомендации по каждой проблемной зоне':
-    'Based on the research, formulated recommendations for every problem area',
+    'Based on the research, I formulated recommendations for every problem area',
   'Провёл 8 интервью с продукт-оунерами и аналитиками, которые ведут процесс выкатки ИИ-агентов, и подтвердил 3 из 4 гипотез. Собрал набор конкретных рекомендаций по документации, интерфейсу и процессу и презентовал результаты команде.':
     'Ran 8 interviews with product owners and analysts who run the AI agent shipping process, and confirmed 3 of 4 hypotheses. Put together a set of concrete recommendations on documentation, interface, and process, and presented the results to the team.',
 
