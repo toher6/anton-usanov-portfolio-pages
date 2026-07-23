@@ -5,8 +5,8 @@ import auLogo from '../assets/images/logos/au-logo.svg?raw';
 import { CONTACTS } from '../data/contacts';
 
 interface Props {
-  /* На страницах кейсов шапка видна сразу и уезжает вместе с контентом,
-     на главной — проявляется после hero-блока и залипает сверху */
+  /* На страницах кейсов шапка видна сразу, на главной — проявляется
+     после hero-блока. Липнет к верху вьюпорта в обоих случаях */
   variant?: 'reveal' | 'static';
 }
 
@@ -37,10 +37,6 @@ const { variant = 'reveal' } = Astro.props;
     top: 0;
     z-index: 50;
     padding-top: 16px;
-  }
-
-  .header--static {
-    position: static;
   }
 
   .header__bar {
