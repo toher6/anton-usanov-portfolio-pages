@@ -15,10 +15,10 @@ const { image, caption, framed = true, radius } = Astro.props;
 <figure class="image-block">
   {framed ? (
     <div class="frame">
-      <Image src={image} alt="" width={Math.min(3504, image.width)} quality={100} format="avif" class="image" style={radius ? `border-radius:${radius}` : undefined} />
+      <Image src={image} alt="" width={Math.min(3504, image.width)} format="webp" class="image" style={radius ? `border-radius:${radius}` : undefined} />
     </div>
   ) : (
-    <Image src={image} alt="" width={Math.min(3600, image.width)} quality={100} format="avif" class="image image--flush" style={radius ? `border-radius:${radius}` : undefined} />
+    <Image src={image} alt="" width={Math.min(3600, image.width)} format="webp" class="image image--flush" style={radius ? `border-radius:${radius}` : undefined} />
   )}
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>

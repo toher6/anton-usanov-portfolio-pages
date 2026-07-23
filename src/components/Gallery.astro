@@ -21,7 +21,7 @@ function imageSize(image: ImageMetadata) {
   <div class="viewport">
     <div class="row" style={`height:${height}px`} data-gallery-row>
       {images.map((image) => (
-        <Image src={image} alt="" {...imageSize(image)} quality={100} format="avif" class="image" />
+        <Image src={image} alt="" {...imageSize(image)} format="webp" class="image" />
       ))}
     </div>
     <div class="scroller" data-gallery-scroller hidden>
