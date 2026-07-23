@@ -23,12 +23,13 @@ const { class: className } = Astro.props;
     background: var(--color-black-9);
   }
 
+  /* 4px паддинг + 24px line-height = 32px, с паддингом обёртки высота 40px */
   .switch-item {
     display: flex;
-    flex: 1 0 0;
+    width: 32px;
     align-items: center;
     justify-content: center;
-    padding: 6px;
+    padding: 4px;
     border-radius: var(--radius-sm);
     color: var(--color-zinc-dust);
   }
