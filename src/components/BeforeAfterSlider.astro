@@ -17,8 +17,8 @@ const uid = Math.random().toString(36).slice(2, 9);
 
 <figure class="slider-block">
   <div class="slider" data-before-after-slider style={`--pos: 50%`}>
-    <Image src={after} alt="" width={Math.min(2400, after.width)} quality={90} class="layer layer--after" />
-    <Image src={before} alt="" width={Math.min(2400, before.width)} quality={90} class="layer layer--before" />
+    <Image src={after} alt="" width={Math.min(2400, after.width)} quality={95} format="avif" class="layer layer--after" />
+    <Image src={before} alt="" width={Math.min(2400, before.width)} quality={95} format="avif" class="layer layer--before" />
     <span class="tag tag--left" data-i18n-scope>{beforeLabel}</span>
     <span class="tag tag--right" data-i18n-scope>{afterLabel}</span>
     <div class="divider-line" aria-hidden="true"></div>
