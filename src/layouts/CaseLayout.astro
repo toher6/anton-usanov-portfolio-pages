@@ -1,6 +1,7 @@
 ---
 import Shell from './Shell.astro';
 import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 import Button from '../components/Button.astro';
 
 interface Props {
@@ -12,6 +13,7 @@ const { title, description } = Astro.props;
 ---
 
 <Shell title={title} description={description}>
+  <Header variant="static" />
   <div class="back-bar">
     <Button variant="secondary" href="/" icon="arrow-left-circle" iconPosition="left">
       На главную
@@ -25,7 +27,7 @@ const { title, description } = Astro.props;
 
 <style>
   .back-bar {
-    padding-top: 52px;
+    padding-top: 68px;
     padding-bottom: 44px;
     width: fit-content;
   }

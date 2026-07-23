@@ -3,9 +3,17 @@ import Button from './Button.astro';
 import LanguageSwitch from './LanguageSwitch.astro';
 import auLogo from '../assets/images/logos/au-logo.svg?raw';
 import { CONTACTS } from '../data/contacts';
+
+interface Props {
+  /* На страницах кейсов шапка видна сразу и уезжает вместе с контентом,
+     на главной — проявляется после hero-блока и залипает сверху */
+  variant?: 'reveal' | 'static';
+}
+
+const { variant = 'reveal' } = Astro.props;
 ---
 
-<header class="header">
+<header class:list={['header', variant === 'static' && 'header--static header--pinned']}>
   <div class="header__bar">
     <a href="/" class="logo" aria-label="На главную" set:html={auLogo} />
     <nav class="header__links">
@@ -29,6 +37,10 @@ import { CONTACTS } from '../data/contacts';
     top: 0;
     z-index: 50;
     padding-top: 16px;
+  }
+
+  .header--static {
+    position: static;
   }
 
   .header__bar {
@@ -98,6 +110,9 @@ import { CONTACTS } from '../data/contacts';
     const header = document.querySelector<HTMLElement>('.header');
     if (!header || header.dataset.revealWired) return;
     header.dataset.revealWired = 'true';
+
+    // Статичный вариант (страницы кейсов) виден всегда — наблюдатель не нужен
+    if (header.classList.contains('header--static')) return;
 
     const hero = document.querySelector('.hero');
     // Нет hero-block (например, страница 404) — шапка всегда видима

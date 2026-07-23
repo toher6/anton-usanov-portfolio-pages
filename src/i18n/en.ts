@@ -87,6 +87,8 @@ export const EN: Record<string, string> = {
   'Количество': 'Count',
   'Очное модерируемое': 'In-person, moderated',
   'Ключевые инсайты': 'Key insights',
+  'Методология': 'Methodology',
+  'Прототип': 'Prototype',
   'Бизнес-цели и ключевые результаты': 'Business goals and key results',
   'Цель исследования': 'Research goal',
   'Предполагаемый результат': 'Expected outcome',
@@ -105,7 +107,8 @@ export const EN: Record<string, string> = {
     'Design a flexible, intuitive tool for AI product owners',
   'Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками':
     "Custom interface development for every product required huge resources, and uploading third-party code to the platform created security risks. Together with analysts, we concluded the solution was a builder with ready-made blocks",
-  'Скетч аналитиков на старте': "Analysts' initial sketch",
+  'Этапы создания клиентского интерфейса в конструкторе':
+    'Stages of building a client interface in the builder',
   'Дискавери': 'Discovery',
   'Изучил смежные решения, так как прямых аналогов не было': 'Studied adjacent solutions, since there were no direct competitors',
   'Я проанализировал интерфейсы конструкторов бизнес-процессов и сценариев, low-code платформы с визуальной сборкой, конструкторы чат-ботов':

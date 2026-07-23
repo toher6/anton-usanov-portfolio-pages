@@ -4,10 +4,13 @@ import CaseHero from '../components/CaseHero.astro';
 import CaseSection from '../components/CaseSection.astro';
 import ImageBlock from '../components/ImageBlock.astro';
 import Gallery from '../components/Gallery.astro';
+import ResearchPanel from '../components/ResearchPanel.astro';
+import ResultCard from '../components/ResultCard.astro';
 
 import sberLogo from '../assets/images/logos/sber-logo.svg';
 import coverImage from '../assets/images/cases/client-interface-builder/cover.png';
 import templateCatalog from '../assets/images/cases/client-interface-builder/template-catalog.png';
+import builderStages from '../assets/images/cases/client-interface-builder/builder-stages.png';
 import sketch from '../assets/images/cases/client-interface-builder/sketch.png';
 import competitor1 from '../assets/images/cases/client-interface-builder/competitor-1.png';
 import competitor2 from '../assets/images/cases/client-interface-builder/competitor-2.png';
@@ -28,7 +31,6 @@ import blocks4 from '../assets/images/cases/client-interface-builder/blocks-4.pn
 import blocks5 from '../assets/images/cases/client-interface-builder/blocks-5.png';
 import blocks6 from '../assets/images/cases/client-interface-builder/blocks-6.png';
 import previewMode from '../assets/images/cases/client-interface-builder/preview-mode.png';
-import resultMockups from '../assets/images/cases/client-interface-builder/result-mockups.png';
 
 const meta = [
   { label: 'Роль', value: 'Продуктовый дизайнер' },
@@ -40,6 +42,13 @@ const results = [
   { value: '0 → 1', label: 'Спроектировал раздел с нуля' },
   { value: '2', label: 'Раунда юзабилити-тестирования' },
   { value: '118', label: 'Экранов отрисовано' },
+];
+
+const methodology = [
+  { label: 'Тип исследования', value: 'Юзабилити-тестирование' },
+  { label: 'Формат', value: 'Очное модерируемое' },
+  { label: 'Респонденты', value: 'Владельцы продуктов на Платформе' },
+  { label: 'Количество', value: '5 человек' },
 ];
 
 const researchInsights = [
@@ -88,7 +97,8 @@ const researchInsights = [
       <CaseSection preTitle="Задача" title="Спроектировать гибкий, интуитивный инструмент для владельцев ИИ-продуктов">
         Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками
       </CaseSection>
-      <ImageBlock image={sketch} caption="Скетч аналитиков на старте" framed={false} />
+      <ImageBlock image={builderStages} caption="Этапы создания клиентского интерфейса в конструкторе" framed={false} />
+      <ImageBlock image={sketch} framed={false} />
     </div>
 
     <div class="case-block">
@@ -102,35 +112,24 @@ const researchInsights = [
     <div class="case-block">
       <CaseSection preTitle="Первый прототип" title="Провел юзабилити-тестирование с 5 владельцами продуктов" />
       <div class="spec-grid">
-        <div class="spec-panel">
-          <div class="spec-row">
-            <p class="text-body spec-label" data-i18n-scope>Тип исследования</p>
-            <p class="text-label spec-value" data-i18n-scope>Юзабилити-тестирование</p>
-          </div>
-          <div class="spec-row">
-            <p class="text-body spec-label" data-i18n-scope>Формат</p>
-            <p class="text-label spec-value" data-i18n-scope>Очное модерируемое</p>
-          </div>
-          <div class="spec-row">
-            <p class="text-body spec-label" data-i18n-scope>Респонденты</p>
-            <p class="text-label spec-value" data-i18n-scope>Владельцы продуктов на Платформе</p>
-          </div>
-          <div class="spec-row">
-            <p class="text-body spec-label" data-i18n-scope>Количество</p>
-            <p class="text-label spec-value" data-i18n-scope>5 человек</p>
-          </div>
-        </div>
-        <div class="spec-panel">
-          <p class="text-body spec-label" data-i18n-scope>Ключевые инсайты</p>
+        <ResearchPanel tag="Методология" tagColor="var(--color-sky)">
+          {methodology.map((item) => (
+            <div class="spec-row">
+              <p class="text-body spec-label" data-i18n-scope>{item.label}</p>
+              <p class="text-label spec-value" data-i18n-scope>{item.value}</p>
+            </div>
+          ))}
+        </ResearchPanel>
+        <ResearchPanel tag="Ключевые инсайты" tagColor="var(--color-mint)" rowGap={24}>
           {researchInsights.map((insight) => (
             <div class="insight-row">
               <p class="text-body insight-number">{insight.number}</p>
               <p class="text-label insight-text" data-i18n-scope>{insight.text}</p>
             </div>
           ))}
-        </div>
+        </ResearchPanel>
       </div>
-      <ImageBlock image={specScreenshot} framed={false} />
+      <ImageBlock image={specScreenshot} caption="Прототип" framed={false} />
     </div>
 
     <div class="case-block">
@@ -141,7 +140,7 @@ const researchInsights = [
         images={[survey1, survey2, survey3, survey4, survey5, survey6, survey7]}
         caption="Предварительный опрос, на основе которого формируются статусы публикуемого продукта"
       />
-      <ImageBlock image={mainScreen} caption="Главный экран конструктора со статусной сеткой и карточками с наполнением статусов" />
+      <ImageBlock image={mainScreen} caption="Главный экран конструктора со статусной сеткой и карточками с наполнением статусов" framed={false} />
       <Gallery images={[blocks1, blocks2, blocks3, blocks4, blocks5, blocks6]} caption="Каталог блоков и примеры их настройки" />
       <ImageBlock image={previewMode} caption="Режим предпросмотра настроенного интерфейса" />
     </div>
@@ -150,7 +149,11 @@ const researchInsights = [
       <CaseSection preTitle="Результат" title="Спроектировал и протестировал гибкий инструмент для создания клиентских интерфейсов на базе Платформы AI">
         Конструктор рассчитан на потребности продуктов, которые публиковались в каталоге. Будучи единственным дизайнером на проекте, провёл весь цикл самостоятельно за 2 месяца — от исследования аналогов до финальных макетов
       </CaseSection>
-      <ImageBlock image={resultMockups} caption="Отрисованные макеты" framed={false} />
+      <div class="results-items">
+        {results.map((item) => (
+          <ResultCard value={item.value} label={item.label} />
+        ))}
+      </div>
     </div>
   </div>
 </CaseLayout>
@@ -162,7 +165,7 @@ const researchInsights = [
     align-items: flex-start;
     gap: 88px;
     width: 100%;
-    padding-block: 24px 96px;
+    padding-block: 0 96px;
   }
 
   .case-block {
@@ -180,23 +183,18 @@ const researchInsights = [
     width: 100%;
   }
 
-  .spec-panel {
+  .results-items {
     display: flex;
-    flex: 1 0 0;
-    min-width: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    padding: 36px;
-    border-radius: var(--radius-2xl);
-    background: var(--color-black-3);
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   .spec-row {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 4px;
     width: 100%;
   }
 

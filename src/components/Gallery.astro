@@ -11,17 +11,22 @@ interface Props {
 const { images, caption, height = 600 } = Astro.props;
 
 function imageSize(image: ImageMetadata) {
-  const h = Math.min(height * 2, image.height);
+  const h = Math.min(height * 3, image.height);
   const w = Math.round(h * (image.width / image.height));
   return { width: w, height: h };
 }
 ---
 
-<figure class="gallery">
-  <div class="row" style={`height:${height}px`}>
-    {images.map((image) => (
-      <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
-    ))}
+<figure class="gallery" data-gallery>
+  <div class="viewport">
+    <div class="row" style={`height:${height}px`} data-gallery-row>
+      {images.map((image) => (
+        <Image src={image} alt="" {...imageSize(image)} quality={90} class="image" />
+      ))}
+    </div>
+    <div class="scroller" data-gallery-scroller hidden>
+      <span class="scroll-thumb" data-gallery-thumb></span>
+    </div>
   </div>
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>
@@ -32,6 +37,14 @@ function imageSize(image: ImageMetadata) {
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    width: 100%;
+  }
+
+  /* Ряд + индикатор скролла — единая группа, подпись отбивается от неё на 16px */
+  .viewport {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
   }
 
@@ -55,8 +68,70 @@ function imageSize(image: ImageMetadata) {
     object-fit: cover;
   }
 
+  .scroller {
+    display: flex;
+    align-items: center;
+    height: 12px;
+    padding: 2px 4px;
+    width: 100%;
+    overflow: clip;
+  }
+  .scroller[hidden] {
+    display: none;
+  }
+
+  .scroll-thumb {
+    height: 8px;
+    border-radius: 1000px;
+    background: var(--color-black-9);
+    will-change: transform, width;
+  }
+
   .caption {
     color: var(--color-blue-dusk);
     text-align: center;
   }
 </style>
+
+<script>
+  function initGallery(gallery: HTMLElement) {
+    if (gallery.dataset.galleryWired) return;
+    gallery.dataset.galleryWired = 'true';
+
+    const row = gallery.querySelector<HTMLElement>('[data-gallery-row]');
+    const scroller = gallery.querySelector<HTMLElement>('[data-gallery-scroller]');
+    const thumb = gallery.querySelector<HTMLElement>('[data-gallery-thumb]');
+    if (!row || !scroller || !thumb) return;
+
+    const update = () => {
+      const overflow = row.scrollWidth - row.clientWidth;
+      if (overflow <= 1) {
+        scroller.hidden = true;
+        return;
+      }
+      scroller.hidden = false;
+
+      // Ширина бегунка пропорциональна видимой доле ряда
+      const track = scroller.clientWidth - 8;
+      const width = Math.max(24, (row.clientWidth / row.scrollWidth) * track);
+      thumb.style.width = `${width}px`;
+      thumb.style.transform = `translateX(${(row.scrollLeft / overflow) * (track - width)}px)`;
+    };
+
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    new ResizeObserver(update).observe(row);
+    // Пока картинки не загрузились, ширина ряда ещё не финальная
+    row.querySelectorAll('img').forEach((img) => {
+      if (!img.complete) img.addEventListener('load', update, { once: true });
+    });
+    update();
+  }
+
+  function initGalleries() {
+    document.querySelectorAll<HTMLElement>('[data-gallery]').forEach(initGallery);
+  }
+
+  initGalleries();
+  document.addEventListener('astro:page-load', initGalleries);
+</script>

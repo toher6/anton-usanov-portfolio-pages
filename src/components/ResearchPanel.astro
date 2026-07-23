@@ -1,0 +1,53 @@
+---
+interface Props {
+  tag: string;
+  /* CSS-цвет плашки тега, например var(--color-sky) */
+  tagColor: string;
+  /* Расстояние между строками внутри панели */
+  rowGap?: number;
+}
+
+const { tag, tagColor, rowGap = 20 } = Astro.props;
+---
+
+<div class="research-panel">
+  <div class="tag" style={`background:${tagColor}`}>
+    <p class="text-tag" data-i18n-scope>{tag}</p>
+  </div>
+  <div class="rows" style={`gap:${rowGap}px`}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .research-panel {
+    display: flex;
+    flex: 1 0 0;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 40px;
+    border-radius: var(--radius-2xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-black-6);
+    overflow: clip;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    color: var(--color-black);
+    overflow: clip;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+</style>
