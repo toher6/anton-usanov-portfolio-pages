@@ -10,7 +10,7 @@ const { status = 'confirmed' } = Astro.props;
 ---
 
 <div class="status-card">
-  <Icon name={status === 'confirmed' ? 'check-circle' : 'x-circle'} class="status-icon" />
+  <Icon name={status === 'confirmed' ? 'check-in-circle' : 'cross-in-circle'} class="status-icon" />
   <p class="text-label text" data-i18n-scope><slot /></p>
 </div>
 

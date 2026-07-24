@@ -89,12 +89,8 @@ export const EN: Record<string, string> = {
   'Ключевые инсайты': 'Key insights',
   'Методология': 'Methodology',
   'Прототип': 'Prototype',
-  'Бизнес-цели и ключевые результаты': 'Business goals and key results',
   'Цель исследования': 'Research goal',
-  'Предполагаемый результат': 'Expected outcome',
-  'Проверяемые гипотезы': 'Hypotheses to test',
   '5 человек': '5 people',
-  'Отрисованные макеты': 'Final mockups',
   'Старый вариант': 'Old version',
   'Новый вариант': 'New version',
 
@@ -153,7 +149,6 @@ export const EN: Record<string, string> = {
     'The builder is designed around the needs of products published in the catalog. As the only designer on the project, I ran the entire cycle myself in 2 months — from competitor research to final mockups',
 
   // Case: datasets-catalog — remaining sections
-  '*прогнозируемые показатели': '*projected figures',
   'Каталоги моделей и датасетов на Платформе AI — инструмент публикации для внутренних и внешних ML-специалистов':
     'Model and dataset catalogs on Platform AI — a publishing tool for internal and external ML specialists',
   'Нужен был инструмент, который позволит специалистам находить нужные данные и модели по релевантным критериям, а владельцам — публиковать их с гибкими настройками доступа (публично или ограниченному кругу) и с заделом под будущую монетизацию':
@@ -202,33 +197,8 @@ export const EN: Record<string, string> = {
     'When facing difficulties, developers turn to colleagues more often than to the documentation',
   'Разработчикам не хватает единого интерфейса для контроля прогресса агента':
     "Developers lack a single interface to track the agent's progress",
-  'Определить ключевые потребности пользователей и их текущие боли при прохождении процесса выкатки ИИ-агента':
-    "Identify users' key needs and current pain points when going through the AI agent shipping process",
-  'Результат должен был помочь команде принять решение — дорабатывать документацию или проектировать MVP интерфейса взамен существующей инструкции':
-    'The outcome was meant to help the team decide — improve the documentation or design an MVP interface to replace the existing guide',
-  'Целиком подготовил гайд исследования': 'Prepared the entire research guide myself',
-  'Описал предполагаемый результат, решения, которые команда сможет принять на основе выводов, вопросы исследования, гипотезы для проверки, требования к респондентам и список вопросов для интервью. Согласовал гайд с командой и получил контакты подходящих респондентов':
-    "Described the expected outcome, decisions the team could make based on the findings, research questions, hypotheses to test, respondent requirements, and the interview question list. Aligned the guide with the team and got contacts for suitable respondents",
-  'Сократить время выкатки ИИ-агента до 1,5 месяцев': 'Cut AI agent shipping time to 1.5 months',
-  'Снизить количество обращений к команде поддержки': 'Reduce the number of support team requests',
-  'Определить ключевые потребности пользователей и их текущие боли при выкатке ИИ-агентов в продакшн':
-    "Identify users' key needs and current pain points when shipping AI agents to production",
-  'Фидбек поможет команде погрузиться в процессы пользователей, лучше понять их предметную область, а также принять взвешенное решение о доработке документации или разработке MVP интерфейса взамен текущей инструкции.':
-    "Feedback will help the team get closer to users' workflows, better understand their domain, and make an informed decision on improving the documentation or building an MVP interface instead of the current guide.",
-  'Разработчики не понимают структуру и требования, описанные в текущей документации':
-    'Developers do not understand the structure and requirements described in the current documentation',
-  'Разработчики чаще прибегают к помощи коллег, чем к документации, при возникновении трудностей':
-    'When facing difficulties, developers turn to colleagues more often than to the documentation',
   'Разработчики не понимают, на каком этапе находится их агент (отправлен, проверен, принят и т.д.)':
     'Developers do not understand what stage their agent is at (submitted, reviewed, accepted, etc.)',
-  'Отсутствие единого интерфейса усложняет контроль прогресса агента и делает процесс выкатки фрагментированным':
-    "The lack of a single interface makes it harder to track the agent's progress and fragments the shipping process",
-  'Глубинные интервью': 'In-depth interviews',
-  'Онлайн-встречи на 60 минут': '60-minute online calls',
-  'Те, кто проходил процесс выкатки решения': 'Those who have gone through the shipping process',
-  'Те, кто будет проходить процесс выкатки решения и знаком с документацией':
-    'Those who will go through the shipping process and are familiar with the documentation',
-  '8 человек': '8 people',
   'Все респонденты сходились в одном: документация не проводит по процессу пошагово':
     'All respondents agreed on one thing: the documentation does not guide them through the process step by step',
   'Самый частый вопрос новых команд — «с чего начать?». Один из участников описал первое знакомство с инструкцией коротко: реакция была «непонятно», даже после прочтения quick start. Другой отметил, что вместо таблицы шагов хотел бы видеть понятный воркфлоу, по которому можно просто идти':
@@ -246,28 +216,8 @@ export const EN: Record<string, string> = {
   'Он разрабатывался почти год, и за это время требования к интерфейсу и сценарии использования несколько раз менялись. Команда постоянно была на связи с заказчиком, но обратная связь от конечных пользователей оставалась негативной. Нужно было понять, закрывает ли новая версия сервиса реальные потребности пользователей в сценарии аудита спецификации, и что мешает работать с интерфейсом самостоятельно':
     'It had been in development for almost a year, and the interface requirements and usage scenarios changed several times along the way. The team stayed in constant touch with the client, but feedback from end users remained negative. We needed to find out whether the new version of the service actually met users\' needs in the specification audit scenario, and what stopped them from using the interface on their own',
   'Я инициировал проведение юзабилити-тестирования': 'I initiated usability testing',
-  'Определил методологию, сформулировал 3 гипотезы, подготовил интерактивный прототип и гайд исследования':
-    'Defined the methodology, formulated 3 hypotheses, and prepared an interactive prototype and research guide',
-  'Сократить время и расходы на поиск проверенных поставщиков необходимых товаров и услуг':
-    'Reduce the time and cost of finding vetted suppliers for needed goods and services',
-  'Определить в достаточной ли мере новая версия сервиса закрывает потребности пользователя в сценарии оценки спецификаций':
-    "Determine whether the new version of the service sufficiently meets users' needs in the specification review scenario",
-  'Какие боли есть при прихождении сценария': 'What pain points come up while going through the scenario',
-  'Определить какие недостатки есть в прототипе и что можно в нем улучшить':
-    'Identify the shortcomings of the prototype and what can be improved',
-  'Обратная связь поможет команде принять взвешенное решение о доработке текущего функционала и устранении недочетов для улучшения пользовательского опыта':
-    'The feedback will help the team make an informed decision on refining current functionality and fixing issues to improve the user experience',
-  'Пользователям сложно понять логику интерфейса без дополнительной инструкции':
-    'Users find it hard to understand the interface logic without an extra set of instructions',
-  'Пользователям сложно интерпретировать результаты аудита спецификаций':
-    'Users find it hard to interpret specification audit results',
   'Пользователям недостаточно данных для принятия решений в рамках сценария аудита спецификации':
     "Users don't have enough data to make decisions within the specification audit scenario",
-  'Юзабили-тестирование с элементами интервью': 'Usability testing with interview elements',
-  'Сотрудники блока "Строительство", которые:': 'Employees of the Construction division who:',
-  'участвуют в процессе оценки спецификаций': 'take part in the specification review process',
-  'принимают участие в определении стоимости закупки': 'are involved in determining purchase cost',
-  '6 человек': '6 people',
   '2 из 3 гипотез подтвердились': '2 of 3 hypotheses confirmed',
   'По итогам тестирования узнал различные инсайты, выявил и приоритизировал 12 проблем разной критичности — 6 из них в высоком приоритете':
     'The testing surfaced various insights; I identified and prioritized 12 issues of varying severity — 6 of them high priority',
