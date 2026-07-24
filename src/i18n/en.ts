@@ -189,8 +189,19 @@ export const EN: Record<string, string> = {
   // Case: aigw-interview
   'AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента':
     'AI Gateway is a web app that helps internal AI agent developers track the status of shipping an AI agent',
-  'Нужно было понять, с какими проблемами команды сталкиваются при выкатке решений в продакшн, насколько понятна существующая документация, и стоит ли перерабатывать её в формат интерфейса личного кабинета':
-    'The goal was to understand what problems teams run into when shipping to production, how clear the existing documentation is, and whether it was worth reworking it into a dashboard interface',
+  'Нужно было понять, с какими проблемами команды сталкиваются при выкатке решений в продакшн, насколько понятна существующая документация, и стоит ли перерабатывать её в формат интерфейса личного кабинета. Результат должен был помочь команде принять решение — дорабатывать документацию или проектировать MVP интерфейса взамен неё':
+    'The goal was to understand what problems teams run into when shipping to production, how clear the existing documentation is, and whether it was worth reworking it into a dashboard interface. The outcome was meant to help the team decide — improve the documentation or design an MVP interface to replace it',
+  'Подготовил гайд и провёл 8 глубинных интервью в формате часовых онлайн-встреч':
+    'Prepared a guide and ran 8 in-depth interviews as hour-long online calls',
+  'Опросил тех, кто уже прошёл процесс выкатки ИИ-агента в продакшн, и тех, кому это только предстоит, но кто знаком с документацией':
+    'I surveyed both those who had already shipped an AI agent to production and those who are about to but are already familiar with the documentation',
+  'Вопросы для интервью': 'Interview questions',
+  'Разработчики не до конца понимают структуру и требования, описанные в текущей документации':
+    "Developers don't fully understand the structure and requirements described in the current documentation",
+  'При возникновении трудностей разработчики чаще прибегают к помощи коллег, чем к документации':
+    'When facing difficulties, developers turn to colleagues more often than to the documentation',
+  'Разработчикам не хватает единого интерфейса для контроля прогресса агента':
+    "Developers lack a single interface to track the agent's progress",
   'Определить ключевые потребности пользователей и их текущие боли при прохождении процесса выкатки ИИ-агента':
     "Identify users' key needs and current pain points when going through the AI agent shipping process",
   'Результат должен был помочь команде принять решение — дорабатывать документацию или проектировать MVP интерфейса взамен существующей инструкции':
@@ -222,12 +233,12 @@ export const EN: Record<string, string> = {
     'All respondents agreed on one thing: the documentation does not guide them through the process step by step',
   'Самый частый вопрос новых команд — «с чего начать?». Один из участников описал первое знакомство с инструкцией коротко: реакция была «непонятно», даже после прочтения quick start. Другой отметил, что вместо таблицы шагов хотел бы видеть понятный воркфлоу, по которому можно просто идти':
     'The most common question from new teams is "where do I start?" One participant described their first encounter with the guide simply: the reaction was "confusing," even after reading the quick start. Another noted that instead of a table of steps, they would rather see a clear workflow to just follow',
-  'Респонденты почти единогласно говорили, что в сложных случаях идут не в документацию, а к коллегам — и что статус своего агента чаще всего отслеживают вручную, через переписку или личные договорённости, а не через какой-либо системный источник правды':
-    'Respondents almost unanimously said that in difficult cases they turn to colleagues rather than the documentation — and that they mostly track their agent\'s status manually, through chats or personal arrangements, rather than any single source of truth',
+  'Респонденты почти единогласно говорили, что в сложных случаях идут не в документацию, а к коллегам, и что статус своего агента чаще всего отслеживают вручную, через переписку или личные договорённости, а не через какой-либо системный источник правды':
+    'Respondents almost unanimously said that in difficult cases they turn to colleagues rather than the documentation, and that they mostly track their agent\'s status manually, through chats or personal arrangements, rather than any single source of truth',
   'По итогам исследования сформулировал рекомендации по каждой проблемной зоне':
     'Based on the research, I formulated recommendations for every problem area',
-  'Провёл 8 интервью с продукт-оунерами и аналитиками, которые ведут процесс выкатки ИИ-агентов, и подтвердил 3 из 4 гипотез. Собрал набор конкретных рекомендаций по документации, интерфейсу и процессу и презентовал результаты команде.':
-    'Ran 8 interviews with product owners and analysts who run the AI agent shipping process, and confirmed 3 of 4 hypotheses. Put together a set of concrete recommendations on documentation, interface, and process, and presented the results to the team.',
+  'Провёл 8 интервью с продукт-оунерами и аналитиками, которые ведут процесс выкатки ИИ-агентов, и подтвердил 3 из 4 гипотез. Собрал набор конкретных рекомендаций по документации, интерфейсу и процессу и презентовал результаты команде':
+    'Ran 8 interviews with product owners and analysts who run the AI agent shipping process, and confirmed 3 of 4 hypotheses. Put together a set of concrete recommendations on documentation, interface, and process, and presented the results to the team',
 
   // Case: price-audit-usability
   'Аудит цен — сервис, который помогает проверять закупочные цены на соответствие рынку':
@@ -258,8 +269,18 @@ export const EN: Record<string, string> = {
   'принимают участие в определении стоимости закупки': 'are involved in determining purchase cost',
   '6 человек': '6 people',
   '2 из 3 гипотез подтвердились': '2 of 3 hypotheses confirmed',
-  'По итогам тестирования узнал различные инсайты, выявил и приоритизировал 12 проблем разной критичности — 5 из них в высоком приоритете':
-    'The testing surfaced various insights; I identified and prioritized 12 issues of varying severity — 5 of them high priority',
+  'По итогам тестирования узнал различные инсайты, выявил и приоритизировал 12 проблем разной критичности — 6 из них в высоком приоритете':
+    'The testing surfaced various insights; I identified and prioritized 12 issues of varying severity — 6 of them high priority',
+  'Я инициировал проведение юзабилити-тестирования и провёл 6 очных модерируемых сессий с элементами интервью':
+    'I initiated usability testing and ran 6 in-person moderated sessions with interview elements',
+  'Респондентами выступили сотрудники блока «Строительство», которые участвуют в оценке спецификаций и определении стоимости закупки':
+    'Respondents were employees of the Construction division who take part in reviewing specifications and determining purchase cost',
+  'Цель исследования — понять, закрывает ли новая версия сервиса потребности пользователей в сценарии аудита спецификации, и что мешает работать с интерфейсом самостоятельно. Результат должен был помочь команде принять решение о доработке функционала':
+    'The research goal was to understand whether the new version of the service meets user needs in the specification audit scenario, and what stops them from using the interface on their own. The outcome was meant to help the team decide how to refine the functionality',
+  'Пользователям сложно понять логику интерфейса без инструкции':
+    'Users find it hard to understand the interface logic without instructions',
+  'Пользователям сложно интерпретировать результаты аудита спецификации':
+    'Users find it hard to interpret specification audit results',
   'Доработка': 'Refinement',
   'Согласовал список доработок с командой и заказчиком, скорректировал макеты':
     'Aligned the list of refinements with the team and the client, and adjusted the mockups',
