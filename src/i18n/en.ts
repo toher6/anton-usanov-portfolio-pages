@@ -183,8 +183,8 @@ export const EN: Record<string, string> = {
   'Страницы датасета и модели': 'Dataset and model pages',
   'Спроектировал каталоги моделей и датасетов для Платформы AI':
     'Designed the model and dataset catalogs for Platform AI',
-  'Каталоги и страницы датасетов и моделей рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа четырёх сервисов и пяти интервью со специалистами до финальных макетов':
-    'The catalogs and detail pages are built around the scenarios of internal and external ML/DS specialists. As the only designer on the section, I ran the whole cycle myself in a month — from a competitive analysis of four services and five specialist interviews to the final mockups',
+  'Каталоги и страницы датасетов и моделей рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа и интервью до финальных макетов':
+    'The catalogs and detail pages are built around the scenarios of internal and external ML/DS specialists. As the only designer on the section, I ran the whole cycle myself in a month — from competitive analysis and interviews to the final mockups',
 
   // Case: aigw-interview
   'AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента':
