@@ -103,7 +103,7 @@ export const EN: Record<string, string> = {
   'Опубликованных датасетов': 'Published datasets',
   'Опубликованных моделей': 'Published models',
   'Интервью проведено': 'Interviews conducted',
-  'Подтвержденных гипотезы': 'Hypotheses confirmed',
+  'Подтвержденных гипотез': 'Hypotheses confirmed',
   'Участников тестирования': 'Testing participants',
   'Гипотезы подтверждены': 'Hypotheses confirmed',
   'Проблем выявлено': 'Issues identified',
