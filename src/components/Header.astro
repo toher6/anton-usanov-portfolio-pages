@@ -37,6 +37,9 @@ const { variant = 'reveal' } = Astro.props;
     top: 0;
     z-index: 50;
     padding-top: 16px;
+    /* На планшете шапка шире колонки контента — выходим из паддинга
+       контейнера к своему отступу. На остальных ширинах даёт 0 */
+    margin-inline: calc(var(--chrome-padding-inline) - var(--page-padding-inline));
   }
 
   .header__bar {

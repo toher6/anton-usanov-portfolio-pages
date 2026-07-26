@@ -42,9 +42,9 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     padding-inline: var(--page-padding-inline);
   }
 
-  /* На мобильной вёрстке hero-паттерн выходит за пределы контента —
+  /* На планшете и мобильной вёрстке hero-паттерн выходит за пределы контента —
      клипим по ширине вьюпорта, чтобы не появлялся горизонтальный скролл */
-  @media (max-width: 575.98px) {
+  @media (max-width: 1199.98px) {
     .page-container {
       overflow-x: clip;
     }

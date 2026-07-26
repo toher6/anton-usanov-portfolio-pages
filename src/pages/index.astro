@@ -146,6 +146,13 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     gap: 56px;
   }
 
+  /* Планшет (макет 1200px, node 275-1153): карточки кейсов стоят плотнее */
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    .cards {
+      gap: 52px;
+    }
+  }
+
   /* Мобильное дерево скрыто на десктопе, десктопное — на мобильном */
   .home-mobile {
     display: none;

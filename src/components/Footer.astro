@@ -46,7 +46,9 @@ import { SITE } from '../data/site';
     justify-content: space-between;
     margin-top: 220px;
     padding-bottom: 40px;
-    width: 100%;
+    width: auto;
+    /* Как и шапка, на планшете футер шире колонки контента */
+    margin-inline: calc(var(--chrome-padding-inline) - var(--page-padding-inline));
   }
 
   .logo-frame {

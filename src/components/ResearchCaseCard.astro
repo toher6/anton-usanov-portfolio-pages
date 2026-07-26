@@ -17,7 +17,16 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
 
 <article class="card">
   <div class="image-frame">
-    <Image src={image} alt="" width={1662} height={1260} format="webp" class="image" />
+    <Image
+      src={image}
+      alt=""
+      width={2922}
+      height={2215}
+      widths={[1662, 2922]}
+      sizes="(min-width: 1200px) 554px, 82vw"
+      format="webp"
+      class="image"
+    />
   </div>
   <div class="right">
     <div class="description">
@@ -110,5 +119,47 @@ const { title, companyLogo, companyName, description, href, image } = Astro.prop
 
   .summary {
     color: var(--color-zinc-dust);
+  }
+
+  /*
+    Планшет (компонент case-item-tablet, node 275-1523): карточка становится
+    вертикальной — текст сверху, изображение во всю ширину под ним. Порядок в
+    разметке (картинка, текст) переворачиваем через column-reverse, чтобы не
+    дублировать содержимое.
+  */
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    .card {
+      flex-direction: column-reverse;
+      align-items: stretch;
+      gap: 0;
+      height: auto;
+    }
+
+    .image-frame {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Пропорцию задаём на самой картинке: как flex-элемент кадр от
+       aspect-ratio растягивается по исходному соотношению изображения.
+       В кадр 1200×568 широкая обложка не влезает целиком — в макете
+       показана её нижняя часть */
+    .image {
+      height: auto;
+      aspect-ratio: 1200 / 568;
+      object-position: bottom;
+    }
+
+    .right {
+      flex: 0 0 auto;
+      height: auto;
+      padding: 36px;
+      gap: 36px;
+      justify-content: flex-start;
+    }
+
+    .description {
+      max-width: 800px;
+    }
   }
 </style>

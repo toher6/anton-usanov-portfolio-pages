@@ -121,4 +121,27 @@ import { CONTACTS } from '../data/contacts';
     align-items: center;
     gap: 12px;
   }
+
+  /*
+    Планшет (макет 1200px, node 275-1134): hero ближе к шапке (88px против
+    114px), боковые поля снимаем — на узких планшетах фиксированные 200px
+    задушили бы подзаголовок, ширину держит его собственный max-width.
+    Точечное поле шире десктопного: 350px за край с каждой стороны.
+  */
+  @media (min-width: 576px) and (max-width: 1199.98px) {
+    .hero {
+      padding: 66px 0 0;
+    }
+
+    .dots {
+      top: -26px;
+      left: -350px;
+      width: calc(100% + 700px);
+      height: calc(100% + 120px);
+    }
+
+    .buttons {
+      gap: 28px;
+    }
+  }
 </style>
