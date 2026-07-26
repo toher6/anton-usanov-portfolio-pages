@@ -34,24 +34,31 @@ const logos = { sber: sberLogo, dexsport: dexsportLogo };
 </div>
 
 <style>
+  /* Период и описание разведены фиксированной колонкой 204px, а не
+     space-between: описание тянется само и переносится под период,
+     когда ему остаётся меньше 540px */
   .experience-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-between;
+    align-content: flex-start;
+    gap: 8px 204px;
     width: 100%;
   }
 
   .period {
     color: var(--color-zinc-dust);
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .details {
     display: flex;
+    flex: 1 0 0;
+    min-width: 540px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    width: 900px;
   }
 
   .title {
@@ -79,6 +86,7 @@ const logos = { sber: sberLogo, dexsport: dexsportLogo };
 
   .description {
     color: var(--color-zinc-dust);
-    max-width: 780px;
+    width: 100%;
+    max-width: 800px;
   }
 </style>

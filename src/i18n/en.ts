@@ -25,8 +25,8 @@ export const EN: Record<string, string> = {
   'Продуктовый дизайнер': 'Product Designer',
   'Сбер': 'Sber',
   'Крупнейший банк РФ': "Russia's largest bank",
-  'Проектировал и развивал b2b и внутренние сервисы на основе искусственного интеллекта. От продуктовой аналитики, формирования гипотез и исследований до прототипирования и реализации в продакшн':
-    'Designed and developed b2b and internal AI-powered services — from product analytics, hypotheses and research to prototyping and shipping to production',
+  'Проектировал и развивал b2b и внутренние сервисы на основе искусственного интеллекта — от продуктовой аналитики, формирования гипотез и исследований до прототипирования и реализации':
+    'Designed and developed b2b and internal AI-powered services — from product analytics, hypotheses and research to prototyping and implementation',
   'UX/UI дизайнер': 'UX/UI Designer',
   'Web3 iGaming платформа': 'Web3 iGaming platform',
   'Проектировал интерфейсы и развивал дизайн-систему web3-платформы для крипто-ставок на спорт и киберспорт. Вырос от junior до middle: начал с маркетинговых визуалов, перешёл к продуктовым задачам и ключевым экранам платформы':
