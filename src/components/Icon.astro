@@ -22,18 +22,21 @@ const icons = {
 interface Props {
   name: keyof typeof icons;
   class?: string;
+  /* Размер задаётся пропом, а не CSS снаружи: scoped-стили родителя не
+     доходят до элементов, отрендеренных внутри этого компонента */
+  size?: number;
 }
 
-const { name, class: className } = Astro.props;
+const { name, class: className, size = 20 } = Astro.props;
 ---
 
-<span class:list={['icon', className]} set:html={icons[name]} />
+<span class:list={['icon', className]} style={`--icon-size:${size}px`} set:html={icons[name]} />
 
 <style>
   .icon {
     display: inline-flex;
-    width: 20px;
-    height: 20px;
+    width: var(--icon-size);
+    height: var(--icon-size);
     flex-shrink: 0;
   }
   .icon :global(svg) {

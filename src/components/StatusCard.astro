@@ -10,7 +10,7 @@ const { status = 'confirmed' } = Astro.props;
 ---
 
 <div class="status-card">
-  <Icon name={status === 'confirmed' ? 'check-in-circle' : 'cross-in-circle'} class="status-icon" />
+  <Icon name={status === 'confirmed' ? 'check-in-circle' : 'cross-in-circle'} size={32} />
   <p class="text-label text" data-i18n-scope><slot /></p>
 </div>
 
@@ -27,11 +27,6 @@ const { status = 'confirmed' } = Astro.props;
     background: var(--color-white);
     border: 1px solid var(--color-black-6);
     overflow: clip;
-  }
-
-  .status-icon {
-    width: 32px;
-    height: 32px;
   }
 
   .text {
