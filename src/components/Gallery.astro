@@ -21,7 +21,17 @@ function imageSize(image: ImageMetadata) {
   <div class="viewport">
     <div class="row" style={`height:${height}px`} data-gallery-row>
       {images.map((image) => (
-        <Image src={image} alt="" {...imageSize(image)} format="webp" class="image" />
+        <Image
+          src={image}
+          alt=""
+          {...imageSize(image)}
+          format="webp"
+          class="image"
+          data-zoomable
+          role="button"
+          tabindex="0"
+          aria-label="Открыть изображение на всё окно"
+        />
       ))}
     </div>
     <div class="scroller" data-gallery-scroller hidden>
@@ -66,6 +76,7 @@ function imageSize(image: ImageMetadata) {
     max-width: none;
     border-radius: var(--radius-lg);
     object-fit: cover;
+    cursor: zoom-in;
   }
 
   .scroller {

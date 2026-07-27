@@ -1,0 +1,337 @@
+---
+/*
+  Просмотр изображения на всё окно (node 280-914). Один экземпляр на страницу,
+  монтируется в CaseLayout вне .page-container: у контейнера на планшете и
+  мобильной вёрстке стоит overflow-x: clip, а он в отличие от hidden обрезает
+  и fixed-потомков.
+
+  Открывается кликом по любому изображению с атрибутом data-zoomable. Источник
+  берём из currentSrc самой картинки — это уже скачанный и закэшированный
+  максимальный вариант, который отдают Gallery и ImageBlock, поэтому открытие
+  мгновенное и не тянет дополнительных ассетов.
+*/
+import Icon from './Icon.astro';
+---
+
+<div class="lightbox" data-lightbox hidden>
+  <div class="backdrop"></div>
+  <div class="stage" data-lightbox-dismiss>
+    <div class="frame" data-lightbox-frame>
+      <img class="image" data-lightbox-image alt="" draggable="false" />
+    </div>
+  </div>
+  <button type="button" class="close" data-lightbox-close aria-label="Закрыть">
+    <Icon name="cross-in-circle" size={32} />
+  </button>
+</div>
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  .lightbox[hidden] {
+    display: none;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+  }
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--color-black-24);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Отступы изображения от краёв окна — 72 по бокам и 26 сверху/снизу
+     в кадре 1440×1024 из макета. 72px это ровно 5vw при 1440, поэтому на
+     узких окнах боковой отступ ужимается в той же пропорции */
+  .stage {
+    position: absolute;
+    inset: 0;
+    padding: 26px min(72px, 5vw);
+  }
+
+  .frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-lg);
+    cursor: zoom-in;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .image--zoomed {
+    cursor: grab;
+  }
+  .image--dragging {
+    cursor: grabbing;
+  }
+
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  /* Тот же крест, что в карточках гипотез, но на тёмной подложке — светлый */
+  .close :global(path) {
+    fill: var(--color-errigal-white);
+  }
+</style>
+
+<script>
+  const MAX_ZOOM = 6;
+  /* Даже когда изображение уже отдано почти в нативном разрешении, клик должен
+     заметно приближать — иначе выглядит как будто ничего не произошло */
+  const MIN_ZOOM = 1.5;
+
+  function initLightbox() {
+    const root = document.querySelector<HTMLElement>('[data-lightbox]');
+    if (!root || root.dataset.lightboxWired) return;
+    root.dataset.lightboxWired = 'true';
+
+    const frame = root.querySelector<HTMLElement>('[data-lightbox-frame]');
+    const img = root.querySelector<HTMLImageElement>('[data-lightbox-image]');
+    const closeButton = root.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+    if (!frame || !img || !closeButton) return;
+
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let fitWidth = 0;
+    let fitHeight = 0;
+    let maxScale = 1;
+    let lastFocused: HTMLElement | null = null;
+    let hideTimer = 0;
+
+    const render = (animate: boolean) => {
+      img.style.transition = animate ? 'transform 200ms ease' : 'none';
+      img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      img.classList.toggle('image--zoomed', scale > 1.001);
+    };
+
+    const clampOffsets = () => {
+      const overX = Math.max(0, (fitWidth * scale - frame.clientWidth) / 2);
+      const overY = Math.max(0, (fitHeight * scale - frame.clientHeight) / 2);
+      tx = Math.min(overX, Math.max(-overX, tx));
+      ty = Math.min(overY, Math.max(-overY, ty));
+    };
+
+    // offsetWidth не зависит от transform, поэтому даёт размер «вписанного» состояния
+    const measure = () => {
+      fitWidth = img.offsetWidth;
+      fitHeight = img.offsetHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const native = fitWidth > 0 ? img.naturalWidth / dpr / fitWidth : 1;
+      maxScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, native));
+    };
+
+    const zoomTo = (next: number, clientX: number, clientY: number, animate: boolean) => {
+      const target = Math.min(maxScale, Math.max(1, next));
+      const rect = frame.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      // Точка под курсором в системе координат неотмасштабированной картинки
+      const px = (clientX - cx - tx) / scale;
+      const py = (clientY - cy - ty) / scale;
+      scale = target;
+      tx = clientX - cx - px * target;
+      ty = clientY - cy - py * target;
+      if (scale <= 1.001) {
+        scale = 1;
+        tx = 0;
+        ty = 0;
+      }
+      clampOffsets();
+      render(animate);
+    };
+
+    const reset = () => {
+      scale = 1;
+      tx = 0;
+      ty = 0;
+      render(false);
+    };
+
+    const open = (source: HTMLImageElement) => {
+      window.clearTimeout(hideTimer);
+      lastFocused = document.activeElement as HTMLElement | null;
+      img.src = source.currentSrc || source.src;
+      root.hidden = false;
+      reset();
+
+      const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
+
+      if (img.complete) measure();
+      else img.addEventListener('load', measure, { once: true });
+
+      // Форсируем пересчёт стилей, чтобы transition стартовал с opacity: 0
+      void root.offsetWidth;
+      root.classList.add('is-open');
+      closeButton.focus();
+    };
+
+    const close = () => {
+      root.classList.remove('is-open');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      hideTimer = window.setTimeout(() => {
+        root.hidden = true;
+        img.removeAttribute('src');
+      }, 200);
+      lastFocused?.focus();
+      lastFocused = null;
+    };
+
+    closeButton.addEventListener('click', close);
+    root.querySelector('[data-lightbox-dismiss]')?.addEventListener('click', close);
+
+    // Перетаскивание и пинч
+    const points = new Map<number, { x: number; y: number }>();
+    let drag: { x: number; y: number; tx: number; ty: number } | null = null;
+    let pinch: { distance: number; scale: number } | null = null;
+    let moved = 0;
+
+    const pointPair = () => [...points.values()];
+    const pinchDistance = () => {
+      const [a, b] = pointPair();
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    };
+    const pinchCenter = () => {
+      const [a, b] = pointPair();
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    };
+
+    img.addEventListener('pointerdown', (event) => {
+      event.stopPropagation();
+      points.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      img.setPointerCapture(event.pointerId);
+      if (points.size === 1) {
+        moved = 0;
+        drag = { x: event.clientX, y: event.clientY, tx, ty };
+      } else if (points.size === 2) {
+        drag = null;
+        pinch = { distance: pinchDistance(), scale };
+      }
+    });
+
+    img.addEventListener('pointermove', (event) => {
+      if (!points.has(event.pointerId)) return;
+      points.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+      if (pinch && points.size === 2) {
+        const center = pinchCenter();
+        zoomTo(pinch.scale * (pinchDistance() / pinch.distance), center.x, center.y, false);
+        moved = Infinity;
+        return;
+      }
+      if (!drag) return;
+
+      const dx = event.clientX - drag.x;
+      const dy = event.clientY - drag.y;
+      moved = Math.max(moved, Math.hypot(dx, dy));
+      if (scale <= 1.001) return;
+
+      img.classList.add('image--dragging');
+      tx = drag.tx + dx;
+      ty = drag.ty + dy;
+      clampOffsets();
+      render(false);
+    });
+
+    const releasePointer = (event: PointerEvent, tap: boolean) => {
+      points.delete(event.pointerId);
+      img.classList.remove('image--dragging');
+      if (points.size < 2) pinch = null;
+      if (points.size === 0) {
+        drag = null;
+        // Короткое касание без смещения — переключение вписанного вида и зума
+        if (tap && moved < 5) {
+          if (scale > 1.001) reset();
+          else zoomTo(maxScale, event.clientX, event.clientY, true);
+        }
+      } else {
+        const [rest] = pointPair();
+        drag = { x: rest.x, y: rest.y, tx, ty };
+      }
+    };
+
+    img.addEventListener('pointerup', (event) => releasePointer(event, true));
+    img.addEventListener('pointercancel', (event) => releasePointer(event, false));
+    img.addEventListener('click', (event) => event.stopPropagation());
+
+    frame.addEventListener(
+      'wheel',
+      (event) => {
+        if (root.hidden) return;
+        if (event.ctrlKey) {
+          // Пинч на тачпаде приходит как wheel с ctrlKey
+          event.preventDefault();
+          zoomTo(scale * Math.exp(-event.deltaY * 0.01), event.clientX, event.clientY, false);
+        } else if (scale > 1.001) {
+          event.preventDefault();
+          tx -= event.deltaX;
+          ty -= event.deltaY;
+          clampOffsets();
+          render(false);
+        }
+      },
+      { passive: false }
+    );
+
+    window.addEventListener('resize', () => {
+      if (root.hidden) return;
+      measure();
+      scale = Math.min(scale, maxScale);
+      clampOffsets();
+      render(false);
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = (event.target as HTMLElement | null)?.closest<HTMLImageElement>('[data-zoomable]');
+      if (target) open(target);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !root.hidden) {
+        close();
+        return;
+      }
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const focused = document.activeElement as HTMLElement | null;
+      if (focused?.matches('[data-zoomable]')) {
+        event.preventDefault();
+        open(focused as HTMLImageElement);
+      }
+    });
+  }
+
+  initLightbox();
+  document.addEventListener('astro:page-load', initLightbox);
+</script>
