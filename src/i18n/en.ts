@@ -76,6 +76,7 @@ export const EN: Record<string, string> = {
 
   // Shared across multiple case pages
   'Контекст': 'Context',
+  'Контекст задачи': 'Task context',
   'Задача': 'Task',
   'Процесс': 'Process',
   'Инсайты': 'Insights',
@@ -88,7 +89,6 @@ export const EN: Record<string, string> = {
   'Очное модерируемое': 'In-person, moderated',
   'Ключевые инсайты': 'Key insights',
   'Методология': 'Methodology',
-  'Прототип': 'Prototype',
   'Цель исследования': 'Research goal',
   '5 человек': '5 people',
   'Старый вариант': 'Old version',
@@ -133,16 +133,19 @@ export const EN: Record<string, string> = {
   'Непонятна категоризация, названия и назначение блоков, из которых строится клиентский интерфейс':
     'The categorization, names, and purpose of the blocks that make up the client interface are unclear',
   'Новая итерация и финальное дизайн-решение': 'New iteration and final design solution',
-  'На основе фидбэка и референсов собрал новый прототип и провел 2 раунд тестирования. Критических проблем не выявил':
+  'На основе фидбэка и референсов собрал новый прототип и провел 2-й раунд тестирования. Критических проблем не выявил':
     'Based on feedback and references, I built a new prototype and ran a 2nd round of testing. No critical issues were found',
   'Комментарии касались в основном текстов, которые доработал во время сборки финальных макетов':
     'Comments were mostly about copy, which I refined while assembling the final mockups',
-  'Предварительный опрос, на основе которого формируются статусы публикуемого продукта':
-    "A preliminary survey used to generate the published product's statuses",
-  'Главный экран конструктора со статусной сеткой и карточками с наполнением статусов':
-    'The builder\'s main screen with the status grid and status-content cards',
+  'Опрос, на основе которого формируются статусы публикуемого продукта':
+    "The survey that generates the published product's statuses",
   'Каталог блоков и примеры их настройки': 'Block catalog and configuration examples',
-  'Режим предпросмотра настроенного интерфейса': 'Preview mode for the configured interface',
+
+  'Первый прототип конструктора': 'First prototype of the builder',
+  'Главный экран конструктора, на котором видны статусы и их наполнение':
+    'The builder’s main screen, showing the statuses and their content',
+  'Режим предпросмотра настроенного интерфейса для проверки':
+    'Preview mode for checking the configured interface',
   'Спроектировал и протестировал гибкий инструмент для создания клиентских интерфейсов на базе Платформы AI':
     'Designed and tested a flexible tool for building client interfaces on Platform AI',
   'Конструктор рассчитан на потребности продуктов, которые публиковались в каталоге. Будучи единственным дизайнером на проекте, провёл весь цикл самостоятельно за 2 месяца — от исследования аналогов до финальных макетов':
@@ -155,8 +158,8 @@ export const EN: Record<string, string> = {
     'A tool was needed to let specialists find the data and models they need by relevant criteria, and let owners publish them with flexible access settings (public or restricted) with room for future monetization',
   'Конкурентный анализ': 'Competitive analysis',
   'На рынке уже существовали похожие решения, поэтому начал с анализа аналогов': 'Similar solutions already existed on the market, so I started with a competitive analysis',
-  'Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world, Amazon Data Marketplace, Google Dataset Search':
-    'Broke down the concepts, monetization approaches and UI patterns of Hugging Face, Kaggle, OpenML, data.world, Amazon Data Marketplace, and Google Dataset Search',
+  'Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, data.world, Amazon Data Marketplace, Google Dataset Search':
+    'Broke down the concepts, monetization approaches and UI patterns of Hugging Face, Kaggle, data.world, Amazon Data Marketplace, and Google Dataset Search',
   'Интервью': 'Interviews',
   'Провёл 5 интервью с ML и DS-специалистами, чтобы понять, как они на самом деле ищут модели и датасеты':
     'Ran 5 interviews with ML and DS specialists to understand how they actually search for models and datasets',
@@ -170,12 +173,13 @@ export const EN: Record<string, string> = {
   'При поиске моделей обращают внимание на тип решаемой задачи, могут отфильтровать по фреймворку':
     'When searching for models, users pay attention to the task type and may filter by framework',
   'Финальное дизайн-решение': 'Final design',
-  'На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы':
-    'Designed the key sections based on insights from the interviews and competitive analysis',
+  'На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы и сценарий публикации':
+    'Designed the key sections and the publishing flow based on insights from the interviews and competitive analysis',
   'Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"':
     'Designed model and dataset catalogs with filters, model and dataset detail pages with descriptions, and publishing sections on the Platform. The UI is built on the "Malachite" design system components',
   'Каталоги датасетов и моделей с карточками и фильтрацией': 'Dataset and model catalogs with cards and filtering',
   'Страницы датасета и модели': 'Dataset and model pages',
+  'Сценарий публикации датасета': 'The dataset publishing flow',
   'Спроектировал каталоги моделей и датасетов для Платформы AI':
     'Designed the model and dataset catalogs for Platform AI',
   'Каталоги и страницы датасетов и моделей рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа и интервью до финальных макетов':

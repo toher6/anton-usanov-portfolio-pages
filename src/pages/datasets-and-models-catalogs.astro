@@ -13,6 +13,9 @@ import competitorAnalysis2 from '../assets/images/cases/datasets-and-models-cata
 import catalogsScreen1 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-1.png';
 import catalogsScreen2 from '../assets/images/cases/datasets-and-models-catalogs/catalogs-screens-2.png';
 import detailPageScreens from '../assets/images/cases/datasets-and-models-catalogs/detail-page-screens.png';
+import publicationFlow1 from '../assets/images/cases/datasets-and-models-catalogs/publication-flow-1.png';
+import publicationFlow2 from '../assets/images/cases/datasets-and-models-catalogs/publication-flow-2.png';
+import publicationFlow3 from '../assets/images/cases/datasets-and-models-catalogs/publication-flow-3.png';
 
 const title = 'Спроектировал разделы публикации датасетов и моделей';
 const description =
@@ -79,8 +82,8 @@ const insights = [
         preTitle="Конкурентный анализ"
         title="На рынке уже существовали похожие решения, поэтому начал с анализа аналогов"
       >
-        Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, OpenML, data.world,
-        Amazon Data Marketplace, Google Dataset Search
+        Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, data.world, Amazon Data
+        Marketplace, Google Dataset Search
       </CaseSection>
       <Gallery images={[competitorAnalysis2, competitorAnalysis1]} />
     </div>
@@ -110,7 +113,7 @@ const insights = [
     <div class="case-block">
       <CaseSection
         preTitle="Финальное дизайн-решение"
-        title="На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы"
+        title="На основе инсайтов из интервью и конкурентного анализа спроектировал ключевые разделы и сценарий публикации"
       >
         Отрисовал каталоги моделей и датасетов с фильтрами, страницы моделей и датасетов с описаниями, разделы для
         публикации на Платформе. UI построен на компонентах дизайн-системы "Малахит"
@@ -118,6 +121,10 @@ const insights = [
 
       <Gallery images={[catalogsScreen1, catalogsScreen2]} caption="Каталоги датасетов и моделей с карточками и фильтрацией" />
       <ImageBlock image={detailPageScreens} framed={false} caption="Страницы датасета и модели" />
+      <Gallery
+        images={[publicationFlow1, publicationFlow2, publicationFlow3]}
+        caption="Сценарий публикации датасета"
+      />
     </div>
 
     <div class="case-block">

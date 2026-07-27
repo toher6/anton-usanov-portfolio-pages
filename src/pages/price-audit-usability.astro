@@ -62,10 +62,10 @@ const hypotheses = [
         <p>Цель исследования — понять, закрывает ли новая версия сервиса потребности пользователей в сценарии аудита спецификации, и что мешает работать с интерфейсом самостоятельно. Результат должен был помочь команде принять решение о доработке функционала</p>
       </CaseSection>
 
-      <ImageBlock image={prototypeFlow} framed={false} />
+      <ImageBlock image={prototypeFlow} framed={false} radius="var(--radius-xl)" />
     </section>
 
-    <section class="section-group">
+    <section class="section-group section-group--wide">
       <CaseSection preTitle="Инсайты" title="2 из 3 гипотез подтвердились">
         По итогам тестирования узнал различные инсайты, выявил и приоритизировал 12 проблем разной критичности — 6 из
         них в высоком приоритете
@@ -77,10 +77,10 @@ const hypotheses = [
         ))}
       </div>
 
-      <ImageBlock image={improvementsTable} />
+      <ImageBlock image={improvementsTable} radius="var(--radius-lg)" />
     </section>
 
-    <section class="section-group">
+    <section class="section-group section-group--wide">
       <CaseSection
         preTitle="Доработка"
         title="Согласовал список доработок с командой и заказчиком, скорректировал макеты"
@@ -140,6 +140,11 @@ const hypotheses = [
     align-items: flex-start;
     gap: 44px;
     width: 100%;
+  }
+
+  /* «Инсайты» и «Доработка» разведены шире остальных блоков (nodes 164:731, 164:732) */
+  .section-group--wide {
+    gap: 64px;
   }
 
   .hypotheses {

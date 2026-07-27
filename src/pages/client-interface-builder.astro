@@ -87,7 +87,7 @@ const researchInsights = [
     </CaseSection>
 
     <div class="case-block">
-      <CaseSection preTitle="Контекст" title="Создание клиентского интерфейса — один из этапов публикации продукта">
+      <CaseSection preTitle="Контекст задачи" title="Создание клиентского интерфейса — один из этапов публикации продукта">
         Набор из пяти готовых сценариев с фиксированной логикой не покрывал разнообразие продуктов, которые публиковались на Платформе
       </CaseSection>
       <ImageBlock image={templateCatalog} caption="5 шаблонов клиентского интерфейса" />
@@ -98,7 +98,7 @@ const researchInsights = [
         Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками
       </CaseSection>
       <ImageBlock image={builderStages} caption="Этапы создания клиентского интерфейса в конструкторе" framed={false} />
-      <ImageBlock image={sketch} framed={false} />
+      <ImageBlock image={sketch} framed={false} radius="var(--radius-xl)" />
     </div>
 
     <div class="case-block">
@@ -129,20 +129,20 @@ const researchInsights = [
           ))}
         </ResearchPanel>
       </div>
-      <ImageBlock image={specScreenshot} caption="Прототип" framed={false} />
+      <ImageBlock image={specScreenshot} caption="Первый прототип конструктора" framed={false} />
     </div>
 
     <div class="case-block">
-      <CaseSection preTitle="Новая итерация и финальное дизайн-решение" title="На основе фидбэка и референсов собрал новый прототип и провел 2 раунд тестирования. Критических проблем не выявил">
+      <CaseSection preTitle="Новая итерация и финальное дизайн-решение" title="На основе фидбэка и референсов собрал новый прототип и провел 2-й раунд тестирования. Критических проблем не выявил">
         Комментарии касались в основном текстов, которые доработал во время сборки финальных макетов
       </CaseSection>
       <Gallery
         images={[survey1, survey2, survey3, survey4, survey5, survey6, survey7]}
-        caption="Предварительный опрос, на основе которого формируются статусы публикуемого продукта"
+        caption="Опрос, на основе которого формируются статусы публикуемого продукта"
       />
-      <ImageBlock image={mainScreen} caption="Главный экран конструктора со статусной сеткой и карточками с наполнением статусов" framed={false} />
+      <ImageBlock image={mainScreen} caption="Главный экран конструктора, на котором видны статусы и их наполнение" framed={false} />
       <Gallery images={[blocks1, blocks2, blocks3, blocks4, blocks5, blocks6]} caption="Каталог блоков и примеры их настройки" />
-      <ImageBlock image={previewMode} caption="Режим предпросмотра настроенного интерфейса" />
+      <ImageBlock image={previewMode} caption="Режим предпросмотра настроенного интерфейса для проверки" />
     </div>
 
     <div class="case-block">
