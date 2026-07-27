@@ -24,6 +24,12 @@ class TextScramble {
     for (let i = 0; i < length; i++) {
       const from = oldText[i] ?? '';
       const to = newText[i] ?? '';
+      // Неразрывный пробел не подменяем случайной буквой: иначе на время
+      // анимации строка ломается в другом месте и текст прыгает
+      if (to === '\u00A0') {
+        this.queue.push({ from: to, to, start: 0, end: 0 });
+        continue;
+      }
       const start = Math.floor(Math.random() * 20);
       const end = start + Math.floor(Math.random() * 20);
       this.queue.push({ from, to, start, end });
