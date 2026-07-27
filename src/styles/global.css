@@ -80,3 +80,13 @@ button,
 [data-interactive] {
   transition: background-color 150ms ease, opacity 150ms ease, color 150ms ease, border-color 150ms ease;
 }
+
+/*
+  Разметка всегда приходит русской, английский подставляется скриптом. Чтобы
+  на переходах между страницами не мелькал русский текст, прячем переводимые
+  элементы до подстановки. visibility, а не display — место под текст остаётся
+  занятым, поэтому вёрстка не дёргается. Класс i18n-ready ставит scramble.ts.
+*/
+html[data-lang='en']:not(.i18n-ready) :is([data-i18n], [data-i18n-scope]) {
+  visibility: hidden;
+}

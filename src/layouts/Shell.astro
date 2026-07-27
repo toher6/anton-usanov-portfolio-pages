@@ -59,6 +59,11 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
         var lang = localStorage.getItem('lang') || 'ru';
         document.documentElement.dataset.lang = lang;
       } catch (e) {}
+      // Пока перевод не подставлен, переводимые элементы скрыты стилем.
+      // Если скрипт переводов не выполнится, страховка их всё равно покажет
+      setTimeout(function () {
+        document.documentElement.classList.add('i18n-ready');
+      }, 2000);
     </script>
   </head>
   <body>

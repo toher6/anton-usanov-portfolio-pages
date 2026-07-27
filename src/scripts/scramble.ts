@@ -101,13 +101,21 @@ function unlockHeight(el: HTMLElement) {
   el.style.overflow = '';
 }
 
-function applyLang(lang: 'ru' | 'en') {
+function applyLang(lang: 'ru' | 'en', animate = true) {
   for (const el of topLevelTargets()) {
     if (!originals.has(el)) {
       originals.set(el, el.textContent ?? '');
     }
     const ru = originals.get(el) ?? '';
     const target = lang === 'ru' ? ru : (el.dataset.i18nEn ?? EN[ru.trim()] ?? ru);
+
+    // Приход на страницу с уже выбранным языком — не смена языка, а её
+    // результат. Анимировать нечего: ставим текст сразу
+    if (!animate) {
+      el.textContent = target;
+      continue;
+    }
+
     let scrambler = scramblers.get(el);
     if (!scrambler) {
       scrambler = new TextScramble(el);
@@ -126,8 +134,12 @@ if (!(window as any).__scrambleWired) {
     applyLang(lang);
   });
 
+  // Разметка приходит русской, поэтому до первой отрисовки английские
+  // элементы скрыты стилем в global.css. Снимаем скрытие только после
+  // подстановки, иначе на переходах мелькает русский текст
   const initialLang = document.documentElement.dataset.lang;
   if (initialLang === 'en') {
-    applyLang('en');
+    applyLang('en', false);
   }
+  document.documentElement.classList.add('i18n-ready');
 }
