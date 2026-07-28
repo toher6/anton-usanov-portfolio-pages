@@ -27,8 +27,26 @@ const uid = Math.random().toString(36).slice(2, 9);
     </button>
   </div>
   <div class="slider" data-before-after-slider>
-    <Image src={after} alt="" width={Math.min(2400, after.width)} format="webp" class="layer layer--after" />
-    <Image src={before} alt="" width={Math.min(2400, before.width)} format="webp" class="layer layer--before" />
+    <Image
+      src={after}
+      alt=""
+      width={Math.min(2400, after.width)}
+      format="webp"
+      class="layer layer--after"
+      data-zoomable
+      role="button"
+      aria-label="Открыть изображение на всё окно"
+    />
+    <Image
+      src={before}
+      alt=""
+      width={Math.min(2400, before.width)}
+      format="webp"
+      class="layer layer--before"
+      data-zoomable
+      role="button"
+      aria-label="Открыть изображение на всё окно"
+    />
     <span class="tag tag--left" data-i18n-scope>{beforeLabel}</span>
     <span class="tag tag--right" data-i18n-scope>{afterLabel}</span>
     <div class="divider-line" aria-hidden="true"></div>
@@ -212,6 +230,30 @@ const uid = Math.random().toString(36).slice(2, 9);
       const range = slider.querySelector<HTMLInputElement>('.range');
       range?.addEventListener('input', () => {
         slider.style.setProperty('--pos', `${range.value}%`);
+      });
+
+      /*
+        На десктопе поверх картинок лежит прозрачный range для перетаскивания,
+        и клик до них не доходит. Ловим его здесь и переадресуем той половине,
+        по которой попали, — дальше открытие подхватывает Lightbox.
+        На мобильной range скрыт, клик попадает в картинку сам.
+      */
+      let downX = 0;
+      let downY = 0;
+      slider.addEventListener('pointerdown', (event) => {
+        downX = event.clientX;
+        downY = event.clientY;
+      });
+      slider.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        if (!target.classList.contains('range')) return;
+        // Перетаскивание шторки — не клик
+        if (Math.hypot(event.clientX - downX, event.clientY - downY) > 5) return;
+
+        const rect = slider.getBoundingClientRect();
+        const pos = parseFloat(getComputedStyle(slider).getPropertyValue('--pos')) || 50;
+        const atPercent = ((event.clientX - rect.left) / rect.width) * 100;
+        slider.querySelector<HTMLElement>(atPercent < pos ? '.layer--before' : '.layer--after')?.click();
       });
 
       // Мобильный переключатель гоняет ту же шторку в крайние положения
