@@ -145,4 +145,48 @@ const { title, companyLogo, companyName, description, meta, results, resultsDisc
     object-fit: cover;
     border-radius: var(--radius-2xl);
   }
+
+  /* Мобильная (nodes 305:1378, 307:4810) — всё в одну колонку, логотип и
+     отступы мельче, мета переносится по строкам */
+  @media (max-width: 575.98px) {
+    .head {
+      width: 100%;
+    }
+
+    .row {
+      gap: 10px;
+    }
+
+    .product-name {
+      gap: 8px;
+    }
+
+    .company-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    .description {
+      max-width: none;
+    }
+
+    .meta {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 24px 40px;
+      width: 100%;
+    }
+
+    .results {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .cover {
+      border-radius: var(--radius-md);
+    }
+  }
 </style>

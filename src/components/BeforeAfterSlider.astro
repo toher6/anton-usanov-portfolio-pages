@@ -16,7 +16,17 @@ const uid = Math.random().toString(36).slice(2, 9);
 ---
 
 <figure class="slider-block">
-  <div class="slider" data-before-after-slider style={`--pos: 50%`}>
+  {/* Мобильный режим (node 307:5512): вместо перетаскиваемой шторки —
+      переключатель вариантов, тащить её пальцем на 368px неудобно */}
+  <div class="switcher" data-before-after-switcher>
+    <button type="button" class="switch-item" data-pos="100" aria-pressed="true">
+      <span class="text-button" data-i18n-scope>{beforeLabel}</span>
+    </button>
+    <button type="button" class="switch-item" data-pos="0" aria-pressed="false">
+      <span class="text-button" data-i18n-scope>{afterLabel}</span>
+    </button>
+  </div>
+  <div class="slider" data-before-after-slider>
     <Image src={after} alt="" width={Math.min(2400, after.width)} format="webp" class="layer layer--after" />
     <Image src={before} alt="" width={Math.min(2400, before.width)} format="webp" class="layer layer--before" />
     <span class="tag tag--left" data-i18n-scope>{beforeLabel}</span>
@@ -48,11 +58,37 @@ const uid = Math.random().toString(36).slice(2, 9);
   }
 
   .slider {
+    /* Позиция шторки в CSS, а не в inline-стиле: так её перебивает
+       медиазапрос, а JS ставит inline только при взаимодействии */
+    --pos: 50%;
     position: relative;
     width: 100%;
     border-radius: var(--radius-xl);
     overflow: hidden;
     user-select: none;
+  }
+
+  .switcher {
+    display: none;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    background: var(--color-black-9);
+  }
+
+  .switch-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    color: var(--color-zinc-dust);
+  }
+
+  .switch-item[aria-pressed='true'] {
+    background: var(--color-white);
+    color: var(--color-black);
   }
 
   .layer {
@@ -143,6 +179,29 @@ const uid = Math.random().toString(36).slice(2, 9);
     color: var(--color-blue-dusk);
     text-align: center;
   }
+
+  @media (max-width: 575.98px) {
+    .slider-block {
+      gap: 12px;
+    }
+
+    /* Показан целиком один вариант, выбранный переключателем */
+    .slider {
+      --pos: 100%;
+      border-radius: var(--radius-md);
+    }
+
+    .switcher {
+      display: flex;
+    }
+
+    .tag,
+    .divider-line,
+    .handle,
+    .range {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -153,6 +212,17 @@ const uid = Math.random().toString(36).slice(2, 9);
       const range = slider.querySelector<HTMLInputElement>('.range');
       range?.addEventListener('input', () => {
         slider.style.setProperty('--pos', `${range.value}%`);
+      });
+
+      // Мобильный переключатель гоняет ту же шторку в крайние положения
+      const switcher = slider.parentElement?.querySelector<HTMLElement>('[data-before-after-switcher]');
+      switcher?.addEventListener('click', (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.switch-item');
+        if (!button) return;
+        switcher.querySelectorAll<HTMLButtonElement>('.switch-item').forEach((item) => {
+          item.setAttribute('aria-pressed', String(item === button));
+        });
+        slider.style.setProperty('--pos', `${button.dataset.pos}%`);
       });
     });
   }

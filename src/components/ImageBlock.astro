@@ -58,4 +58,16 @@ const { image, caption, framed = true, radius } = Astro.props;
     color: var(--color-blue-dusk);
     text-align: center;
   }
+
+  /* Мобильная (node 307:4953) — рамка почти вплотную к изображению */
+  @media (max-width: 575.98px) {
+    .frame {
+      padding: 4px;
+      border-radius: var(--radius-md);
+    }
+
+    .image--flush {
+      border-radius: var(--radius-md);
+    }
+  }
 </style>

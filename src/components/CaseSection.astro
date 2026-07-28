@@ -31,4 +31,11 @@ const { preTitle, title, class: className } = Astro.props;
   .description:empty {
     display: none;
   }
+
+  /* Мобильная — текст во всю ширину колонки, ограничение в 800px не нужно */
+  @media (max-width: 575.98px) {
+    .case-section {
+      max-width: none;
+    }
+  }
 </style>

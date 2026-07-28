@@ -33,4 +33,11 @@ const { title, description } = Astro.props;
     padding-bottom: 44px;
     width: fit-content;
   }
+
+  /* Мобильная — хедера нет, кнопка отбита от верха страницы на 88px */
+  @media (max-width: 575.98px) {
+    .back-bar {
+      padding-top: 88px;
+    }
+  }
 </style>

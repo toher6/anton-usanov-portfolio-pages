@@ -121,8 +121,8 @@
 */
 @media (max-width: 575.98px) {
   :root {
-    --text-h1-size: 32px; /* H1/Mobile — Onest Light */
-    --text-h1-line: 48px;
+    --text-h1-size: 26px; /* H1/Mobile — Onest Light */
+    --text-h1-line: 36px;
 
     --text-h2-size: 18px; /* H2/Mobile — Onest Regular */
     --text-h2-line: 28px;

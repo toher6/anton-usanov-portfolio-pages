@@ -223,4 +223,27 @@ const researchInsights = [
     flex: 1 0 0;
     color: var(--color-black);
   }
+
+  /* Мобильная (node 305:1377) — карточки в одну колонку */
+  @media (max-width: 575.98px) {
+    .case-content {
+      padding-block: 0 92px;
+    }
+
+    .spec-grid {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .insight-row {
+      gap: 20px;
+    }
+
+    .results-items {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+  }
 </style>

@@ -31,4 +31,13 @@ const { value, label, class: className } = Astro.props;
   .label {
     color: var(--color-zinc-dust);
   }
+
+  /* Мобильная — карточка во всю ширину колонки, отступы и радиус мельче */
+  @media (max-width: 575.98px) {
+    .result-card {
+      width: 100%;
+      padding: 20px;
+      border-radius: var(--radius-md);
+    }
+  }
 </style>

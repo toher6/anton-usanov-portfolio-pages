@@ -4,6 +4,7 @@ import CaseHero from '../components/CaseHero.astro';
 import CaseSection from '../components/CaseSection.astro';
 import ImageBlock from '../components/ImageBlock.astro';
 import StatusCard from '../components/StatusCard.astro';
+import ResultCard from '../components/ResultCard.astro';
 import sberLogo from '../assets/images/logos/sber-logo.svg';
 import interviewQuestions from '../assets/images/cases/aigw-interview/interview-questions.png';
 import resultSummary from '../assets/images/cases/aigw-interview/result-summary.png';
@@ -11,6 +12,11 @@ import resultSummary from '../assets/images/cases/aigw-interview/result-summary.
 const title = 'Провел серию интервью';
 const description =
   'Провёл исследование для сервиса для внутренних разработчиков ИИ-агентов. Подготовил гайд и провёл 8 глубинных интервью с командами, которые проходят процесс вывода ИИ-агента в продакшн. Подтвердил 3 из 4 гипотез и сформировал рекомендации на основе инсайтов';
+
+const results = [
+  { value: '8', label: 'Интервью проведено' },
+  { value: '3 из 4', label: 'Подтвержденных гипотез' },
+];
 
 const hypotheses = [
   { status: 'confirmed', text: 'Разработчики не до конца понимают структуру и требования, описанные в текущей документации' },
@@ -31,10 +37,7 @@ const hypotheses = [
         { label: 'Роль', value: 'Продуктовый дизайнер' },
         { label: 'Год', value: '2025' },
       ]}
-      results={[
-        { value: '8', label: 'Интервью проведено' },
-        { value: '3 из 4', label: 'Подтвержденных гипотез' },
-      ]}
+      results={results}
     />
 
     <CaseSection preTitle="Контекст и задача" title="AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента">
@@ -67,6 +70,12 @@ const hypotheses = [
         Провёл 8 интервью с продукт-оунерами и аналитиками, которые ведут процесс выкатки ИИ-агентов, и подтвердил 3 из 4 гипотез. Собрал набор конкретных рекомендаций по документации, интерфейсу и процессу и презентовал результаты команде
       </CaseSection>
 
+      <div class="results-items">
+        {results.map((item) => (
+          <ResultCard value={item.value} label={item.label} />
+        ))}
+      </div>
+
       <ImageBlock image={resultSummary} />
     </div>
   </div>
@@ -95,5 +104,31 @@ const hypotheses = [
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     width: 100%;
+  }
+
+  .results-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Мобильная (node 307:4809) — всё в одну колонку */
+  @media (max-width: 575.98px) {
+    .page {
+      gap: 88px;
+      padding-block: 0 92px;
+    }
+
+    .hypotheses {
+      grid-template-columns: 1fr;
+    }
+
+    .results-items {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
   }
 </style>

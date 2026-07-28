@@ -160,4 +160,29 @@ const hypotheses = [
     gap: 20px;
     flex-wrap: wrap;
   }
+
+  /* Мобильная (node 307:5178) — карточки в одну колонку, широкие блоки
+     схлопываются до обычного шага 44 */
+  @media (max-width: 575.98px) {
+    .case {
+      gap: 88px;
+      padding-bottom: 92px;
+    }
+
+    .section-group--wide {
+      gap: 44px;
+    }
+
+    .hypotheses {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .results-items {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+  }
 </style>

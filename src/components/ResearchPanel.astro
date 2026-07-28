@@ -50,4 +50,18 @@ const { tag, tagColor, rowGap = 20 } = Astro.props;
     align-items: flex-start;
     width: 100%;
   }
+
+  /* Мобильная (node 305:4693) — отступы и радиус мельче, строки ближе */
+  @media (max-width: 575.98px) {
+    .research-panel {
+      gap: 24px;
+      padding: 20px;
+      border-radius: var(--radius-md);
+    }
+
+    .rows {
+      /* Перебивает inline-стиль с десктопным rowGap */
+      gap: 20px !important;
+    }
+  }
 </style>

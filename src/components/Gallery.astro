@@ -19,7 +19,7 @@ function imageSize(image: ImageMetadata) {
 
 <figure class="gallery" data-gallery>
   <div class="viewport">
-    <div class="row" style={`height:${height}px`} data-gallery-row>
+    <div class="row" style={`--row-height:${height}px`} data-gallery-row>
       {images.map((image) => (
         <Image
           src={image}
@@ -58,9 +58,12 @@ function imageSize(image: ImageMetadata) {
     width: 100%;
   }
 
+  /* Высота через переменную, а не inline height: иначе её не перебить
+     медиазапросом для мобильной раскладки */
   .row {
     display: flex;
     gap: 24px;
+    height: var(--row-height);
     width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
@@ -101,6 +104,18 @@ function imageSize(image: ImageMetadata) {
   .caption {
     color: var(--color-blue-dusk);
     text-align: center;
+  }
+
+  /* Мобильная (nodes 305:4737, 305:1481) — ряд ниже, картинки ближе друг к другу */
+  @media (max-width: 575.98px) {
+    .row {
+      height: 210px;
+      gap: 8px;
+    }
+
+    .image {
+      border-radius: var(--radius-md);
+    }
   }
 </style>
 
