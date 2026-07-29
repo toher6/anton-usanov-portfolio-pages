@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { zoomSource } from '../scripts/zoom-source';
 
 interface Props {
   images: ImageMetadata[];
@@ -15,12 +16,14 @@ function imageSize(image: ImageMetadata) {
   const w = Math.round(h * (image.width / image.height));
   return { width: w, height: h };
 }
+
+const zoomSrcs = await Promise.all(images.map(zoomSource));
 ---
 
 <figure class="gallery" data-gallery>
   <div class="viewport">
     <div class="row" style={`--row-height:${height}px`} data-gallery-row>
-      {images.map((image) => (
+      {images.map((image, index) => (
         <Image
           src={image}
           alt=""
@@ -28,6 +31,7 @@ function imageSize(image: ImageMetadata) {
           format="webp"
           class="image"
           data-zoomable
+          data-zoom-src={zoomSrcs[index]}
           role="button"
           tabindex="0"
           aria-label="Открыть изображение на всё окно"

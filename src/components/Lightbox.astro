@@ -104,7 +104,10 @@ import Icon from './Icon.astro';
 </style>
 
 <script>
-  const MAX_ZOOM = 6;
+  /* Потолок — только страховка от абсурда: реальный предел задаёт сам файл
+     (naturalWidth / dpr / ширина вписанного), и он всегда меньше. При 6
+     на узком экране зум упирался в потолок, не дойдя до 1:1 */
+  const MAX_ZOOM = 12;
   /* Даже когда изображение уже отдано почти в нативном разрешении, клик должен
      заметно приближать — иначе выглядит как будто ничего не произошло */
   const MIN_ZOOM = 1.5;
@@ -127,6 +130,9 @@ import Icon from './Icon.astro';
     let maxScale = 1;
     let lastFocused: HTMLElement | null = null;
     let hideTimer = 0;
+    /* Растёт на каждом открытии: полноразмерный вариант грузится асинхронно,
+       и подменять src можно, только если за это время ничего не переоткрыли */
+    let openToken = 0;
 
     const render = (animate: boolean) => {
       img.style.transition = animate ? 'transform 200ms ease' : 'none';
@@ -180,7 +186,31 @@ import Icon from './Icon.astro';
     const open = (source: HTMLImageElement) => {
       window.clearTimeout(hideTimer);
       lastFocused = document.activeElement as HTMLElement | null;
-      img.src = source.currentSrc || source.src;
+
+      /*
+        Сначала — уже скачанный вариант со страницы: открытие мгновенное.
+        Затем подменяем его полноразмерным (data-zoom-src), когда тот
+        догрузится. На странице картинки отдаются под свой размер в вёрстке,
+        и без подмены зум упирался бы в них, а не в исходник.
+      */
+      const preview = source.currentSrc || source.src;
+      const full = source.dataset.zoomSrc;
+      const token = ++openToken;
+      img.src = preview;
+
+      if (full && full !== preview) {
+        const hires = new Image();
+        hires.onload = () => {
+          if (token !== openToken || root.hidden) return;
+          img.src = full;
+          measure();
+          scale = Math.min(scale, maxScale);
+          clampOffsets();
+          render(false);
+        };
+        hires.src = full;
+      }
+
       root.hidden = false;
       reset();
 

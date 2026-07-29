@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Icon from './Icon.astro';
+import { zoomSource } from '../scripts/zoom-source';
 
 interface Props {
   before: ImageMetadata;
@@ -13,6 +14,7 @@ interface Props {
 
 const { before, after, beforeLabel, afterLabel, caption } = Astro.props;
 const uid = Math.random().toString(36).slice(2, 9);
+const [beforeZoom, afterZoom] = await Promise.all([zoomSource(before), zoomSource(after)]);
 ---
 
 <figure class="slider-block">
@@ -34,6 +36,7 @@ const uid = Math.random().toString(36).slice(2, 9);
       format="webp"
       class="layer layer--after"
       data-zoomable
+      data-zoom-src={afterZoom}
       role="button"
       aria-label="Открыть изображение на всё окно"
     />
@@ -44,6 +47,7 @@ const uid = Math.random().toString(36).slice(2, 9);
       format="webp"
       class="layer layer--before"
       data-zoomable
+      data-zoom-src={beforeZoom}
       role="button"
       aria-label="Открыть изображение на всё окно"
     />
