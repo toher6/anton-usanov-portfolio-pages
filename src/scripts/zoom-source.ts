@@ -9,16 +9,21 @@ import type { ImageMetadata } from 'astro';
   исходник: до этой правки слайдер «до/после» отдавал 2400px при источнике
   4096, и зум упирался в 59% доступной детализации.
 
-  Этот вариант не попадает в разметку как src — только в data-zoom-src,
-  поэтому скачивается лениво, ровно в момент открытия.
+  Вариант не попадает в разметку как src — только в data-zoom-src, поэтому
+  скачивается лениво, ровно в момент открытия. Ширину отдаём отдельно
+  (data-zoom-w): пока полный вариант в пути, Lightbox показывает страничный,
+  и предел зума нужно считать по будущему файлу, а не по текущему — иначе на
+  телефоне потолок падал до 1.5× с растягиванием.
 */
 const MAX_WIDTH = 4096;
 
-export async function zoomSource(image: ImageMetadata): Promise<string> {
-  const zoom = await getImage({
-    src: image,
-    format: 'webp',
-    width: Math.min(MAX_WIDTH, image.width),
-  });
-  return zoom.src;
+export interface ZoomSource {
+  'data-zoom-src': string;
+  'data-zoom-w': number;
+}
+
+export async function zoomSource(image: ImageMetadata): Promise<ZoomSource> {
+  const width = Math.min(MAX_WIDTH, image.width);
+  const zoom = await getImage({ src: image, format: 'webp', width });
+  return { 'data-zoom-src': zoom.src, 'data-zoom-w': width };
 }

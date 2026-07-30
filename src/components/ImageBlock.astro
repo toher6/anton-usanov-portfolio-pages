@@ -11,16 +11,16 @@ interface Props {
 }
 
 const { image, caption, framed = true, radius } = Astro.props;
-const zoomSrc = await zoomSource(image);
+const zoom = await zoomSource(image);
 ---
 
 <figure class="image-block">
   {framed ? (
     <div class="frame">
-      <Image src={image} alt="" width={Math.min(3504, image.width)} format="webp" data-zoomable data-zoom-src={zoomSrc} role="button" tabindex="0" aria-label="Открыть изображение на всё окно" class="image" style={radius ? `border-radius:${radius}` : undefined} />
+      <Image src={image} alt="" width={Math.min(3504, image.width)} format="webp" data-zoomable {...zoom} role="button" tabindex="0" aria-label="Открыть изображение на всё окно" class="image" style={radius ? `border-radius:${radius}` : undefined} />
     </div>
   ) : (
-    <Image src={image} alt="" width={Math.min(3600, image.width)} format="webp" data-zoomable data-zoom-src={zoomSrc} role="button" tabindex="0" aria-label="Открыть изображение на всё окно" class="image image--flush" style={radius ? `border-radius:${radius}` : undefined} />
+    <Image src={image} alt="" width={Math.min(3600, image.width)} format="webp" data-zoomable {...zoom} role="button" tabindex="0" aria-label="Открыть изображение на всё окно" class="image image--flush" style={radius ? `border-radius:${radius}` : undefined} />
   )}
   {caption && <figcaption class="text-tag caption" data-i18n-scope>{caption}</figcaption>}
 </figure>

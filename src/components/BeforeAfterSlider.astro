@@ -48,7 +48,7 @@ const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(10
       format="webp"
       class="layer layer--after"
       data-zoomable
-      data-zoom-src={afterZoom}
+      {...afterZoom}
       role="button"
       aria-label="Открыть изображение на всё окно"
     />
@@ -62,7 +62,7 @@ const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(10
       format="webp"
       class="layer layer--before"
       data-zoomable
-      data-zoom-src={beforeZoom}
+      {...beforeZoom}
       role="button"
       aria-label="Открыть изображение на всё окно"
     />
@@ -222,10 +222,11 @@ const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(10
       gap: 12px;
     }
 
-    /* Показан целиком один вариант, выбранный переключателем */
+    /* Показан целиком один вариант, выбранный переключателем.
+       Радиуса у изображения в мобильном макете нет (node 307:5512) */
     .slider {
       --pos: 100%;
-      border-radius: var(--radius-md);
+      border-radius: 0;
     }
 
     /* Обрезка тут не нужна, а clip-path выносит слой в отдельную композицию,

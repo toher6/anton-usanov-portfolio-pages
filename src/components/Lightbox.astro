@@ -101,6 +101,14 @@ import Icon from './Icon.astro';
   .close :global(path) {
     fill: var(--color-errigal-white);
   }
+
+  /* Скругление задано только в десктопном макете (node 280:11670). На телефоне
+     изображение занимает всю ширину кадра, и срезанные углы читаются как брак */
+  @media (max-width: 575.98px) {
+    .image {
+      border-radius: 0;
+    }
+  }
 </style>
 
 <script>
@@ -147,12 +155,20 @@ import Icon from './Icon.astro';
       ty = Math.min(overY, Math.max(-overY, ty));
     };
 
+    /*
+      Ширина полного варианта, а не загруженного: пока он в пути, показан
+      страничный (на телефоне это 1200px), и считать предел по нему нельзя —
+      потолок падал до 1.5×, то есть до растягивания.
+    */
+    let fullWidth = 0;
+
     // offsetWidth не зависит от transform, поэтому даёт размер «вписанного» состояния
     const measure = () => {
       fitWidth = img.offsetWidth;
       fitHeight = img.offsetHeight;
       const dpr = window.devicePixelRatio || 1;
-      const native = fitWidth > 0 ? img.naturalWidth / dpr / fitWidth : 1;
+      const pixels = Math.max(fullWidth, img.naturalWidth);
+      const native = fitWidth > 0 ? pixels / dpr / fitWidth : 1;
       maxScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, native));
     };
 
@@ -196,6 +212,7 @@ import Icon from './Icon.astro';
       const preview = source.currentSrc || source.src;
       const full = source.dataset.zoomSrc;
       const token = ++openToken;
+      fullWidth = Number(source.dataset.zoomW) || 0;
       img.src = preview;
 
       if (full && full !== preview) {

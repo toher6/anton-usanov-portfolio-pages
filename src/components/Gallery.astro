@@ -17,7 +17,7 @@ function imageSize(image: ImageMetadata) {
   return { width: w, height: h };
 }
 
-const zoomSrcs = await Promise.all(images.map(zoomSource));
+const zooms = await Promise.all(images.map(zoomSource));
 ---
 
 <figure class="gallery" data-gallery>
@@ -31,7 +31,7 @@ const zoomSrcs = await Promise.all(images.map(zoomSource));
           format="webp"
           class="image"
           data-zoomable
-          data-zoom-src={zoomSrcs[index]}
+          {...zooms[index]}
           role="button"
           tabindex="0"
           aria-label="Открыть изображение на всё окно"
