@@ -17,13 +17,13 @@ const uid = Math.random().toString(36).slice(2, 9);
 const [beforeZoom, afterZoom] = await Promise.all([zoomSource(before), zoomSource(after)]);
 
 /*
-  Слот — 1200px на десктопе и 368px на мобильной, поэтому один размер на всех
-  не подходит: 3× для десктопа (3600) весит на телефоне впустую, а 2400 мало
-  для плотных десктопных экранов. Отдаём srcset и даём браузеру выбрать.
+  Один щедрый размер на все ширины, как в ImageBlock и Gallery: 3× от
+  десктопного слота 1200px. На плотном мобильном экране картинка так с
+  запасом пересэмплирована и остаётся резкой. Пробовал viewport-srcset ради
+  веса — на телефоне браузер выбирал 1200px, и скриншоты с мелким текстом
+  «плыли» рядом с пересэмплированными галереями.
 */
-const layerWidths = (image: ImageMetadata) =>
-  [1200, 2400, 3600].filter((w) => w <= image.width);
-const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(100vw - 34px)';
+const layerWidth = (image: ImageMetadata) => Math.min(3600, image.width);
 ---
 
 <figure class="slider-block">
@@ -41,10 +41,7 @@ const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(10
     <Image
       src={after}
       alt=""
-      width={Math.min(3600, after.width)}
-      height={Math.round((Math.min(3600, after.width) * after.height) / after.width)}
-      widths={layerWidths(after)}
-      sizes={layerSizes}
+      width={layerWidth(after)}
       format="webp"
       class="layer layer--after"
       data-zoomable
@@ -55,10 +52,7 @@ const layerSizes = '(min-width: 1200px) 1200px, (min-width: 576px) 82vw, calc(10
     <Image
       src={before}
       alt=""
-      width={Math.min(3600, before.width)}
-      height={Math.round((Math.min(3600, before.width) * before.height) / before.width)}
-      widths={layerWidths(before)}
-      sizes={layerSizes}
+      width={layerWidth(before)}
       format="webp"
       class="layer layer--before"
       data-zoomable
