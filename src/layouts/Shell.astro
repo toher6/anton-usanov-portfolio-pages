@@ -59,6 +59,18 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
         var lang = localStorage.getItem('lang') || 'ru';
         document.documentElement.dataset.lang = lang;
       } catch (e) {}
+      // Скрытое состояние блоков появления — до первой отрисовки, иначе класс,
+      // добавленный скриптом позже, даёт видимое «угасание» на загрузке. reveal.ts
+      // навешивает наблюдатель. При reduced-motion или без IO класса нет — блоки
+      // видны сразу.
+      try {
+        if (
+          'IntersectionObserver' in window &&
+          !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)
+        ) {
+          document.documentElement.classList.add('reveal');
+        }
+      } catch (e) {}
       // Пока перевод не подставлен, переводимые элементы скрыты стилем.
       // Если скрипт переводов не выполнится, страховка их всё равно покажет
       setTimeout(function () {
@@ -79,6 +91,7 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
          обрезает и fixed-потомков -->
     <slot name="overlay" />
     <script src="../scripts/smooth-scroll.ts"></script>
+    <script src="../scripts/reveal.ts"></script>
     <script src="../scripts/scramble.ts"></script>
     <script src="../scripts/copy-button.ts"></script>
   </body>

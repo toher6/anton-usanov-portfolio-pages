@@ -41,8 +41,10 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
       <section class="section">
         <h2 class="text-h1" data-i18n="sections.productCases">Продуктовые кейсы</h2>
         <div class="cards">
-          {PRODUCT_CASES.map((item) => (
-            <ProductCaseCard {...item} />
+          {PRODUCT_CASES.map((item, i) => (
+            <div class="reveal-slot" data-reveal style={`--reveal-i:${i}`}>
+              <ProductCaseCard {...item} />
+            </div>
           ))}
         </div>
       </section>
@@ -50,8 +52,10 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
       <section class="section">
         <h2 class="text-h1" data-i18n="sections.researchCases">Исследовательские кейсы</h2>
         <div class="cards">
-          {RESEARCH_CASES.map((item) => (
-            <ResearchCaseCard {...item} />
+          {RESEARCH_CASES.map((item, i) => (
+            <div class="reveal-slot" data-reveal style={`--reveal-i:${i}`}>
+              <ResearchCaseCard {...item} />
+            </div>
           ))}
         </div>
       </section>
@@ -88,8 +92,10 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.productCases">Продуктовые кейсы</h2>
       <div class="m-cards">
-        {PRODUCT_CASES.map((item) => (
-          <CaseCardMobile {...item} imagePosition={MOBILE_IMAGE_POSITION[item.href]} />
+        {PRODUCT_CASES.map((item, i) => (
+          <div class="reveal-slot" data-reveal style={`--reveal-i:${i}`}>
+            <CaseCardMobile {...item} imagePosition={MOBILE_IMAGE_POSITION[item.href]} />
+          </div>
         ))}
       </div>
     </section>
@@ -97,8 +103,10 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.researchCases">Исследовательские кейсы</h2>
       <div class="m-cards">
-        {RESEARCH_CASES.map((item) => (
-          <CaseCardMobile {...item} />
+        {RESEARCH_CASES.map((item, i) => (
+          <div class="reveal-slot" data-reveal style={`--reveal-i:${i}`}>
+            <CaseCardMobile {...item} />
+          </div>
         ))}
       </div>
     </section>
@@ -144,6 +152,19 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
 
   .cards {
     gap: 56px;
+  }
+
+  /* Обёртка появления (data-reveal). Карточка внутри — full width, как была */
+  .reveal-slot {
+    width: 100%;
+  }
+
+  /* Смещение вправо при появлении клипаем здесь, чтобы не появлялся
+     горизонтальный скролл. По вертикали — visible, чтобы выезд снизу не резался */
+  .cards,
+  .m-cards {
+    overflow-x: clip;
+    overflow-y: visible;
   }
 
   /* Планшет (макет 1200px, node 275-1153): карточки кейсов стоят плотнее */
