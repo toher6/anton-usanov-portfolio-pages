@@ -1,43 +1,57 @@
 /*
-  Появление блоков при скролле (как «Projects» на humanmade): элемент стартует
-  смещённым вправо-вниз и прозрачным, при входе в вьюпорт выезжает на место.
+  Появление блоков, привязанное к скроллу (как «Projects» на humanmade).
+  Позиция карточки — функция её места в вьюпорте, а не разовый триггер:
+  доскроллил наполовину — карточка на полпути. Скролл вверх симметрично уводит
+  её обратно в угол.
 
-  Анимация играет только при движении вниз. Сброс в скрытое состояние делаем,
-  лишь когда блок ушёл за НИЖНИЙ край, — тогда при следующем скролле вниз он
-  выедет снова. Уход за верхний край оставляем показанным: при скролле вверх к
-  началу страницы блоки не должны выезжать заново.
+  Прогресс p ∈ [0..1]: 0 — карточка смещена в угол и прозрачна (её верх у нижнего
+  края экрана), 1 — на месте (верх поднялся на половину высоты экрана). Между —
+  линейно. Считаем per-frame через rAF, обновляемся на scroll/resize. С Lenis
+  нативный scroll всё равно летит каждый кадр, так что скролл и анимация синхронны.
 
-  Начальное скрытое состояние висит на `html.reveal` (см. global.css), а класс
-  ставит этот скрипт. Если скрипта нет, reduced-motion или нет
-  IntersectionObserver — класс не появляется, и блоки просто видны без анимации,
-  без риска остаться скрытыми.
+  CSS-перехода на элементах нет намеренно: величину задаёт JS каждый кадр, а
+  transition бы «смазывал» и отставал. reduced-motion — класс не ставится
+  (см. инлайн в Shell.astro), блоки просто видны.
+
+  animation-timeline: view() не берём — его нет в Safari/iOS, а именно там это и
+  смотрят с телефона.
 */
 function initReveal() {
-  const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
   if (!els.length) return;
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   document.documentElement.classList.add('reveal');
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        const el = entry.target as HTMLElement;
-        if (entry.isIntersecting) {
-          el.classList.add('is-revealed');
-        } else if (entry.boundingClientRect.top > 0) {
-          // Ушёл вниз за нижний край — сбрасываем для повтора при скролле вниз.
-          // Уход вверх (top < 0) не трогаем, чтобы при скролле вверх не переигрывать.
-          el.classList.remove('is-revealed');
-        }
-      }
-    },
-    { threshold: 0 }
-  );
+  let ticking = false;
 
-  els.forEach((el) => io.observe(el));
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    // Дистанция скролла, за которую карточка доезжает от угла до места
+    const dist = vh * 0.5;
+    const mobile = window.matchMedia('(max-width: 575.98px)').matches;
+    const ox = mobile ? 24 : 40;
+    const oy = mobile ? 40 : 64;
+
+    for (const el of els) {
+      const top = el.getBoundingClientRect().top;
+      let p = (vh - top) / dist;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      el.style.opacity = String(p);
+      el.style.transform = `translate(${((1 - p) * ox).toFixed(1)}px, ${((1 - p) * oy).toFixed(1)}px)`;
+    }
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 }
 
 initReveal();
