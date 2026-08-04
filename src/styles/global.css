@@ -90,3 +90,27 @@ button,
 html[data-lang='en']:not(.i18n-ready) :is([data-i18n], [data-i18n-scope]) {
   visibility: hidden;
 }
+
+/*
+  Lenis (инерционный скролл, src/scripts/smooth-scroll.ts). Минимальный набор
+  из документации: снять scroll-behavior, чтобы не конфликтовал с инерцией,
+  и запереть страницу, когда инстанс остановлен (открыт лайтбокс).
+  data-lenis-prevent — элементы, где колесо остаётся нативным (галереи,
+  лайтбокс).
+*/
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}

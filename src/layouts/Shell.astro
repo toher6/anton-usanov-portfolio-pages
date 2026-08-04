@@ -78,6 +78,7 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     <!-- Оверлеи вне контейнера: у него на планшете overflow-x: clip, который
          обрезает и fixed-потомков -->
     <slot name="overlay" />
+    <script src="../scripts/smooth-scroll.ts"></script>
     <script src="../scripts/scramble.ts"></script>
     <script src="../scripts/copy-button.ts"></script>
   </body>

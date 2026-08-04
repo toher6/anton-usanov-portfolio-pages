@@ -22,7 +22,7 @@ const zooms = await Promise.all(images.map(zoomSource));
 
 <figure class="gallery" data-gallery>
   <div class="viewport">
-    <div class="row" style={`--row-height:${height}px`} data-gallery-row>
+    <div class="row" style={`--row-height:${height}px`} data-gallery-row data-lenis-prevent>
       {images.map((image, index) => (
         <Image
           src={image}
