@@ -159,14 +159,6 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     width: 100%;
   }
 
-  /* Смещение вправо при появлении клипаем здесь, чтобы не появлялся
-     горизонтальный скролл. По вертикали — visible, чтобы выезд снизу не резался */
-  .cards,
-  .m-cards {
-    overflow-x: clip;
-    overflow-y: visible;
-  }
-
   /* Планшет (макет 1200px, node 275-1153): карточки кейсов стоят плотнее */
   @media (min-width: 576px) and (max-width: 1199.98px) {
     .cards {
