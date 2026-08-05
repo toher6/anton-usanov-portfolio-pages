@@ -13,10 +13,14 @@
   берём — его нет в Safari/iOS, а именно там это смотрят с телефона.
 */
 
-// Доля высоты экрана, за которую карточка доезжает от угла до места
-const RANGE = 0.5;
-// Постоянная времени догоняния, сек. Больше — тягучее (ближе к scrub: 1), меньше — резче
-const TAU = 0.32;
+// Позиции верха карточки (× высоту экрана), между которыми идёт анимация.
+// START — где начинается (p=0): 1.2 = карточка на 20% экрана НИЖЕ края, т.е.
+// трогается ещё до появления. END — где доезжает (p=1): 0.5 = верх на середине.
+// Хочешь начинать ещё раньше — увеличивай START.
+const START = 1.2;
+const END = 0.5;
+// Постоянная времени догоняния, сек. Больше — тягучее (ближе к scrub: 1), меньше — резче/быстрее
+const TAU = 0.22;
 
 function initReveal() {
   const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
@@ -31,7 +35,7 @@ function initReveal() {
 
   const targetOf = (el: HTMLElement, vh: number) => {
     const top = el.getBoundingClientRect().top;
-    const p = (vh - top) / (vh * RANGE);
+    const p = (START * vh - top) / ((START - END) * vh);
     return p < 0 ? 0 : p > 1 ? 1 : p;
   };
 
