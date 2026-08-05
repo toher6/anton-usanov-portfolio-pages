@@ -1,21 +1,23 @@
 /*
   Появление блоков, привязанное к скроллу (как «Projects» на humanmade).
-  Позиция карточки — функция её места в вьюпорте, а не разовый триггер:
-  доскроллил наполовину — карточка на полпути. Скролл вверх симметрично уводит
-  её обратно в угол.
 
-  Прогресс p ∈ [0..1]: 0 — карточка смещена в угол и прозрачна (её верх у нижнего
-  края экрана), 1 — на месте (верх поднялся на половину высоты экрана). Между —
-  линейно. Считаем per-frame через rAF, обновляемся на scroll/resize. С Lenis
-  нативный scroll всё равно летит каждый кадр, так что скролл и анимация синхронны.
+  Позиция карточки — функция её места в вьюпорте. Но не жёстко 1:1: значение
+  плавно ДОГОНЯЕТ цель (демпфирование). У humanmade это GSAP ScrollTrigger со
+  `scrub: 1` — анимация тянется к скролл-цели со сглаживанием ~секунда; сам
+  скролл там ещё сглажен Lenis. Без этого догоняния кривая ощущается механически
+  линейной. Здесь: цель — линейный прогресс от позиции, current лерпит к target
+  каждый кадр с постоянной времени TAU (это и есть «кривая»).
 
-  CSS-перехода на элементах нет намеренно: величину задаёт JS каждый кадр, а
-  transition бы «смазывал» и отставал. reduced-motion — класс не ставится
-  (см. инлайн в Shell.astro), блоки просто видны.
-
-  animation-timeline: view() не берём — его нет в Safari/iOS, а именно там это и
-  смотрят с телефона.
+  Только сдвиг, без прозрачности. reduced-motion — класс не ставится
+  (см. инлайн в Shell.astro), блоки просто видны. animation-timeline: view() не
+  берём — его нет в Safari/iOS, а именно там это смотрят с телефона.
 */
+
+// Доля высоты экрана, за которую карточка доезжает от угла до места
+const RANGE = 0.5;
+// Постоянная времени догоняния, сек. Больше — тягучее (ближе к scrub: 1), меньше — резче
+const TAU = 0.32;
+
 function initReveal() {
   const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
   if (!els.length) return;
@@ -23,35 +25,54 @@ function initReveal() {
 
   document.documentElement.classList.add('reveal');
 
-  let ticking = false;
+  const current = new Array<number>(els.length).fill(NaN);
+  let raf = 0;
+  let last = 0;
 
-  const update = () => {
-    ticking = false;
+  const targetOf = (el: HTMLElement, vh: number) => {
+    const top = el.getBoundingClientRect().top;
+    const p = (vh - top) / (vh * RANGE);
+    return p < 0 ? 0 : p > 1 ? 1 : p;
+  };
+
+  const frame = (now: number) => {
+    const dt = last ? Math.min(0.05, (now - last) / 1000) : 1 / 60;
+    last = now;
+    const k = 1 - Math.exp(-dt / TAU);
+
     const vh = window.innerHeight;
-    // Дистанция скролла, за которую карточка доезжает от угла до места
-    const dist = vh * 0.5;
     const mobile = window.matchMedia('(max-width: 575.98px)').matches;
     const ox = mobile ? 24 : 40;
     const oy = mobile ? 40 : 64;
 
-    for (const el of els) {
-      const top = el.getBoundingClientRect().top;
-      let p = (vh - top) / dist;
-      p = p < 0 ? 0 : p > 1 ? 1 : p;
-      // Только сдвиг, без прозрачности: карточка выезжает из угла непрозрачной
-      el.style.transform = `translate(${((1 - p) * ox).toFixed(1)}px, ${((1 - p) * oy).toFixed(1)}px)`;
+    let active = false;
+    els.forEach((el, i) => {
+      const target = targetOf(el, vh);
+      let cur = current[i];
+      if (Number.isNaN(cur)) cur = target; // первый кадр — без прыжка
+      cur += (target - cur) * k;
+      if (Math.abs(target - cur) < 0.0005) cur = target;
+      else active = true;
+      current[i] = cur;
+      const t = 1 - cur;
+      el.style.transform = `translate(${(t * ox).toFixed(2)}px, ${(t * oy).toFixed(2)}px)`;
+    });
+
+    // Крутим цикл, пока значения не улеглись; дальше ждём следующего скролла
+    raf = active ? requestAnimationFrame(frame) : 0;
+  };
+
+  const kick = () => {
+    if (!raf) {
+      last = 0;
+      raf = requestAnimationFrame(frame);
     }
   };
 
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  update();
+  window.addEventListener('scroll', kick, { passive: true });
+  window.addEventListener('resize', kick);
+  // Первый кадр ставит значения по текущему скроллу без анимации
+  frame(performance.now());
 }
 
 initReveal();
