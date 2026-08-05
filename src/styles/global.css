@@ -126,9 +126,8 @@ html.lenis body {
   чтобы не появлялся горизонтальный скролл.
 */
 html.reveal [data-reveal] {
-  opacity: 0;
   transform: translate(40px, 64px);
-  will-change: opacity, transform;
+  will-change: transform;
 }
 
 @media (max-width: 575.98px) {

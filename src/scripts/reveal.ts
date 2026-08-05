@@ -38,7 +38,7 @@ function initReveal() {
       const top = el.getBoundingClientRect().top;
       let p = (vh - top) / dist;
       p = p < 0 ? 0 : p > 1 ? 1 : p;
-      el.style.opacity = String(p);
+      // Только сдвиг, без прозрачности: карточка выезжает из угла непрозрачной
       el.style.transform = `translate(${((1 - p) * ox).toFixed(1)}px, ${((1 - p) * oy).toFixed(1)}px)`;
     }
   };
