@@ -61,6 +61,11 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
         </div>
       </section>
 
+      <section class="section section--playground">
+        <h2 class="text-h1">Playground</h2>
+        <PlaygroundImages />
+      </section>
+
       <section class="section">
         <h2 class="text-h1" data-i18n="sections.education">Образование</h2>
         <div class="education-items">
@@ -71,11 +76,6 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
             </>
           ))}
         </div>
-      </section>
-
-      <section class="section section--playground">
-        <h2 class="text-h1">Playground</h2>
-        <PlaygroundImages />
       </section>
     </div>
   </div>
@@ -118,6 +118,11 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     </section>
 
     <section class="m-section">
+      <h2 class="text-h1">Playground</h2>
+      <PlaygroundImages />
+    </section>
+
+    <section class="m-section">
       <h2 class="text-h1" data-i18n="sections.education">Образование</h2>
       <div class="m-list m-list--education">
         {EDUCATION.map((entry, i) => (
@@ -127,11 +132,6 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
           </>
         ))}
       </div>
-    </section>
-
-    <section class="m-section">
-      <h2 class="text-h1">Playground</h2>
-      <PlaygroundImages />
     </section>
   </div>
 </BaseLayout>
