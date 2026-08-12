@@ -10,6 +10,7 @@ import HeroMobile from '../components/mobile/HeroMobile.astro';
 import ExperienceItemMobile from '../components/mobile/ExperienceItemMobile.astro';
 import EducationItemMobile from '../components/mobile/EducationItemMobile.astro';
 import CaseCardMobile from '../components/mobile/CaseCardMobile.astro';
+import PlaygroundImages from '../components/PlaygroundImages.astro';
 import { EXPERIENCE } from '../data/experience';
 import { EDUCATION } from '../data/education';
 import { PRODUCT_CASES, RESEARCH_CASES } from '../data/cases';
@@ -71,6 +72,11 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
           ))}
         </div>
       </section>
+
+      <section class="section section--playground">
+        <h2 class="text-h1">Playground</h2>
+        <PlaygroundImages />
+      </section>
     </div>
   </div>
 
@@ -122,6 +128,11 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
         ))}
       </div>
     </section>
+
+    <section class="m-section">
+      <h2 class="text-h1">Playground</h2>
+      <PlaygroundImages />
+    </section>
   </div>
 </BaseLayout>
 
@@ -138,6 +149,11 @@ const MOBILE_IMAGE_POSITION: Record<string, string> = {
     flex-direction: column;
     align-items: flex-start;
     gap: 52px;
+  }
+
+  /* Playground (node 359-1387): заголовок и работы по центру колонки */
+  .section--playground {
+    align-items: center;
   }
 
   .experience-table,

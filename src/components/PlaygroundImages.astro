@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import detailSignup from '../assets/images/playground/detail-signup.png';
+import dexsportAcademy from '../assets/images/playground/dexsport-academy.png';
+import evaVpn from '../assets/images/playground/eva-vpn.png';
+
+/*
+  Витрина «Playground» — три работы в столбик (Figma node 359-1387).
+  Кадры имеют фиксированное соотношение сторон, картинка внутри позиционируется
+  ровно теми же процентами, что стоят в макете (фрейм с fill: image). Для
+  dexsport-academy заливка вручную «зазумлена» и сдвинута — поэтому позиция
+  не center, а точные значения left/top/width/height из Figma. Проценты
+  относительны кадру, так что кроп сохраняется на любой ширине.
+*/
+interface Figure {
+  src: ImageMetadata;
+  w: number;
+  h: number;
+  left: number;
+  top: number;
+  iw: number;
+  ih: number;
+}
+
+const FIGURES: Figure[] = [
+  { src: detailSignup, w: 1200, h: 852, left: 0, top: 0, iw: 100, ih: 100.16 },
+  { src: dexsportAcademy, w: 1200, h: 636, left: -6.6, top: -38.34, iw: 113.25, ih: 146.11 },
+  { src: evaVpn, w: 1200, h: 672, left: 0, top: 0, iw: 100, ih: 100.41 },
+];
+---
+
+<div class="figures">
+  {FIGURES.map((f) => (
+    <div class="figure" style={`aspect-ratio:${f.w} / ${f.h}`}>
+      <Image
+        src={f.src}
+        alt=""
+        width={Math.min(3600, f.src.width)}
+        format="webp"
+        class="figure__image"
+        style={`left:${f.left}%;top:${f.top}%;width:${f.iw}%;height:${f.ih}%`}
+      />
+    </div>
+  ))}
+</div>
+
+<style>
+  .figures {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 52px;
+    width: 100%;
+  }
+
+  .figure {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--color-black-3);
+  }
+
+  .figure__image {
+    position: absolute;
+    max-width: none; /* reset ставит img { max-width: 100% } — снимаем, кадр зазумлен */
+  }
+
+  /* Ниже 576px блока в Figma нет — картинки просто ужимаются под сетку */
+  @media (max-width: 575.98px) {
+    .figures {
+      gap: 24px;
+    }
+  }
+</style>
