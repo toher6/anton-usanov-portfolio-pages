@@ -8,26 +8,21 @@ import evaVpn from '../assets/images/playground/eva-vpn.png';
 
 /*
   Витрина «Playground» — три работы в столбик (Figma node 359-1387).
-  Кадры имеют фиксированное соотношение сторон, картинка внутри позиционируется
-  ровно теми же процентами, что стоят в макете (фрейм с fill: image). Для
-  dexsport-academy заливка вручную «зазумлена» и сдвинута — поэтому позиция
-  не center, а точные значения left/top/width/height из Figma. Проценты
-  относительны кадру, так что кроп сохраняется на любой ширине.
+  Кадр держит соотношение сторон из макета, картинка вписывается object-fit:
+  cover. Исходники подрезаны ровно под кадр (dexsport-academy обрезан по кропу
+  из Figma — без верхнего заголовка), поэтому cover не съедает ничего лишнего,
+  а в лайтбоксе открывается та же композиция, что видна в сетке.
 */
 interface Figure {
   src: ImageMetadata;
   w: number;
   h: number;
-  left: number;
-  top: number;
-  iw: number;
-  ih: number;
 }
 
 const FIGURES: Figure[] = [
-  { src: detailSignup, w: 1200, h: 852, left: 0, top: 0, iw: 100, ih: 100.16 },
-  { src: dexsportAcademy, w: 1200, h: 636, left: -6.6, top: -38.34, iw: 113.25, ih: 146.11 },
-  { src: evaVpn, w: 1200, h: 672, left: 0, top: 0, iw: 100, ih: 100.41 },
+  { src: detailSignup, w: 1200, h: 852 },
+  { src: dexsportAcademy, w: 1200, h: 636 },
+  { src: evaVpn, w: 1200, h: 672 },
 ];
 
 // Полноразмерный источник для лайтбокса (клик — на всё окно, как в кейсах)
@@ -43,7 +38,6 @@ const zooms = await Promise.all(FIGURES.map((f) => zoomSource(f.src)));
         width={Math.min(3600, f.src.width)}
         format="webp"
         class="figure__image"
-        style={`left:${f.left}%;top:${f.top}%;width:${f.iw}%;height:${f.ih}%`}
         data-zoomable
         {...zooms[i]}
         role="button"
@@ -72,8 +66,9 @@ const zooms = await Promise.all(FIGURES.map((f) => zoomSource(f.src)));
   }
 
   .figure__image {
-    position: absolute;
-    max-width: none; /* reset ставит img { max-width: 100% } — снимаем, кадр зазумлен */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     cursor: zoom-in;
   }
 
