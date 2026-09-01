@@ -45,8 +45,8 @@ export const EN: Record<string, string> = {
 
   // Product cases (homepage cards)
   'Спроектировал разделы публикации датасетов и моделей': 'Designed dataset and model publishing sections',
-  'За месяц спроектировал каталоги моделей и датасетов — инструменты публикации для внутренних и внешних Data Science и ML-специалистов. Провёл конкурентный анализ сервисов и интервью со специалистами, чтобы понять критерии поиска и приоритеты в фильтрации':
-    'Designed model and dataset catalogs in a month — publishing tools for internal and external Data Science and ML specialists. Ran a competitive analysis and interviews with specialists to understand search criteria and filtering priorities',
+  'За месяц спроектировал каталоги моделей и датасетов, которые должны были обеспечить обмен данными и моделями между командами и партнёрами Сбера и подготовить платформу к монетизации. Провёл конкурентный анализ сервисов и 5 интервью с ML/DS-специалистами, чтобы понять критерии поиска и приоритеты в фильтрации':
+    'In a month I designed model and dataset catalogs meant to enable data and model exchange between Sber’s teams and partners and to prepare the platform for monetization. I ran a competitive analysis of services and 5 interviews with ML/DS specialists to understand search criteria and filtering priorities',
   'С нуля спроектировал конструктор клиентского интерфейса': 'Designed a client interface builder from scratch',
   'За 2 месяца спроектировал гибкий конструктор клиентского интерфейса. Провёл 2 раунда юзабилити-тестирования и совместно с аналитиками продумал логику настройки готовых блоков под задачи публикуемых в каталоге продуктов':
     'Designed a flexible client interface builder in 2 months. Ran 2 rounds of usability testing and worked with analysts to design the configuration logic for pre-built blocks tailored to the needs of products published in the catalog',
@@ -153,8 +153,10 @@ export const EN: Record<string, string> = {
   // Case: datasets-catalog — remaining sections
   'Каталоги моделей и датасетов на Платформе AI — инструмент публикации для внутренних и внешних ML-специалистов':
     'Model and dataset catalogs on Platform AI — a publishing tool for internal and external ML specialists',
-  'Нужен был инструмент, который позволит специалистам находить нужные данные и модели по релевантным критериям, а владельцам — публиковать их с гибкими настройками доступа (публично или ограниченному кругу) и с заделом под будущую монетизацию':
-    'A tool was needed to let specialists find the data and models they need by relevant criteria, and let owners publish them with flexible access settings (public or restricted) with room for future monetization',
+  'Бизнес-цель первой версии — обеспечить обмен данными и моделями между внутренними командами и партнёрами Сбера. Переиспользование моделей между командами и монетизация были частью более широкой стратегии продукта, но выходили за рамки MVP. Нужен был инструмент, который позволит специалистам находить нужные данные и модели по релевантным критериям, а владельцам — публиковать их с гибкими настройками доступа (публично или ограниченному кругу)':
+    'The business goal of the first version was to enable data and model exchange between Sber’s internal teams and partners. Reusing models across teams and monetization were part of the broader product strategy but fell outside the MVP. A tool was needed to let specialists find the data and models they need by relevant criteria, and let owners publish them with flexible access settings (public or restricted to a limited group)',
+  'Первая версия сознательно ограничивала scope: публикация доступна только пользователям с ролью «Партнёр», без монетизации и без сценария переиспользования моделей — команда двигалась небольшими итерациями, чтобы избежать ошибок на проде при высокой технической сложности':
+    'The first version deliberately limited scope: publishing was available only to users with the “Partner” role, without monetization and without a model-reuse scenario — the team moved in small iterations to avoid production errors given the high technical complexity',
   'Конкурентный анализ': 'Competitive analysis',
   'На рынке уже существовали похожие решения, поэтому начал с анализа аналогов': 'Similar solutions already existed on the market, so I started with a competitive analysis',
   'Разобрал концепции, особенности способы монетизации и UI-паттерны Hugging Face, Kaggle, data.world, Amazon Data Marketplace, Google Dataset Search':
@@ -181,8 +183,10 @@ export const EN: Record<string, string> = {
   'Сценарий публикации датасета': 'The dataset publishing flow',
   'Спроектировал каталоги моделей и датасетов для Платформы AI':
     'Designed the model and dataset catalogs for Platform AI',
-  'Каталоги и страницы датасетов и моделей рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа и интервью до финальных макетов':
-    'The catalogs and detail pages are built around the scenarios of internal and external ML/DS specialists. As the only designer on the section, I ran the whole cycle myself in a month — from competitive analysis and interviews to the final mockups',
+  'Каталоги и страницы датасетов и моделей вышли в продакшн и рассчитаны на сценарии внутренних и внешних ML/DS-специалистов. Будучи единственным дизайнером на разделе, провёл весь цикл самостоятельно за месяц — от конкурентного анализа и интервью до финальных макетов и коридорных тестов, подтвердивших, что сценарий публикации и поиска понятен целевым пользователям':
+    'The dataset and model catalogs and detail pages shipped to production and are built around the scenarios of internal and external ML/DS specialists. As the only designer on the section, I ran the whole cycle myself in a month — from competitive analysis and interviews to the final mockups and hallway tests, which confirmed that the publishing and search flow is clear to the target users',
+  'Продукт заморозили на стороне бизнеса до накопления данных по использованию — фактическую статистику собрать не успели. Ниже — расчётные показатели':
+    'The product was frozen on the business side until enough usage data accumulates — we didn’t manage to gather actual statistics. Below are the projected figures',
 
   // Case: aigw-interview
   'AI Gateway — веб-приложение, которое помогает внутренним разработчикам ИИ-агентов отслеживать статус вывода ИИ-агента':
