@@ -111,16 +111,18 @@ export const EN: Record<string, string> = {
     'A set of five ready-made scenarios with fixed logic did not cover the variety of products published on the Platform',
   'Спроектировать гибкий, интуитивный инструмент для владельцев ИИ-продуктов':
     'Design a flexible, intuitive tool for AI product owners',
-  'Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками':
-    "Custom interface development for every product required huge resources, and uploading third-party code to the platform created security risks. Together with the analytics team, I concluded the solution was a builder with ready-made blocks",
+  'Кастомная разработка интерфейсов под каждый продукт требовала огромных ресурсов, а загрузка чужого кода на платформу создавала риски безопасности. С командой аналитики пришли к выводу, что решение — конструктор с готовыми блоками.':
+    "Custom interface development for every product required huge resources, and uploading third-party code to the platform created security risks. Together with the analytics team, I concluded the solution was a builder with ready-made blocks.",
+  'Альтернатива — расширять набор шаблонов — рассматривалась, но не подошла: у многих продуктов схожий бизнес-процесс, но различия в деталях, которые шаблон не покрывает, а поддерживать растущий набор шаблонов дороже, чем один гибкий конструктор. Также шаблоны плохо доносили пользователю логику и последовательность действий внутри себя':
+    "Expanding the template library was considered as an alternative but didn't fit: many products share a similar business process, but the differences in detail aren't covered by a template, and maintaining a growing set of templates costs more than one flexible builder. Templates also did a poor job of communicating the logic and sequence of actions within them",
   'Этапы создания клиентского интерфейса в конструкторе':
     'Stages of building a client interface in the builder',
   'Дискавери': 'Discovery',
   'Изучил смежные решения, так как прямых аналогов не было': 'Studied adjacent solutions, since there were no direct competitors',
-  'Я проанализировал интерфейсы конструкторов бизнес-процессов и сценариев, low-code платформы с визуальной сборкой, конструкторы чат-ботов':
-    'I analyzed interfaces of business-process and scenario builders, low-code platforms with visual assembly, and chatbot builders',
-  'Параллельно мы с аналитиками и владельцем продукта брейнштормили сценарии использования конструктора, пользовательский путь, варианты отображения этапов создания ИИ-приложения и нейминг блоков конструктора':
-    "In parallel, the analysts, the product owner and I brainstormed the builder's usage scenarios, the user journey, ways to display AI application creation stages, and naming for the builder's blocks",
+  'Я проанализировал интерфейсы конструкторов бизнес-процессов и сценариев, low-code платформы с визуальной сборкой, конструкторы чат-ботов.':
+    'I analyzed interfaces of business-process and scenario builders, low-code platforms with visual assembly, and chatbot builders.',
+  'Организовал и провёл серию брейншторм-встреч с аналитиками и владельцем продукта: обсуждали сценарии использования конструктора, пользовательский путь, варианты отображения этапов создания ИИ-приложения и нейминг блоков':
+    "I organized and ran a series of brainstorming sessions with the analysts and product owner: we discussed builder usage scenarios, the user journey, ways to display AI application creation stages, and naming for the builder's blocks",
   'Первый прототип': 'First prototype',
   'Провел юзабилити-тестирование с 5 владельцами продуктов': 'Ran usability testing with 5 product owners',
   'Юзабилити-тестирование': 'Usability testing',
