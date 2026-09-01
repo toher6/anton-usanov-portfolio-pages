@@ -102,6 +102,7 @@ function unlockHeight(el: HTMLElement) {
 }
 
 function applyLang(lang: 'ru' | 'en', animate = true) {
+  document.documentElement.lang = lang;
   for (const el of topLevelTargets()) {
     if (!originals.has(el)) {
       originals.set(el, el.textContent ?? '');

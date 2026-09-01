@@ -113,17 +113,36 @@ const { variant = 'reveal' } = Astro.props;
     // Статичный вариант (страницы кейсов) виден всегда — наблюдатель не нужен
     if (header.classList.contains('header--static')) return;
 
+    // Пока шапка «пустая» (opacity: 0), логотип и ссылки всё ещё в DOM —
+    // без tabindex="-1" клавиатурный фокус попадал бы на невидимые ссылки
+    const focusTargets = [
+      header.querySelector<HTMLElement>('.logo'),
+      ...header.querySelectorAll<HTMLElement>('.header__links a, .header__links button'),
+    ].filter((el): el is HTMLElement => !!el);
+
+    function syncFocusability(pinned: boolean) {
+      for (const el of focusTargets) {
+        if (pinned) el.removeAttribute('tabindex');
+        else el.setAttribute('tabindex', '-1');
+      }
+    }
+
+    syncFocusability(header.classList.contains('header--pinned'));
+
     const hero = document.querySelector('.hero');
     // Нет hero-block (например, страница 404) — шапка всегда видима
     if (!hero) {
       header.classList.add('header--pinned');
+      syncFocusability(true);
       return;
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          header.classList.toggle('header--pinned', !entry.isIntersecting);
+          const pinned = !entry.isIntersecting;
+          header.classList.toggle('header--pinned', pinned);
+          syncFocusability(pinned);
         }
       },
       // Верхняя граница сдвинута на высоту шапки (16px отступ + 68px бар),
