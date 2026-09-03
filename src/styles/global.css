@@ -92,30 +92,6 @@ html[data-lang='en']:not(.i18n-ready) :is([data-i18n], [data-i18n-scope]) {
 }
 
 /*
-  Lenis (инерционный скролл, src/scripts/smooth-scroll.ts). Минимальный набор
-  из документации: снять scroll-behavior, чтобы не конфликтовал с инерцией,
-  и запереть страницу, когда инстанс остановлен (открыт лайтбокс).
-  data-lenis-prevent — элементы, где колесо остаётся нативным (галереи,
-  лайтбокс).
-*/
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-
-/*
   Появление блоков при скролле (src/scripts/reveal.ts). Скролл-привязанная
   анимация: значения transform/opacity выставляет JS каждый кадр, поэтому
   transition тут НЕ ставим — он бы смазывал и отставал. Это правило нужно лишь
@@ -124,10 +100,16 @@ html.lenis body {
   Shell.astro (и только не при reduced-motion) — иначе блоки просто видны.
   Смещение вправо клипается контейнером (.cards / .m-cards в index.astro),
   чтобы не появлялся горизонтальный скролл.
+
+  will-change тут намеренно НЕ ставим статикой: если повесить его на весь
+  сеанс (как было раньше), все 8 карточек (с крупными обложками) держат
+  отдельный GPU-слой постоянно, даже давно остановившись — композитинг
+  пересобирает 8 тяжёлых слоёв каждый кадр скролла без всякой причины
+  (профиль: Composite 37ms из 66ms кадра). reveal.ts сам включает/выключает
+  will-change точечно на каждом элементе — только пока тот реально едет.
 */
 html.reveal [data-reveal] {
   transform: translate(40px, 64px);
-  will-change: transform;
 }
 
 @media (max-width: 575.98px) {

@@ -39,9 +39,7 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
 
       ym(111070237, 'init', {
         ssr: true,
-        webvisor: true,
         clickmap: true,
-        ecommerce: 'dataLayer',
         referrer: document.referrer,
         url: location.href,
         accurateTrackBounce: true,
@@ -90,7 +88,6 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     <!-- Оверлеи вне контейнера: у него на планшете overflow-x: clip, который
          обрезает и fixed-потомков -->
     <slot name="overlay" />
-    <script src="../scripts/smooth-scroll.ts"></script>
     <script src="../scripts/reveal.ts"></script>
     <script src="../scripts/hero-dots-spotlight.ts"></script>
     <script src="../scripts/scramble.ts"></script>

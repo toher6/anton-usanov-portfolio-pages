@@ -13,7 +13,7 @@
 import Icon from './Icon.astro';
 ---
 
-<div class="lightbox" data-lightbox data-lenis-prevent hidden>
+<div class="lightbox" data-lightbox hidden>
   <div class="backdrop"></div>
   <div class="stage" data-lightbox-dismiss>
     <div class="frame" data-lightbox-frame>
@@ -234,8 +234,6 @@ import Icon from './Icon.astro';
       const scrollbar = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
-      // Остановить инерционный скролл, пока оверлей открыт (smooth-scroll.ts)
-      document.dispatchEvent(new CustomEvent('lightbox:open'));
 
       if (img.complete) measure();
       else img.addEventListener('load', measure, { once: true });
@@ -250,7 +248,6 @@ import Icon from './Icon.astro';
       root.classList.remove('is-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
-      document.dispatchEvent(new CustomEvent('lightbox:close'));
       hideTimer = window.setTimeout(() => {
         root.hidden = true;
         img.removeAttribute('src');

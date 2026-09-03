@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import ResultCard from './ResultCard.astro';
+import { responsiveWidths, CONTENT_SIZES } from '../scripts/responsive-widths';
 
 interface Props {
   title: string;
@@ -50,7 +51,18 @@ const { title, companyLogo, companyName, description, meta, results, resultsDisc
     {resultsDisclaimer && <p class="text-tag disclaimer" data-i18n-scope>{resultsDisclaimer}</p>}
   </div>
 
-  {coverImage && <Image src={coverImage} alt="" width={3600} height={1704} format="webp" class="cover" />}
+  {coverImage && (
+    <Image
+      src={coverImage}
+      alt=""
+      widths={responsiveWidths(coverImage.width, 3600)}
+      sizes={CONTENT_SIZES}
+      width={3600}
+      height={1704}
+      format="webp"
+      class="cover"
+    />
+  )}
 </header>
 
 <style>
