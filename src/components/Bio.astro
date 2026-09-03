@@ -26,8 +26,26 @@ import { CONTACTS } from '../data/contacts';
       <mask id="hero-dot-mask" maskContentUnits="objectBoundingBox">
         <rect width="1" height="1" fill="url(#hero-dot-fade)" />
       </mask>
+      <!--
+        Отдельный, ярче закрашенный слой той же сетки точек — курсор двигает
+        только его маску (hero-spotlight), базовый слой и его затухание к
+        краям (hero-dot-fade выше) не трогаются вообще ни при каких условиях.
+        Так состояние покоя гарантированно совпадает с макетом пиксель-в-
+        пиксель — его не может «увести» никакая правка JS.
+      -->
+      <pattern id="hero-dot-grid-bright" width="16" height="16" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.9554" fill="var(--color-black-64)" />
+      </pattern>
+      <radialGradient id="hero-spotlight" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="150">
+        <stop offset="0%" stop-color="#fff" />
+        <stop offset="100%" stop-color="#000" />
+      </radialGradient>
+      <mask id="hero-spotlight-mask">
+        <rect width="100%" height="100%" fill="url(#hero-spotlight)" />
+      </mask>
     </defs>
     <rect width="100%" height="100%" fill="url(#hero-dot-grid)" mask="url(#hero-dot-mask)" />
+    <rect class="spotlight-dots" width="100%" height="100%" fill="url(#hero-dot-grid-bright)" mask="url(#hero-spotlight-mask)" />
   </svg>
   <div class="photo-frame">
     <Image src={profilePhoto} alt="Антон Усанов" width={702} height={702} quality={95} format="avif" class="photo" />
@@ -72,6 +90,15 @@ import { CONTACTS } from '../data/contacts';
     height: calc(100% + 80px);
     max-width: none;
     pointer-events: none;
+  }
+
+  .spotlight-dots {
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .spotlight-dots.is-active {
+    opacity: 1;
   }
 
   .photo-frame {
