@@ -12,8 +12,8 @@ export const EN: Record<string, string> = {
   // Hero / bio
   'Открыт к предложениям': 'Open to offers',
   'Антон Усанов': 'Anton Usanov',
-  'Продуктовый дизайнер с опытом работы над продуктами в сферах AI, девелопмента, логистики, web3':
-    'Product designer with experience across AI, real estate, logistics, and web3 products',
+  'Продуктовый дизайнер с опытом работы над продуктами в сферах AI, закупок, логистики, web3. Убежден, что без общения с пользователями не построить классный продукт. Выжимаю максимум при жёстких ограничениях и не жду готового ТЗ — приношу концепты сам.':
+    "Product designer with experience across AI, procurement, logistics, and web3 products. I believe you can't build a great product without talking to users. I get the most out of tight constraints and don't wait for a finished spec — I bring my own concepts.",
 
   // Section titles
   'Опыт работы': 'Experience',

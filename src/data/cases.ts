@@ -6,7 +6,7 @@ import aigwInterviewCover from '../assets/images/covers/aigw-interview.png';
 
 export const PRODUCT_CASES = [
   {
-    tags: ['#b2c', '#ai', '#ux-research'],
+    tags: ['#b2b', '#ai', '#ux-research'],
     title: 'Спроектировал разделы публикации датасетов и моделей',
     companyLogo: sberLogo,
     companyName: 'Платформы AI',
